@@ -15,28 +15,33 @@ const useStyles = makeStyles({
     maxWidth: 345
   },
   media: {
-    height: 200,
-    width: "100%"
+    height: 300,
+    backgroundColor: "#000"
+  },
+  cardHeight: {
+    height: "auto"
   }
 });
 
 function Cards() {
   const classes = useStyles();
   return (
-    <Card style={{ width: "100%" }}>
+    <Card className={classes.cardHeight}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://images.unsplash.com/photo-1508919801845-fc2ae1bc2a28?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW1nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
+          image="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg"
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             Card Tittle
           </Typography>
+          <Typography gutterBottom variant="h5" component="h2">
+            $99.99
+          </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions></CardActions>
     </Card>
   );
 }

@@ -12,6 +12,7 @@ import Header from "../Components/Header";
 import ProductList from "../Components/ProductList";
 import SideBar from "../Components/SideBar";
 import Cover from "../Imgs/Cover.jpg";
+import Footer from "../Components/Footer";
 
 const useStyle = makeStyles(() => ({
   coverImg: {
@@ -42,6 +43,7 @@ function ProductPage() {
           <SideBar />
           <ProductList />
         </Grid>
+        <Footer />
       </ThemeProvider>
     </div>
   );

@@ -1,34 +1,36 @@
-import { Box, Card, createMuiTheme, Grid, List } from "@material-ui/core";
+import {
+  Box,
+  Card,
+  Container,
+  createMuiTheme,
+  Grid,
+  List
+} from "@material-ui/core";
 import GridViewIcon from "@material-ui/icons/GridView";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
-import React from "react";
+import React, { useEffect } from "react";
 import Cards from "./Cards";
+import ProductHeader from "./ProductHeader";
 
 function ProductList() {
   return (
     <Grid container item xs={8}>
-      <Box display="flex" flexDirection="row" width="100%" pt={5}>
-        <Grid container xs={12}>
-          <Grid container item xs={4}>
-            <GridViewIcon fontSize="large" color="action" />
-            <CalendarViewDayIcon fontSize="large" color="action" />
-          </Grid>
-          <Grid container item xs={4}>
-            Label Exammple
-          </Grid>
-          <Grid container item xs={4}>
-            Page Switcher
-          </Grid>
-        </Grid>
-      </Box>
-      <Box display="flex" flexDirection="row" width="100%" pt={3} m={5}>
-        <Grid container item xs={4} spacing={5}>
+      <ProductHeader />
+      <Grid container spacing={5}>
+        <Grid item xs={12} sm={8} md={6} lg={4}>
           <Cards />
         </Grid>
-        <Grid container item xs={4} spacing={5}>
+        <Grid item xs={12} sm={8} md={6} lg={4}>
           <Cards />
         </Grid>
-      </Box>
+        <Grid item xs={12} sm={8} md={6} lg={4}>
+          <Cards />
+        </Grid>
+        <Grid item xs={12} sm={8} md={6} lg={4}>
+          <Cards />
+        </Grid>
+      </Grid>
+      <ProductHeader />
     </Grid>
   );
 }
