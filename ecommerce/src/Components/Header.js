@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
   },
   bgColor: {
     backgroundColor: "#fff",
-    color: "#000"
+    color: "#000",
+    transition: "ease .8s"
   }
 }));
 

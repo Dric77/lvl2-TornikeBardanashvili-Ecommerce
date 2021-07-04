@@ -1,6 +1,7 @@
 import {
   Box,
   CardMedia,
+  Container,
   Grid,
   makeStyles,
   ThemeProvider,
@@ -39,10 +40,12 @@ function ProductPage() {
             title="Contemplative Reptile"
           />
         </Box>
-        <Grid container>
-          <SideBar />
-          <ProductList />
-        </Grid>
+        <Container>
+          <Grid container>
+            <SideBar />
+            <ProductList />
+          </Grid>
+        </Container>
         <Footer />
       </ThemeProvider>
     </div>

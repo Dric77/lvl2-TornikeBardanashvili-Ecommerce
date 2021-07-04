@@ -1,46 +1,92 @@
 import {
+  Box,
   Button,
   Card,
   CardActionArea,
   CardActions,
   CardContent,
   CardMedia,
+  createMuiTheme,
   makeStyles,
+  ThemeProvider,
   Typography
 } from "@material-ui/core";
+import "typeface-roboto";
 import React from "react";
 
 const useStyles = makeStyles({
+  card: {
+    height: "auto",
+    width: "90%",
+    display: "flex",
+    justifyContent: "center",
+    boxShadow: "none",
+    borderRadius: "5px"
+  },
   root: {
-    maxWidth: 345
+    maxWidth: 345,
+    width: "100%",
+    height: 400,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-evenly"
   },
   media: {
-    height: 300,
-    backgroundColor: "#000"
+    height: 180,
+    width: "auto",
+    backgroundSize: "100%",
+    transition: "ease 0.2s",
+    "&:hover": {
+      transform: "scale(1.4)"
+    }
   },
-  cardHeight: {
-    height: "auto"
+  imgBg: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#e4e4e4",
+    overflow: "hidden",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  cardContent: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "#4f4f4f"
   }
 });
 
-function Cards() {
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: "Roboto,sans-serif;"
+  }
+});
+
+function Cards({ data }) {
   const classes = useStyles();
   return (
-    <Card className={classes.cardHeight}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Card Tittle
-          </Typography>
-          <Typography gutterBottom variant="h5" component="h2">
-            $99.99
-          </Typography>
-        </CardContent>
+    <Card className={classes.card}>
+      <CardActionArea className={classes.root}>
+        <Box className={classes.imgBg}>
+          <CardMedia
+            component="img"
+            className={classes.media}
+            image={data.img}
+            title="Contemplative Reptile"
+          />
+        </Box>
+        <ThemeProvider theme={theme}>
+          <CardContent className={classes.cardContent}>
+            <Typography gutterBottom component="h1">
+              {data.title}
+            </Typography>
+            <Typography gutterBottom component="strong">
+              ${data.price}
+            </Typography>
+          </CardContent>
+        </ThemeProvider>
       </CardActionArea>
     </Card>
   );
