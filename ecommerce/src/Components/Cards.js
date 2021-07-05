@@ -60,35 +60,54 @@ const useStyles = makeStyles({
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: "Roboto,sans-serif;"
+    fontFamily: "Roboto,sans-serif"
+  },
+  pallete: {
+    main: {
+      error: {
+        color: "#dc3545"
+      }
+    }
   }
 });
 
 function Cards({ data }) {
   const classes = useStyles();
   return (
-    <Card className={classes.card}>
-      <CardActionArea className={classes.root}>
-        <Box className={classes.imgBg}>
-          <CardMedia
-            component="img"
-            className={classes.media}
-            image={data.img}
-            title="Contemplative Reptile"
-          />
-        </Box>
-        <ThemeProvider theme={theme}>
-          <CardContent className={classes.cardContent}>
-            <Typography gutterBottom component="h1">
-              {data.title}
-            </Typography>
-            <Typography gutterBottom component="strong">
-              ${data.price}
-            </Typography>
-          </CardContent>
-        </ThemeProvider>
-      </CardActionArea>
-    </Card>
+    <ThemeProvider>
+      <Card className={classes.card}>
+        <CardActionArea className={classes.root}>
+          <Box className={classes.imgBg}>
+            <CardMedia
+              component="img"
+              className={classes.media}
+              image={data.img}
+              title="Contemplative Reptile"
+            />
+          </Box>
+          <ThemeProvider theme={theme}>
+            <CardContent className={classes.cardContent}>
+              <Typography gutterBottom component="h1">
+                {data.title}
+              </Typography>
+              {!!data.disCountPrice ? (
+                <Typography gutterBottom component="strong">
+                  <Box component="span" color="error">
+                    {" "}
+                    ${data.disCountPrice}
+                  </Box>
+                  <Box component="span"> ${data.price}</Box>
+                </Typography>
+              ) : (
+                <Typography gutterBottom component="strong">
+                  ${data.price}
+                </Typography>
+              )}
+            </CardContent>
+          </ThemeProvider>
+        </CardActionArea>
+      </Card>
+    </ThemeProvider>
   );
 }
 

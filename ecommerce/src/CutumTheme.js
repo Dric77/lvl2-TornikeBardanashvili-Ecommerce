@@ -1,10 +1,13 @@
 import { createMuiTheme } from "@material-ui/core";
-import Fonts from "./Fonts/FontFamily";
+import "typeface-roboto";
 
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#FF0000"
+    },
+    secondary: {
+      main: "#f8f9fa"
     },
     shadows: "none"
   },
@@ -19,6 +22,9 @@ const theme = createMuiTheme({
         backgroundColor: "#000"
       }
     }
+  },
+  typography: {
+    fontFamily: "Roboto,sans-serif"
   }
 });
 

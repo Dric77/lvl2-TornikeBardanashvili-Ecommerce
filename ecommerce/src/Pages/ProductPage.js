@@ -5,25 +5,29 @@ import {
   Grid,
   makeStyles,
   ThemeProvider,
-  withWidth
+  Typography
 } from "@material-ui/core";
 import React from "react";
 import theme from "../CutumTheme";
 import Header from "../Components/Header";
 import ProductList from "../Components/ProductList";
-import SideBar from "../Components/SideBar";
 import Cover from "../Imgs/Cover.jpg";
 import Footer from "../Components/Footer";
+import SideBar from "../Components/SideBar/SideBar";
 
 const useStyle = makeStyles(() => ({
   coverImg: {
     width: "100%",
     height: "668px"
   },
+  overly: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0,0,0,.7)"
+  },
   coverContainer: {
     height: 400,
-    overflow: "hidden",
-    backgroundColor: "rgba(0,0,0,.7)"
+    overflow: "hidden"
   }
 }));
 
@@ -38,7 +42,9 @@ function ProductPage() {
             className={classes.coverImg}
             image={Cover}
             title="Contemplative Reptile"
-          />
+          >
+            <Box className={classes.overly}></Box>
+          </CardMedia>
         </Box>
         <Container>
           <Grid container>
@@ -46,8 +52,8 @@ function ProductPage() {
             <ProductList />
           </Grid>
         </Container>
-        <Footer />
       </ThemeProvider>
+      <Footer />
     </div>
   );
 }

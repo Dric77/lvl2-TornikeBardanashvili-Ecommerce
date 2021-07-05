@@ -6,11 +6,12 @@ import {
   Grid,
   IconButton,
   makeStyles,
+  ThemeProvider,
   Toolbar,
   Typography
 } from "@material-ui/core";
+import theme from "../CutumTheme";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import shadows from "@material-ui/core/styles/shadows";
 
 const useStyles = makeStyles((theme) => ({
   noneBg: {
@@ -22,8 +23,14 @@ const useStyles = makeStyles((theme) => ({
   },
   bgColor: {
     backgroundColor: "#fff",
-    color: "#000",
+    color: "#343a40",
     transition: "ease .8s"
+  },
+  borderBtn: {
+    fontSize: "0.7rem",
+    border: "2px solid #ccc",
+    padding: "7px 29px",
+    borderRadius: "10rem"
   }
 }));
 
@@ -43,7 +50,7 @@ function Header() {
   });
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <AppBar
         position="fixed"
         className={navBarStyle ? classes.bgColor : classes.noneBg}
@@ -71,16 +78,20 @@ function Header() {
                 <Typography variant="h6">News</Typography>
               </Grid>
               <Grid item>
-                <Typography variant="h6">Contact</Typography>
+                <Box variant="h6" fontWeight={200}>
+                  Contact
+                </Box>
               </Grid>
               <Grid item>
-                <Button color="inherit">Sing in</Button>
+                <Button color="inherit" className={classes.borderBtn}>
+                  Sing in
+                </Button>
               </Grid>
             </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
-    </div>
+    </ThemeProvider>
   );
 }
 
