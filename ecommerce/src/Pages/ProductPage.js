@@ -18,7 +18,7 @@ import SideBar from "../Components/SideBar/SideBar";
 const useStyle = makeStyles(() => ({
   coverImg: {
     width: "100%",
-    height: "668px"
+    height: "42rem"
   },
   overly: {
     width: "100%",

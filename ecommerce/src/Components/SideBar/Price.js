@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
-import React from "react";
+import React, { useState } from "react";
 
 const useStyle = makeStyles({
   fullWidth: {
@@ -58,7 +58,7 @@ const BlueCheckbox = withStyles({
 function Price() {
   const classes = useStyle();
 
-  const [value, setValue] = React.useState(30);
+  const [value, setValue] = useState(30);
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
@@ -184,7 +184,7 @@ function Price() {
                   onChange={handleSliderChange}
                 />
               </Box>
-              <Box component="span">0</Box>
+              <Box component="span">{value + "$"}</Box>
             </Grid>
           </Grid>
         </ListItem>
