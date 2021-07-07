@@ -2,8 +2,8 @@ import { Box, Grid, makeStyles } from "@material-ui/core";
 import GridViewIcon from "@material-ui/icons/GridView";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
 import Pagination from "@material-ui/lab/Pagination";
-import React from "react";
 import theme from "../CutumTheme.js";
+import React from "react";
 
 const useStyle = makeStyles((theme) => ({
   gridItem: {
