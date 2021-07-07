@@ -46,7 +46,7 @@ function Color() {
       <ListItem>
         <List>
           {colors.map((e) => (
-            <ListItem>{e.title}</ListItem>
+            <ListItem>{e.code}</ListItem>
           ))}
         </List>
       </ListItem>
