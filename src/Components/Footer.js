@@ -25,7 +25,14 @@ const useStyle = makeStyles((theme) => ({
   social: {
     backgroundColor: "#007bff",
     color: "#fff",
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("md")]: {
+      display: "flex",
+      justifyContent: "center"
+    }
+  },
+  socialTitle: {
+    [theme.breakpoints.down("md")]: {
+      display: "flex",
       justifyContent: "center"
     }
   },
@@ -33,13 +40,36 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "flex-end",
     alignItems: "center",
-    [theme.breakpoints.down("sm")]: {
+    "& > *": {
+      padding: "0 5px"
+    },
+    [theme.breakpoints.down("md")]: {
       justifyContent: "center",
       alignItems: "center"
     }
   },
+  paragraph: {
+    [theme.breakpoints.down("md")]: {
+      textAlign: "center"
+    }
+  },
   footerBottom: {
-    backgroundColor: "#2E2E2E"
+    backgroundColor: "#2E2E2E",
+    [theme.breakpoints.down("md")]: {
+      justifyContent: "center",
+      alignItems: "center"
+    }
+  },
+  mainGrid: {
+    justifyContent: "center"
+  },
+  ul: {
+    width: "auto",
+    [theme.breakpoints.down("sm")]: {
+      "& > *": {
+        justifyContent: "center"
+      }
+    }
   },
   underline: {
     width: "70%",
@@ -71,17 +101,24 @@ function Footer() {
         <Box component="div" p={0.1} className={classes.social}>
           <Container>
             <Grid container>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} xs={12}>
                 <Box
                   component="h4"
                   variant="h4"
                   fontFamily="Roboto,sans-serif"
                   fontWeight="small"
+                  className={classes.socialTitle}
                 >
                   Get Connected with us on social newtworks!
                 </Box>
               </Grid>
-              <Grid item xs={12} sm={6} className={classes.socialMediaIcons}>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                xs={12}
+                className={classes.socialMediaIcons}
+              >
                 <FacebookIcon fontSize="small" />
                 <TwitterIcon fontSize="small" />
                 <GTranslateIcon fontSize="small" />
@@ -93,9 +130,9 @@ function Footer() {
         </Box>
         <Box component="div" className={classes.footerBottom}>
           <Container>
-            <Grid container lg={12}>
-              <Grid item lg={3}>
-                <List>
+            <Grid container className={classes.mainGrid}>
+              <Grid item lg={3} md={3} sm={8} xs={12}>
+                <List className={classes.ul}>
                   <ListItem>
                     <Box component="h4" color="#fff" fontSize={20}>
                       About me
@@ -110,6 +147,7 @@ function Footer() {
                       fontWeight={300}
                       fontSize="1.1rem"
                       lineHeight={1.8}
+                      className={classes.paragraph}
                     >
                       Here you can use rows and columns to organize your footer
                       content. Lorem ipsum dolor sit amet, consectetur
@@ -118,8 +156,8 @@ function Footer() {
                   </ListItem>
                 </List>
               </Grid>
-              <Grid item lg={3}>
-                <List>
+              <Grid item lg={3} md={3} sm={8} xs={12}>
+                <List className={classes.ul}>
                   <ListItem>
                     <Box component="h4" color="#fff" fontSize={20}>
                       Products
@@ -176,8 +214,8 @@ function Footer() {
                   </ListItem>
                 </List>
               </Grid>
-              <Grid item lg={3}>
-                <List>
+              <Grid item lg={3} md={3} sm={8} xs={12}>
+                <List className={classes.ul}>
                   <ListItem>
                     <Box component="h4" color="#fff" fontSize={20}>
                       Useful links
@@ -234,73 +272,75 @@ function Footer() {
                   </ListItem>
                 </List>
               </Grid>
-              <Grid item lg={3}>
-                <ListItem>
-                  <Box component="h4" color="#fff" fontSize={20}>
-                    Contacts
-                    <Box component="div" className={classes.underline}></Box>
-                  </Box>
-                </ListItem>
-                <ListItem>
-                  <Box
-                    component="div"
-                    fontFamily="Roboto,sans-serif"
-                    fontWeight={400}
-                    fontSize="0.9rem"
-                    display="flex"
-                    alignItems="center"
-                  >
-                    <MapIcon color="secondary" />
-                    <Button color="secondary" className={classes.button}>
-                      New York, Avenue Street 10
-                    </Button>
-                  </Box>
-                </ListItem>
-                <ListItem>
-                  <Box
-                    component="div"
-                    fontFamily="Roboto,sans-serif"
-                    fontWeight={400}
-                    fontSize="0.9rem"
-                    display="flex"
-                    alignItems="center"
-                  >
-                    <MapIcon color="secondary" />
-                    <Button color="secondary" className={classes.button}>
-                      New York, Avenue Street 10
-                    </Button>
-                  </Box>
-                </ListItem>
-                <ListItem>
-                  <Box
-                    component="div"
-                    fontFamily="Roboto,sans-serif"
-                    fontWeight={400}
-                    fontSize="0.9rem"
-                    display="flex"
-                    alignItems="center"
-                  >
-                    <MapIcon color="secondary" />
-                    <Button color="secondary" className={classes.button}>
-                      New York, Avenue Street 10
-                    </Button>
-                  </Box>
-                </ListItem>
-                <ListItem>
-                  <Box
-                    component="div"
-                    fontFamily="Roboto,sans-serif"
-                    fontWeight={400}
-                    fontSize="0.9rem"
-                    display="flex"
-                    alignItems="center"
-                  >
-                    <MapIcon color="secondary" />
-                    <Button color="secondary" className={classes.button}>
-                      New York, Avenue Street 10
-                    </Button>
-                  </Box>
-                </ListItem>
+              <Grid item lg={3} md={3} sm={8} xs={12}>
+                <List className={classes.ul}>
+                  <ListItem>
+                    <Box component="h4" color="#fff" fontSize={20}>
+                      Contacts
+                      <Box component="div" className={classes.underline}></Box>
+                    </Box>
+                  </ListItem>
+                  <ListItem>
+                    <Box
+                      component="div"
+                      fontFamily="Roboto,sans-serif"
+                      fontWeight={400}
+                      fontSize="0.9rem"
+                      display="flex"
+                      alignItems="center"
+                    >
+                      <MapIcon color="secondary" />
+                      <Button color="secondary" className={classes.button}>
+                        New York, Avenue Street 10
+                      </Button>
+                    </Box>
+                  </ListItem>
+                  <ListItem>
+                    <Box
+                      component="div"
+                      fontFamily="Roboto,sans-serif"
+                      fontWeight={400}
+                      fontSize="0.9rem"
+                      display="flex"
+                      alignItems="center"
+                    >
+                      <MapIcon color="secondary" />
+                      <Button color="secondary" className={classes.button}>
+                        New York, Avenue Street 10
+                      </Button>
+                    </Box>
+                  </ListItem>
+                  <ListItem>
+                    <Box
+                      component="div"
+                      fontFamily="Roboto,sans-serif"
+                      fontWeight={400}
+                      fontSize="0.9rem"
+                      display="flex"
+                      alignItems="center"
+                    >
+                      <MapIcon color="secondary" />
+                      <Button color="secondary" className={classes.button}>
+                        New York, Avenue Street 10
+                      </Button>
+                    </Box>
+                  </ListItem>
+                  <ListItem>
+                    <Box
+                      component="div"
+                      fontFamily="Roboto,sans-serif"
+                      fontWeight={400}
+                      fontSize="0.9rem"
+                      display="flex"
+                      alignItems="center"
+                    >
+                      <MapIcon color="secondary" />
+                      <Button color="secondary" className={classes.button}>
+                        New York, Avenue Street 10
+                      </Button>
+                    </Box>
+                  </ListItem>
+                </List>
               </Grid>
             </Grid>
           </Container>

@@ -6,6 +6,7 @@ import Condition from "./Condition";
 import Review from "./Review";
 import Price from "./Price";
 import Size from "./Size";
+import Color from "./Color.js";
 
 const useStyle = makeStyles({
   fullWidth: {
@@ -40,7 +41,7 @@ function SideBar() {
         container
         item
         xs={12}
-        sm={8}
+        sm={4}
         lg={4}
         direction="column"
         alignItems="flex-end"

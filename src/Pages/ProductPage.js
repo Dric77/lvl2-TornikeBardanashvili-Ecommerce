@@ -17,13 +17,17 @@ import SideBar from "../Components/SideBar/SideBar";
 
 const useStyle = makeStyles(() => ({
   coverImg: {
-    width: "100%",
-    height: "42rem"
+    height: "400px"
   },
   overly: {
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0,0,0,.7)"
+    backgroundColor: "rgba(0,0,0,.7)",
+    display: "flex",
+    justifyContent: "center",
+    alignContent: "center",
+    fontSize: "1.8rem",
+    color: "#fff"
   },
   coverContainer: {
     height: 400,
@@ -43,7 +47,16 @@ function ProductPage() {
             image={Cover}
             title="Contemplative Reptile"
           >
-            <Box className={classes.overly}></Box>
+            <Box className={classes.overly}>
+              <Box
+                component="h1"
+                variant="h1"
+                display="flex"
+                alignItems="center"
+              >
+                SHOP
+              </Box>
+            </Box>
           </CardMedia>
         </Box>
         <Container>

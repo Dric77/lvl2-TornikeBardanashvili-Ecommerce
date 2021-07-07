@@ -12,14 +12,20 @@ import Cards from "./Cards";
 import ProductHeader from "./ProductHeader";
 import VerticalCards from "./VerticalCards";
 
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme) => ({
   cardList: {
-    justifyContent: "center"
+    justifyContent: "flex-star",
+    [theme.breakpoints.down("md")]: {
+      justifyContent: "center"
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 20
+    }
   },
   fullWidth: {
     width: "100% !important"
   }
-});
+}));
 
 function ProductList() {
   const classes = useStyle();
@@ -44,8 +50,9 @@ function ProductList() {
     },
     {
       title: "Black denim jacket",
-      price: "99,21",
-      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg"
+      price: "59,21",
+      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg",
+      disCountPrice: "35,99"
     },
     {
       title: "Black denim jacket",
@@ -55,7 +62,7 @@ function ProductList() {
   ]);
 
   return (
-    <Grid container item xs={12} lg={8}>
+    <Grid container item xs={12} sm={8} lg={8}>
       <Container>
         <Box mb={3}>
           <ProductHeader setListStyle={setListStyle} />
@@ -63,7 +70,7 @@ function ProductList() {
         <Grid container spacing={5} className={classes.cardList}>
           {data.map((e) =>
             listStyle === "gridView" ? (
-              <Grid item xs={12} sm={8} md={6} lg={4}>
+              <Grid item xs={12} sm={8} md={8} lg={4}>
                 <Cards data={e} />
               </Grid>
             ) : (

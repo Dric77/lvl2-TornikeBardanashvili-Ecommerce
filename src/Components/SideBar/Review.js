@@ -8,7 +8,8 @@ const useStyle = makeStyles({
   },
   reiting: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    cursor: "pointer"
   },
   stars: {
     color: "#1266f1"
@@ -32,10 +33,11 @@ function Review() {
         <Box display="flex" justifyContent="center" alignItems="center">
           <Rating
             className={classes.stars}
-            name="half-rating"
+            name="read-only"
             defaultValue={4}
             precision={0.5}
             onChange={handlleReiting}
+            readOnly
           />
           <Box component="span" fontWeight={100} fontSize={14} ml={1}>
             & UP
@@ -46,10 +48,11 @@ function Review() {
         <Box display="flex" justifyContent="center" alignItems="center">
           <Rating
             className={classes.stars}
-            name="half-rating"
+            name="read-only"
             defaultValue={3}
             precision={0.5}
             onChange={handlleReiting}
+            readOnly
           />
           <Box component="span" fontWeight={100} fontSize={14} ml={1}>
             & UP
@@ -60,10 +63,11 @@ function Review() {
         <Box display="flex" justifyContent="center" alignItems="center">
           <Rating
             className={classes.stars}
-            name="half-rating"
+            name="read-only"
             defaultValue={2}
             precision={0.5}
             onChange={handlleReiting}
+            readOnly
           />
           <Box component="span" fontWeight={100} fontSize={14} ml={1}>
             & UP
@@ -74,10 +78,11 @@ function Review() {
         <Box display="flex" justifyContent="center" alignItems="center">
           <Rating
             className={classes.stars}
-            name="half-rating"
+            name="read-only"
             defaultValue={1}
             precision={0.5}
             onChange={handlleReiting}
+            readOnly
           />
           <Box component="span" fontWeight={100} fontSize={14} ml={1}>
             & UP

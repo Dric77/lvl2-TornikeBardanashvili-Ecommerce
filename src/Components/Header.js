@@ -37,6 +37,11 @@ const useStyles = makeStyles((theme) => ({
   mt: {
     marginTop: 20
   },
+  navContainer: {
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 20
+    }
+  },
   burgerMenu: {
     display: "none",
     [theme.breakpoints.down("sm")]: {
@@ -49,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     [theme.breakpoints.down("sm")]: {
       transition: ".5s",
-      transform: "translateY(-300px)",
-      flexDirection: "column"
+      transform: "translateY(-300px)"
+      // flexDirection: "column"
     }
   },
   openNavBar: {
@@ -62,6 +67,9 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "1rem",
       paddingBottom: "15px"
     }
+  },
+  noWrap: {
+    flexWrap: "nowrap"
   }
 }));
 
@@ -98,16 +106,23 @@ function Header() {
         position="fixed"
         className={navBarStyle ? classes.bgColor : classes.noneBg}
       >
-        <Toolbar className={classes.mt}>
-          <Grid container direction="row" justify="end">
+        <Toolbar className={classes.navContainer}>
+          <Grid
+            container
+            direction="row"
+            justify="end"
+            className={classes.noWrap}
+          >
             <Grid item xs={2}>
-              Logo
+              <Box component="span" fontSize="large">
+                Logo
+              </Box>
             </Grid>
 
             <Grid
               container
               item
-              sm={8}
+              sm={10}
               lg={10}
               xl={10}
               spacing={2}
@@ -137,8 +152,15 @@ function Header() {
                 </Button>
               </Grid>
             </Grid>
-            <Grid item sm={2} lg={0} xl={0} className={classes.burgerMenu}>
-              <MenuIcon onClick={handlleNavBar} />
+            <Grid
+              item
+              sm={2}
+              xs={2}
+              lg={0}
+              xl={0}
+              className={classes.burgerMenu}
+            >
+              <MenuIcon fontSize="large" onClick={handlleNavBar} />
             </Grid>
           </Grid>
         </Toolbar>

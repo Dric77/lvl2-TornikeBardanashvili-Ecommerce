@@ -49,12 +49,30 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center"
   },
+  saleMark: {
+    position: "absolute",
+    fontSize: "1.2rem",
+    fontWeight: 700,
+    top: 10,
+    left: 10,
+    color: "#fff",
+    backgroundColor: "#007bff",
+    padding: "0.2rem .6rem",
+    borderRadius: "1rem"
+  },
   cardContent: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     color: "#4f4f4f"
+  },
+  disCountPrice: {
+    color: "#ff3d71"
+  },
+  oldPrice: {
+    color: "#9e9e9e",
+    textDecoration: "line-through"
   }
 });
 
@@ -84,6 +102,11 @@ function Cards({ data }) {
               image={data.img}
               title="Contemplative Reptile"
             />
+            {data.disCountPrice ? (
+              <Box component="span" className={classes.saleMark}>
+                Sale
+              </Box>
+            ) : null}
           </Box>
           <ThemeProvider theme={theme}>
             <CardContent className={classes.cardContent}>
@@ -92,11 +115,14 @@ function Cards({ data }) {
               </Typography>
               {!!data.disCountPrice ? (
                 <Typography gutterBottom component="strong">
-                  <Box component="span" color="error">
+                  <Box component="span" className={classes.disCountPrice}>
                     {" "}
                     ${data.disCountPrice}
                   </Box>
-                  <Box component="span"> ${data.price}</Box>
+                  <Box component="span" className={classes.oldPrice}>
+                    {" "}
+                    ${data.price}
+                  </Box>
                 </Typography>
               ) : (
                 <Typography gutterBottom component="strong">

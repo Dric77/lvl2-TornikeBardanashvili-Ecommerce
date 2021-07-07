@@ -75,7 +75,7 @@ const theme = createMuiTheme({
 function VerticalCards({ data }) {
   const classes = useStyles();
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <Card className={classes.card}>
         <CardActionArea className={classes.root}>
           <Box className={classes.imgBg}>

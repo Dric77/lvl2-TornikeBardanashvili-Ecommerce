@@ -3,8 +3,20 @@ import GridViewIcon from "@material-ui/icons/GridView";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
 import Pagination from "@material-ui/lab/Pagination";
 import React from "react";
+import theme from "../CutumTheme.js";
+
+const useStyle = makeStyles((theme) => ({
+  gridItem: {
+    justifyContent: "flex-start",
+    [theme.breakpoints.down("md")]: {
+      justifyContent: "center"
+    }
+  }
+}));
 
 function ProductHeader({ setListStyle }) {
+  const classes = useStyle();
+
   let gridHanldelClick = () => {
     setListStyle("gridView");
   };
@@ -16,8 +28,15 @@ function ProductHeader({ setListStyle }) {
   };
   return (
     <Box display="flex" flexDirection="row" width="100%" height={0} pt={5}>
-      <Grid container xs={12}>
-        <Grid container item xs={4}>
+      <Grid container xs={12} spacing={2}>
+        <Grid
+          container
+          item
+          xs={12}
+          md={12}
+          lg={4}
+          className={classes.gridItem}
+        >
           <GridViewIcon
             fontSize="large"
             color="action"
@@ -29,10 +48,19 @@ function ProductHeader({ setListStyle }) {
             onClick={calendarHanldelClick}
           />
         </Grid>
-        <Grid container item xs={4}>
-          Label Exammple
+        <Grid container item xs={12} md={12} lg={4}>
+          <Box component="span" fontWeight={100}>
+            Label Exammple
+          </Box>
         </Grid>
-        <Grid container item xs={4}>
+        <Grid
+          container
+          item
+          xs={12}
+          md={12}
+          lg={4}
+          className={classes.gridItem}
+        >
           <Pagination
             count={4}
             defaultPage={1}
