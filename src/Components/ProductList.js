@@ -27,39 +27,10 @@ const useStyle = makeStyles((theme) => ({
   }
 }));
 
-function ProductList() {
+function ProductList({ data }) {
+  console.log("log" + data);
   const classes = useStyle();
   const [listStyle, setListStyle] = useState("gridView");
-
-  const [data, setData] = useState([
-    {
-      title: "Black denim jacket",
-      price: "99,99",
-      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg",
-      disCountPrice: "21,99"
-    },
-    {
-      title: "Black denim jacket",
-      price: "99,99",
-      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg"
-    },
-    {
-      title: "Black denim jacket",
-      price: "99",
-      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg"
-    },
-    {
-      title: "Black denim jacket",
-      price: "59,21",
-      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg",
-      disCountPrice: "35,99"
-    },
-    {
-      title: "Black denim jacket",
-      price: "99,18",
-      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg"
-    }
-  ]);
 
   return (
     <Grid container item xs={12} sm={8} lg={8}>

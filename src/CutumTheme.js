@@ -25,9 +25,10 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: "Roboto,sans-serif"
+  },
+  box: {
+    fontFamily: "Roboto,sans-serif"
   }
 });
-
-console.log(theme.shadows[0]);
 
 export default theme;

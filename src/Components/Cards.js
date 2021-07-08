@@ -12,7 +12,10 @@ import {
   Typography
 } from "@material-ui/core";
 import "typeface-roboto";
+import { Link } from "react-router-dom";
 import React from "react";
+import SingleProduct from "../Pages/singleProduct/SingleProduct.js";
+import { SINGLE_PRODUCT } from "../routes.js";
 
 const useStyles = makeStyles({
   card: {
@@ -93,46 +96,48 @@ function Cards({ data }) {
   const classes = useStyles();
   return (
     <ThemeProvider>
-      <Card className={classes.card}>
-        <CardActionArea className={classes.root}>
-          <Box className={classes.imgBg}>
-            <CardMedia
-              component="img"
-              className={classes.media}
-              image={data.img}
-              title="Contemplative Reptile"
-            />
-            {data.disCountPrice ? (
-              <Box component="span" className={classes.saleMark}>
-                Sale
-              </Box>
-            ) : null}
-          </Box>
-          <ThemeProvider theme={theme}>
-            <CardContent className={classes.cardContent}>
-              <Typography gutterBottom component="h1">
-                {data.title}
-              </Typography>
-              {!!data.disCountPrice ? (
-                <Typography gutterBottom component="strong">
-                  <Box component="span" className={classes.disCountPrice}>
-                    {" "}
-                    ${data.disCountPrice}
-                  </Box>
-                  <Box component="span" className={classes.oldPrice}>
-                    {" "}
+      <Link to={SINGLE_PRODUCT.replace(":id", data.id)}>
+        <Card className={classes.card}>
+          <CardActionArea className={classes.root}>
+            <Box className={classes.imgBg}>
+              <CardMedia
+                component="img"
+                className={classes.media}
+                image={data.img}
+                title="Contemplative Reptile"
+              />
+              {data.disCountPrice ? (
+                <Box component="span" className={classes.saleMark}>
+                  Sale
+                </Box>
+              ) : null}
+            </Box>
+            <ThemeProvider theme={theme}>
+              <CardContent className={classes.cardContent}>
+                <Typography gutterBottom component="h1">
+                  {data.title}
+                </Typography>
+                {!!data.disCountPrice ? (
+                  <Typography gutterBottom component="strong">
+                    <Box component="span" className={classes.disCountPrice}>
+                      {" "}
+                      ${data.disCountPrice}
+                    </Box>
+                    <Box component="span" className={classes.oldPrice}>
+                      {" "}
+                      ${data.price}
+                    </Box>
+                  </Typography>
+                ) : (
+                  <Typography gutterBottom component="strong">
                     ${data.price}
-                  </Box>
-                </Typography>
-              ) : (
-                <Typography gutterBottom component="strong">
-                  ${data.price}
-                </Typography>
-              )}
-            </CardContent>
-          </ThemeProvider>
-        </CardActionArea>
-      </Card>
+                  </Typography>
+                )}
+              </CardContent>
+            </ThemeProvider>
+          </CardActionArea>
+        </Card>
+      </Link>
     </ThemeProvider>
   );
 }

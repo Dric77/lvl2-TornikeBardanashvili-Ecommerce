@@ -13,6 +13,8 @@ import {
 import theme from "../CutumTheme";
 import MenuIcon from "@material-ui/icons/Menu";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { Link } from "react-router-dom";
+import { HOME } from "../routes.js";
 
 const useStyles = makeStyles((theme) => ({
   noneBg: {
@@ -115,7 +117,7 @@ function Header() {
           >
             <Grid item xs={2}>
               <Box component="span" fontSize="large">
-                Logo
+                <Link to={HOME}>Logo</Link>
               </Box>
             </Grid>
 

@@ -35,12 +35,12 @@ const useStyle = makeStyles(() => ({
   }
 }));
 
-function ProductPage() {
+function ProductPage({ data }) {
   let classes = useStyle();
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Header />
+        {/* <Header /> */}
         <Box className={classes.coverContainer}>
           <CardMedia
             className={classes.coverImg}
@@ -62,11 +62,11 @@ function ProductPage() {
         <Container>
           <Grid container>
             <SideBar />
-            <ProductList />
+            <ProductList data={data} />
           </Grid>
         </Container>
+        {/* <Footer /> */}
       </ThemeProvider>
-      <Footer />
     </div>
   );
 }

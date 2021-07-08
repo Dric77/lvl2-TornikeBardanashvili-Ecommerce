@@ -98,7 +98,7 @@ function Footer() {
   return (
     <footer>
       <ThemeProvider theme={theme}>
-        <Box component="div" p={0.1} className={classes.social}>
+        <Box component="div" p={0.1} mt={3} className={classes.social}>
           <Container>
             <Grid container>
               <Grid item xs={12} sm={6} xs={12}>
