@@ -2,14 +2,12 @@ import {
   Box,
   Button,
   Container,
-  createMuiTheme,
   Grid,
   Link,
   List,
   ListItem,
   makeStyles,
-  ThemeProvider,
-  Typography
+  ThemeProvider
 } from "@material-ui/core";
 import "typeface-roboto";
 import theme from "../CutumTheme";
