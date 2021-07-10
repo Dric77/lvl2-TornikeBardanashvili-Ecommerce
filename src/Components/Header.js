@@ -4,17 +4,16 @@ import {
   Box,
   Button,
   Grid,
-  IconButton,
   makeStyles,
   ThemeProvider,
-  Toolbar,
-  Typography
+  Toolbar
 } from "@material-ui/core";
+import { Link as Mlink } from "@material-ui/core";
 import theme from "../CutumTheme";
 import MenuIcon from "@material-ui/icons/Menu";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
 import { HOME } from "../routes.js";
+import Cart from "./Cart.js";
 
 const useStyles = makeStyles((theme) => ({
   noneBg: {
@@ -75,9 +74,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Header() {
+function Header({ addedItem, setAddedItem }) {
   const classes = useStyles();
-
   const [navBarStyle, setNavBarStyle] = useState(false);
   const [navBar, setNavBar] = useState(classes.navBar);
   const [navBarOpen, setNavbarOpen] = useState(false);
@@ -117,7 +115,14 @@ function Header() {
           >
             <Grid item xs={2}>
               <Box component="span" fontSize="large">
-                <Link to={HOME}>Logo</Link>
+                <Mlink
+                  component={Link}
+                  underline="none"
+                  color="inherit"
+                  to={HOME}
+                >
+                  Logo
+                </Mlink>
               </Box>
             </Grid>
 
@@ -132,9 +137,7 @@ function Header() {
               alignItems="center"
               className={navBar}
             >
-              <Grid item>
-                <ShoppingCartIcon />
-              </Grid>
+              <Cart addedItem={addedItem} setAddedItem={setAddedItem} />
               <Grid item>
                 <Box component="span">Select</Box>
               </Grid>

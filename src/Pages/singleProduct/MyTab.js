@@ -7,7 +7,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
-import { CardMedia, TableContainer, TableRow } from "@material-ui/core";
+import { TableRow } from "@material-ui/core";
 import MyTable from "./MyTable";
 import Reviews from "./Reviews.js";
 
@@ -65,7 +65,7 @@ const StyledTableRow = withStyles((theme) => ({
   }
 }))(TableRow);
 
-export default function MyTab() {
+export default function MyTab({ singleData }) {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -118,13 +118,12 @@ export default function MyTab() {
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
         <Box>
-          <Typography component="h1">Product Description</Typography>
           <MyTable />
         </Box>
       </TabPanel>
       <TabPanel value={value} index={2} dir={theme.direction}>
         <Typography component="h1">Product Description</Typography>
-        <Reviews />
+        <Reviews singleData={singleData} />
       </TabPanel>
     </div>
   );

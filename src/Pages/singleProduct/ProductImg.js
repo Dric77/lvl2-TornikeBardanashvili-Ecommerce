@@ -16,8 +16,7 @@ const useStyle = makeStyles({
   },
   img: {
     width: "100%",
-    height: "30rem",
-    backgroundSize: "70%"
+    height: "30rem"
   },
   greyBg: {
     backgroundColor: "#E4E4E4",
@@ -37,20 +36,35 @@ const useStyle = makeStyles({
     }
   },
   smallImg: {
-    height: "9rem",
-    backgroundSize: "60%"
+    height: "9rem"
+  },
+  saleMark: {
+    fontSize: "1.5rem",
+    fontWeight: 700,
+    color: "#fff",
+    textAlign: "center",
+    alignItems: "center",
+    backgroundColor: "#007bff",
+    padding: "0.2rem 1.6rem",
+    borderRadius: "1rem",
+    position: "absolute",
+    margin: "1rem"
   }
 });
 
-function ProductImg({ singleData }) {
+function ProductImg({ singleData, setShopedItemData, shopedItemData }) {
   const classes = useStyle();
-
   const [currentImg, setCurrentImg] = useState(3);
 
   let handleImg = (activeImg) => {
     setCurrentImg(activeImg);
+    setShopedItemData({
+      color: singleData.imgGroup[activeImg].color,
+      quantity: shopedItemData.quantity,
+      size: shopedItemData.size,
+      price: shopedItemData.price
+    });
   };
-
   return (
     <Grid container item lg={6} md={12} className={classes.fullWidth}>
       <Grid item className={classes.fullSize}>
@@ -61,9 +75,14 @@ function ProductImg({ singleData }) {
           className={classes.fullWidth + " " + classes.greyBg}
         >
           <Grid item lg={12} className={classes.fullSize}>
+            {singleData.disCountPrice ? (
+              <Box component="div" className={classes.saleMark}>
+                Sale
+              </Box>
+            ) : null}
             <CardMedia
               className={classes.img}
-              image={singleData.imgGroup[currentImg]}
+              image={singleData.imgGroup[currentImg].imgUrl}
             />
           </Grid>
         </Grid>
@@ -74,7 +93,7 @@ function ProductImg({ singleData }) {
                 <CardMedia
                   onMouseOver={() => handleImg(index)}
                   className={classes.smallImg}
-                  image={img}
+                  image={img.imgUrl}
                 />
               </Grid>
             ))}

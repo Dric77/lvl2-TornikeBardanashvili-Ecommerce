@@ -29,15 +29,14 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 345,
     width: "100%",
-    height: 400,
+    height: 340,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-evenly"
   },
   media: {
-    height: 180,
+    height: 330,
     width: "auto",
-    backgroundSize: "100%",
     transition: "ease 0.2s",
     "&:hover": {
       transform: "scale(1.4)"

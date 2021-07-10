@@ -18,17 +18,34 @@ function App() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sapiente illo. Sit error voluptas repellat rerum quidem, soluta enim perferendis voluptates laboriosam. Distinctio, officia quis dolore quos sapiente tempore alias.",
       category: "Shirt",
+      reviewCount: 4,
       review: 3,
       model: "Shirt 5407x",
       color: "Blue",
       delivery: "USA, Europe",
       size: ["small", "medium", "large"],
-      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg",
+      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
       imgGroup: [
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
+          color: "blue"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
+          color: "red"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
+          color: "gray"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
+          color: "black"
+        }
       ],
       id: 1
     },
@@ -45,12 +62,28 @@ function App() {
       color: "Blue",
       delivery: "USA, Europe",
       size: ["small", "medium", "large"],
-      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg",
+      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
       imgGroup: [
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
+          color: "blue"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
+          color: "red"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
+          color: "gray"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
+          color: "black"
+        }
       ],
       id: 2
     },
@@ -67,12 +100,28 @@ function App() {
       color: "Blue",
       delivery: "USA, Europe",
       size: ["small", "medium", "large"],
-      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg",
+      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
       imgGroup: [
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
+          color: "blue"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
+          color: "red"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
+          color: "gray"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
+          color: "black"
+        }
       ],
       id: 3
     },
@@ -89,12 +138,28 @@ function App() {
       color: "Blue",
       delivery: "USA, Europe",
       size: ["small", "medium", "large"],
-      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg",
+      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
       imgGroup: [
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
+          color: "blue"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
+          color: "red"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
+          color: "gray"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
+          color: "black"
+        }
       ],
       id: 4
     },
@@ -111,22 +176,46 @@ function App() {
       color: "Blue",
       delivery: "USA, Europe",
       size: ["small", "medium", "large"],
-      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg",
+      img: "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
       imgGroup: [
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
-        "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
+          color: "blue"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
+          color: "red"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
+          color: "gray"
+        },
+        {
+          imgUrl:
+            "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
+          color: "black"
+        }
       ],
       id: 5
     }
   ]);
 
+  const [addedItem, setAddedItem] = useState([]);
+  const [shopedItemData, setShopedItemData] = useState({
+    color: "",
+    quantity: 1,
+    size: "",
+    price: 0
+  });
+
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
-          <Leyout>
+          <Leyout addedItem={addedItem} setAddedItem={setAddedItem}>
             <Switch>
               <Route path={PRODUCT_LIST}>
                 {" "}
@@ -134,7 +223,13 @@ function App() {
               </Route>
               <Route path={SINGLE_PRODUCT}>
                 {" "}
-                <SingleProduct data={data} />
+                <SingleProduct
+                  setAddedItem={setAddedItem}
+                  addedItem={addedItem}
+                  data={data}
+                  setShopedItemData={setShopedItemData}
+                  shopedItemData={shopedItemData}
+                />
               </Route>
               <Route path={HOME}>
                 {" "}

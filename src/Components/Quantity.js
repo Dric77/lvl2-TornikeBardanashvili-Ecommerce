@@ -29,9 +29,8 @@ const useStyle = makeStyles((theme) => ({
   }
 }));
 
-function Quantity() {
+function Quantity({ value, setValue }) {
   const classes = useStyle();
-  const [value, setValue] = useState(1);
 
   let handlleDown = () => {
     let count = value;

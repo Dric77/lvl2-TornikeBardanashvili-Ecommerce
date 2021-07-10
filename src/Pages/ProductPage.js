@@ -40,7 +40,6 @@ function ProductPage({ data }) {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        {/* <Header /> */}
         <Box className={classes.coverContainer}>
           <CardMedia
             className={classes.coverImg}
@@ -65,7 +64,6 @@ function ProductPage({ data }) {
             <ProductList data={data} />
           </Grid>
         </Container>
-        {/* <Footer /> */}
       </ThemeProvider>
     </div>
   );

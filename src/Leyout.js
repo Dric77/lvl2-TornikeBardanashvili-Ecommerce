@@ -2,11 +2,11 @@ import React, { children } from "react";
 import Footer from "./Components/Footer.js";
 import Header from "./Components/Header.js";
 
-export default function Leyout(props) {
+export default function Leyout({ children, addedItem, setAddedItem }) {
   return (
     <>
-      <Header />
-      {props.children}
+      <Header addedItem={addedItem} setAddedItem={setAddedItem} />
+      {children}
       <Footer />
     </>
   );

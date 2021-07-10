@@ -1,18 +1,5 @@
-import React, { Component, useState } from "react";
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Grid,
-  InputLabel,
-  makeStyles,
-  Radio,
-  TextField,
-  Typography
-} from "@material-ui/core";
-import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
-import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
+import React, { useEffect, useState } from "react";
+import { Box, Button, Grid, makeStyles, Typography } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import Quantity from "../../Components/Quantity.js";
 import RadioButtons from "../../Components/RadioButton.js";
@@ -40,18 +27,47 @@ const useStyle = makeStyles({
   },
   brBottom: {
     borderBottom: ".5px solid #4f4f4f2e"
+  },
+  disCountPrice: {
+    color: "#ff3d71",
+    fontSize: "1.2rem",
+    fontWeight: 700
+  },
+  oldPrice: {
+    color: "#9e9e9e",
+    textDecoration: "line-through"
   }
 });
 
-function MyTable({ singleData }) {
+function MyTable({
+  singleData,
+  setAddedItem,
+  addedItem,
+  shopedItemData,
+  setShopedItemData
+}) {
   const classes = useStyle();
-
   const [selectedValue, setSelectedValue] = useState("small");
   const [radioButton, setRadioButton] = useState("small");
+  const [productCount, setProductCount] = useState(1);
+
+  useEffect(() => {
+    setShopedItemData({
+      color: shopedItemData.color,
+      quantity: productCount,
+      size: radioButton,
+      price: singleData.price
+    });
+  }, [productCount, radioButton, selectedValue]);
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
+
+  const handlleItem = () => {
+    setAddedItem([...addedItem, singleData]);
+  };
+
   return (
     <Grid container item lg={6} md={12} spacing={2}>
       <Grid item lg={12}>
@@ -72,7 +88,18 @@ function MyTable({ singleData }) {
         />
       </Grid>
       <Grid item lg={12}>
-        <Typography component="h6"> ${singleData.price} </Typography>
+        {singleData.disCountPrice ? (
+          <Typography className={classes.disCountPrice}>
+            {singleData.disCountPrice}{" "}
+          </Typography>
+        ) : null}
+        <Typography
+          component="h6"
+          className={singleData.disCountPrice ? classes.oldPrice : null}
+        >
+          {" "}
+          ${singleData.price}{" "}
+        </Typography>
       </Grid>
       <Grid item lg={12}>
         <Typography component="p" className={classes.mb}>
@@ -135,7 +162,7 @@ function MyTable({ singleData }) {
         <Grid item lg={4}>
           <Box display="flex" flexDirection="column">
             <Typography component="h6">Quantity</Typography>
-            <Quantity />
+            <Quantity value={productCount} setValue={setProductCount} />
           </Box>
         </Grid>
         <Grid item lg-={8}>
@@ -169,7 +196,11 @@ function MyTable({ singleData }) {
           </Grid>
           <Grid item lg={6}>
             <Box ml={1}>
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={handlleItem}
+              >
                 ADD TO CART
               </Button>
             </Box>

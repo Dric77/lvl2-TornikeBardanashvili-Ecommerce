@@ -7,11 +7,12 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { Box, Typography } from "@material-ui/core";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white
+    backgroundColor: "",
+    color: theme.palette.secondary
   },
   body: {
     fontSize: 14
@@ -26,16 +27,13 @@ const StyledTableRow = withStyles((theme) => ({
   }
 }))(TableRow);
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(Weight, Dimensions) {
+  return { Weight, Dimensions };
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9)
+  createData("Weight", "0.3 kg"),
+  createData("Dimensions", "	50 × 60 cm")
 ];
 
 const useStyles = makeStyles({
@@ -44,7 +42,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function CustomizedTables() {
+export default function MyTable() {
   const classes = useStyles();
 
   return (
@@ -52,23 +50,20 @@ export default function CustomizedTables() {
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <StyledTableCell>
+              {" "}
+              <Box component="h2" fontWeight={400}>
+                Additional Information
+              </Box>{" "}
+            </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
+          {rows.map((row, i) => (
+            <StyledTableRow key={i}>
+              <StyledTableCell align="left">{row.Weight}</StyledTableCell>
+              <StyledTableCell align="left">{row.Dimensions}</StyledTableCell>
+              <StyledTableCell align="left"></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

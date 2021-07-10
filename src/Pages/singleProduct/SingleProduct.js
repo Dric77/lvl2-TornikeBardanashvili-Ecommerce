@@ -26,32 +26,52 @@ const useStyle = makeStyles({
   }
 });
 
-function SingleProduct({ data }) {
+function SingleProduct({
+  data,
+  setAddedItem,
+  addedItem,
+  shopedItemData,
+  setShopedItemData
+}) {
   const classes = useStyle();
   const { pathname } = useLocation();
 
   const [value, setValue] = useState(2);
+  const [selectProduct, setSelectProduct] = useState();
   // const [singleData, setSingleData] = useState();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  console.log(shopedItemData);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  let { id } = useParams();
+  // useEffect(() => {
+  //   let getSingleData = () => {
+  //     let parsedId = parseInt(id);
+  //     data.map((e) => {
+  //       if (parsedId === e.id) {
+  //         setSingleData();
+  //       }
+  //     });
+  //   };
+  // }, []);
+
   let singleData = {};
 
-  function getSingleData() {
+  let { id } = useParams();
+
+  let getSingleData = () => {
     let parsedId = parseInt(id);
     data.map((e) => {
       if (parsedId === e.id) {
         singleData = e;
       }
     });
-  }
+  };
+
   getSingleData();
 
   return (
@@ -69,10 +89,22 @@ function SingleProduct({ data }) {
         </Box>
         <Box mt={10}>
           <Grid container spacing={3}>
-            <ProductImg singleData={singleData} />
-            <ProductDes singleData={singleData} />
+            <ProductImg
+              singleData={singleData}
+              setSelectProduct={setSelectProduct}
+              setShopedItemData={setShopedItemData}
+              shopedItemData={shopedItemData}
+            />
+            <ProductDes
+              setAddedItem={setAddedItem}
+              addedItem={addedItem}
+              singleData={singleData}
+              setSelectProduct={setSelectProduct}
+              setShopedItemData={setShopedItemData}
+              shopedItemData={shopedItemData}
+            />
             <Grid xs={12}>
-              <MyTab />
+              <MyTab singleData={singleData} />
             </Grid>
           </Grid>
         </Box>
