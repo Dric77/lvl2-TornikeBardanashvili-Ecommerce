@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   Grid,
-  IconButton,
   makeStyles,
   ThemeProvider,
   Toolbar,
