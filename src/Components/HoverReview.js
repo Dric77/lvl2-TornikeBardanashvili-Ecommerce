@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function HoverReview() {
+export default function HoverReview({ stars, setstars }) {
   const [value, setValue] = React.useState(2);
   const [hover, setHover] = React.useState(-1);
   const classes = useStyles();
@@ -37,10 +37,10 @@ export default function HoverReview() {
       <Rating
         className={classes.stars}
         name="hover-feedback"
-        value={value}
+        value={setstars}
         precision={0.5}
         onChange={(event, newValue) => {
-          setValue(newValue);
+          setstars(newValue);
         }}
         onChangeActive={(event, newHover) => {
           setHover(newHover);

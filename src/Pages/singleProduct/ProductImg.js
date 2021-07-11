@@ -55,6 +55,7 @@ const useStyle = makeStyles({
 function ProductImg({ singleData, setShopedItemData, shopedItemData }) {
   const classes = useStyle();
   const [currentImg, setCurrentImg] = useState(3);
+  console.log("singledatas", singleData);
 
   let handleImg = (activeImg) => {
     setCurrentImg(activeImg);

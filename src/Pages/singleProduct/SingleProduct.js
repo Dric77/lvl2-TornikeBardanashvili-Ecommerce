@@ -1,18 +1,11 @@
-import {
-  AppBar,
-  Box,
-  CardMedia,
-  Container,
-  Grid,
-  makeStyles
-} from "@material-ui/core";
+import { Box, Container, Grid, makeStyles } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import ProductDes from "./ProductDes.js";
 import MyTab from "./MyTab";
 import { useLocation, useParams } from "react-router";
 import ProductImg from "./ProductImg.js";
 
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme) => ({
   mb: {
     marginBottom: "1rem"
   },
@@ -24,14 +17,16 @@ const useStyle = makeStyles({
     width: "100%",
     maxWidth: "100%"
   }
-});
+}));
 
 function SingleProduct({
   data,
   setAddedItem,
   addedItem,
   shopedItemData,
-  setShopedItemData
+  setShopedItemData,
+  productCount,
+  setProductCount
 }) {
   const classes = useStyle();
   const { pathname } = useLocation();
@@ -43,17 +38,18 @@ function SingleProduct({
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log(shopedItemData);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
   // useEffect(() => {
-  //   let getSingleData = () => {
+  //   let getSingleData = (setProduct, data) => {
   //     let parsedId = parseInt(id);
-  //     data.map((e) => {
+  //     data.forEach((e) => {
   //       if (parsedId === e.id) {
-  //         setSingleData();
+  //         setProduct(e);
+  //         console.log(singleData);
   //       }
   //     });
   //   };
@@ -62,17 +58,21 @@ function SingleProduct({
   let singleData = {};
 
   let { id } = useParams();
+  let parsedId = parseInt(id);
 
-  let getSingleData = () => {
-    let parsedId = parseInt(id);
-    data.map((e) => {
-      if (parsedId === e.id) {
-        singleData = e;
-      }
-    });
-  };
+  data.forEach((e) => {
+    if (parsedId === e.id) {
+      singleData = e;
+    }
+  });
 
-  getSingleData();
+  // useEffect(() => {
+  //   data.forEach((e) => {
+  //     if (parsedId === e.id) {
+  //       setSingleData(e);
+  //     }
+  //   });
+  // }, [data]);
 
   return (
     <>
@@ -102,6 +102,8 @@ function SingleProduct({
               setSelectProduct={setSelectProduct}
               setShopedItemData={setShopedItemData}
               shopedItemData={shopedItemData}
+              productCount={productCount}
+              setProductCount={setProductCount}
             />
             <Grid xs={12}>
               <MyTab singleData={singleData} />

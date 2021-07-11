@@ -44,12 +44,14 @@ function MyTable({
   setAddedItem,
   addedItem,
   shopedItemData,
-  setShopedItemData
+  setShopedItemData,
+  productCount,
+  setProductCount
 }) {
   const classes = useStyle();
   const [selectedValue, setSelectedValue] = useState("small");
   const [radioButton, setRadioButton] = useState("small");
-  const [productCount, setProductCount] = useState(1);
+  const [review, setReview] = useState(0);
 
   useEffect(() => {
     setShopedItemData({
@@ -67,6 +69,15 @@ function MyTable({
   const handlleItem = () => {
     setAddedItem([...addedItem, singleData]);
   };
+  let reviewCount = 0;
+  const calculateReview = () => {
+    singleData.review.forEach((el) => {
+      reviewCount = reviewCount + el.reviewStar;
+    });
+    reviewCount = reviewCount / singleData.review.length;
+  };
+
+  calculateReview();
 
   return (
     <Grid container item lg={6} md={12} spacing={2}>
@@ -82,7 +93,7 @@ function MyTable({
         <Rating
           className={classes.stars}
           name="read-only"
-          defaultValue={singleData.review}
+          defaultValue={reviewCount}
           precision={0.5}
           readOnly
         />

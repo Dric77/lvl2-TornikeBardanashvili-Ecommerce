@@ -25,34 +25,36 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "10rem"
   },
   img: {
-    width: 80,
-    height: 80,
+    width: 105,
+    height: 105,
     backgroundSize: "100%"
   },
   removeItem: {
-    // position: "absolute",
-    // top: "45px",
-    // left: "45px",
-    // display: "none"
+    cursor: "pointer",
+    color: "#fff",
+    backgroundColor: "#ff3d71",
+    fontSize: "1rem",
+    textAlign: "center",
+    margin: "20px 50px",
+    borderRadius: "2rem"
   }
 }));
 
-function Cart({ addedItem, setAddedItem }) {
+function Cart({ addedItem, setAddedItem, productCount }) {
   const classes = useStyles();
   const [totalPrice, setTotalPrice] = useState(0);
-
   useEffect(() => {
     getTotalPrice(addedItem);
   }, [addedItem]);
 
   let getTotalPrice = (item) => {
+    //use reduce
     let priceCount = 0;
     item.map((product) => {
-      console.log(addedItem);
       if (!!product.price) {
         let parsedPrice = parseInt(product.price);
         priceCount = priceCount + parsedPrice;
-        console.log(priceCount);
+        priceCount = priceCount * productCount;
         setTotalPrice(priceCount);
       } else {
         priceCount = 0;
@@ -83,13 +85,13 @@ function Cart({ addedItem, setAddedItem }) {
             fontSize="18px"
             className={classes.addedItem}
           >
-            {addedItem.length}
+            {productCount}
           </Box>
           <PopupState variant="popover" popupId="demo-popup-popover">
             {(popupState) => (
               <div>
                 <Button {...bindTrigger(popupState)}>
-                  <ShoppingCartIcon />
+                  <ShoppingCartIcon color="inherit" />
                 </Button>
                 <Popover
                   {...bindPopover(popupState)}
@@ -117,25 +119,32 @@ function Cart({ addedItem, setAddedItem }) {
                                   image={product.img}
                                   className={classes.img}
                                 />
-                                <Box
-                                  display="flex"
-                                  flexDirection="column"
-                                  ml={2}
-                                >
-                                  <Typography component="h5">
-                                    {product.title}
-                                  </Typography>
-                                  <Typography component="h5">
-                                    {product.price}
-                                  </Typography>
-                                </Box>
-                                <Box
-                                  component="div"
-                                  className={classes.removeItem}
-                                >
-                                  <RemoveIcon
-                                    onClick={() => removeItem(index)}
-                                  />
+                                <Box display="flex" flexDirection="column">
+                                  <Box
+                                    display="flex"
+                                    flexDirection="column"
+                                    ml={2}
+                                  >
+                                    <Typography component="h5">
+                                      {product.title}
+                                    </Typography>
+                                    <Typography component="h5">
+                                      {product.price}
+                                    </Typography>
+                                  </Box>
+                                  <Box fontSize="1rem" ml={2}>
+                                    Quantity: {productCount}
+                                  </Box>
+                                  <Box
+                                    component="div"
+                                    className={classes.removeItem}
+                                    mt={2}
+                                  >
+                                    <RemoveIcon
+                                      color="inherit"
+                                      onClick={() => removeItem(index)}
+                                    />
+                                  </Box>
                                 </Box>
                               </Box>
                             </ListItem>

@@ -1,7 +1,5 @@
 import { Box, Grid, InputBase, withStyles } from "@material-ui/core";
-import { alpha } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
-import React, { useState } from "react";
 
 const BootstrapInput = withStyles((theme) => ({
   input: {

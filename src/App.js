@@ -19,7 +19,32 @@ function App() {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sapiente illo. Sit error voluptas repellat rerum quidem, soluta enim perferendis voluptates laboriosam. Distinctio, officia quis dolore quos sapiente tempore alias.",
       category: "Shirt",
       reviewCount: 4,
-      review: 3,
+      review: [
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "Nice one, love it!",
+          reviewStar: 5
+        },
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "poor product!",
+          reviewStar: 1
+        },
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "Nice one, love it!",
+          reviewStar: 5
+        },
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "poor product!",
+          reviewStar: 1
+        }
+      ],
       model: "Shirt 5407x",
       color: "Blue",
       delivery: "USA, Europe",
@@ -56,8 +81,21 @@ function App() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sapiente illo. Sit error voluptas repellat rerum quidem, soluta enim perferendis voluptates laboriosam. Distinctio, officia quis dolore quos sapiente tempore alias.",
       category: "Shirt",
-      reviewCount: 7,
-      review: 2,
+      reviewCount: 2,
+      review: [
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "poor product!",
+          reviewStar: 1
+        },
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "Nice one, love it!",
+          reviewStar: 5
+        }
+      ],
       model: "Shirt 5407x",
       color: "Blue",
       delivery: "USA, Europe",
@@ -95,7 +133,32 @@ function App() {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sapiente illo. Sit error voluptas repellat rerum quidem, soluta enim perferendis voluptates laboriosam. Distinctio, officia quis dolore quos sapiente tempore alias.",
       category: "Shirt",
       reviewCount: 4,
-      review: 5,
+      review: [
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "Nice one, love it!",
+          reviewStar: 5
+        },
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "poor product!",
+          reviewStar: 1
+        },
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "Nice one, love it!",
+          reviewStar: 5
+        },
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "poor product!",
+          reviewStar: 1
+        }
+      ],
       model: "Shirt 5407x",
       color: "Blue",
       delivery: "USA, Europe",
@@ -132,8 +195,45 @@ function App() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sapiente illo. Sit error voluptas repellat rerum quidem, soluta enim perferendis voluptates laboriosam. Distinctio, officia quis dolore quos sapiente tempore alias.",
       category: "Shirt",
-      reviewCount: 10,
-      review: 4,
+      reviewCount: 6,
+      review: [
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "Nice one, love it!",
+          reviewStar: 5
+        },
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "poor product!",
+          reviewStar: 1
+        },
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "Nice one, love it!",
+          reviewStar: 5
+        },
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "poor product!",
+          reviewStar: 1
+        },
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "Nice one, love it!",
+          reviewStar: 5
+        },
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "poor product!",
+          reviewStar: 1
+        }
+      ],
       model: "Shirt 5407x",
       color: "Blue",
       delivery: "USA, Europe",
@@ -171,7 +271,20 @@ function App() {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sapiente illo. Sit error voluptas repellat rerum quidem, soluta enim perferendis voluptates laboriosam. Distinctio, officia quis dolore quos sapiente tempore alias.",
       category: "Shirt",
       reviewCount: 2,
-      review: 1,
+      review: [
+        {
+          userName: "Marthasteward2",
+          time: "January 28, 2020",
+          reviewDes: "poor product!",
+          reviewStar: 1
+        },
+        {
+          userName: "Marthasteward",
+          time: "January 28, 2020",
+          reviewDes: "poor product!",
+          reviewStar: 1
+        }
+      ],
       model: "Shirt 5407x",
       color: "Blue",
       delivery: "USA, Europe",
@@ -210,12 +323,17 @@ function App() {
     size: "",
     price: 0
   });
+  const [productCount, setProductCount] = useState(1);
 
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
-          <Leyout addedItem={addedItem} setAddedItem={setAddedItem}>
+          <Leyout
+            addedItem={addedItem}
+            setAddedItem={setAddedItem}
+            productCount={productCount}
+          >
             <Switch>
               <Route path={PRODUCT_LIST}>
                 {" "}
@@ -229,6 +347,8 @@ function App() {
                   data={data}
                   setShopedItemData={setShopedItemData}
                   shopedItemData={shopedItemData}
+                  productCount={productCount}
+                  setProductCount={setProductCount}
                 />
               </Route>
               <Route path={HOME}>

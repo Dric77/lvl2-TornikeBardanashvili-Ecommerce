@@ -5,6 +5,7 @@ import {
   Button,
   Grid,
   makeStyles,
+  Select,
   ThemeProvider,
   Toolbar
 } from "@material-ui/core";
@@ -74,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Header({ addedItem, setAddedItem }) {
+function Header({ addedItem, setAddedItem, productCount }) {
   const classes = useStyles();
   const [navBarStyle, setNavBarStyle] = useState(false);
   const [navBar, setNavBar] = useState(classes.navBar);
@@ -137,9 +138,16 @@ function Header({ addedItem, setAddedItem }) {
               alignItems="center"
               className={navBar}
             >
-              <Cart addedItem={addedItem} setAddedItem={setAddedItem} />
+              <Cart
+                addedItem={addedItem}
+                setAddedItem={setAddedItem}
+                productCount={productCount}
+              />
               <Grid item>
-                <Box component="span">Select</Box>
+                <Box component="span">
+                  {" "}
+                  <Select />{" "}
+                </Box>
               </Grid>
               <Grid item>
                 <Box variant="h6" fontWeight={200}>

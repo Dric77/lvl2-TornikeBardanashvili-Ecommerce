@@ -90,13 +90,16 @@ const useStyle = makeStyles((theme) => ({
   },
   link: {
     color: "#fff"
+  },
+  fullWidth: {
+    width: "100%"
   }
 }));
 
 function Footer() {
   const classes = useStyle();
   return (
-    <footer>
+    <footer className={classes.fullWidth}>
       <ThemeProvider theme={theme}>
         <Box component="div" p={0.1} mt={3} className={classes.social}>
           <Container>
