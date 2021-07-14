@@ -1,3 +1,3 @@
 export const HOME = "/";
-export const SINGLE_PRODUCT = "/SingleProduct:id";
-export const PRODUCT_LIST = "/ProductList";
+export const PRODUCT_LIST = "/product_list";
+export const SINGLE_PRODUCT = "/single_product/:id";

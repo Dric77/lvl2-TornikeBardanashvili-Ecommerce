@@ -33,11 +33,11 @@ const useStyles = makeStyles({
     justifyContent: "space-evenly"
   },
   media: {
-    height: 330,
+    height: "90%",
     width: "auto",
     transition: "ease 0.2s",
     "&:hover": {
-      transform: "scale(1.4)"
+      transform: "scale(1.2)"
     }
   },
   imgBg: {

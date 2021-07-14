@@ -7,14 +7,14 @@ import {
   List,
   ListItem,
   makeStyles,
+  RadioGroup,
   Slider,
   TextField,
   ThemeProvider,
   withStyles
 } from "@material-ui/core";
-import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
-import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 import React, { useState } from "react";
+import RadioButton from "../RadioButton.js";
 
 const useStyle = makeStyles({
   fullWidth: {
@@ -55,23 +55,20 @@ const BlueCheckbox = withStyles({
   checked: {}
 })((props) => <Checkbox color="default" {...props} />);
 
-function Price() {
+function Price({ value, setValue }) {
   const classes = useStyle();
 
-  const [value, setValue] = useState(30);
+  const [priceRange, setPriceRange] = useState({
+    min: 0,
+    max: value
+  });
+  const [selectedValue, setSelectedValue] = useState();
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
   };
   const handleInputChange = (event) => {
     setValue(event.target.value === "" ? "" : Number(event.target.value));
-  };
-  const handleBlur = () => {
-    if (value < 0) {
-      setValue(0);
-    } else if (value > 100) {
-      setValue(100);
-    }
   };
 
   return (
@@ -82,90 +79,59 @@ function Price() {
         </Box>
       </ListItem>
       <ListItem>
-        <Box>
-          <FormControlLabel
-            value="under"
-            control={
-              <BlueCheckbox
-                icon={<RadioButtonUncheckedIcon fontSize="small" />}
-                checkedIcon={<RadioButtonCheckedIcon fontSize="small" />}
-              />
-            }
-            label="UNDER $25"
-            labelPlacement="UNDER $25"
-          />
-          <Box component="span"></Box>
-        </Box>
-      </ListItem>
-      <ListItem>
-        <Box>
-          <FormControlLabel
-            value="under"
-            control={
-              <BlueCheckbox
-                icon={<RadioButtonUncheckedIcon fontSize="small" />}
-                checkedIcon={<RadioButtonCheckedIcon fontSize="small" />}
-              />
-            }
-            label="UNDER $25"
-            labelPlacement="UNDER $25"
-          />
-          <Box component="span"></Box>
-        </Box>
-      </ListItem>
-      <ListItem>
-        <Box>
-          <FormControlLabel
-            value="under"
-            control={
-              <BlueCheckbox
-                icon={<RadioButtonUncheckedIcon fontSize="small" />}
-                checkedIcon={<RadioButtonCheckedIcon fontSize="small" />}
-              />
-            }
-            label="UNDER $25"
-            labelPlacement="UNDER $25"
-          />
-          <Box component="span"></Box>
-        </Box>
-      </ListItem>
-      <ListItem>
-        <Box>
-          <FormControlLabel
-            value="under"
-            control={
-              <BlueCheckbox
-                icon={<RadioButtonUncheckedIcon fontSize="small" />}
-                checkedIcon={<RadioButtonCheckedIcon fontSize="small" />}
-              />
-            }
-            label="UNDER $25"
-            labelPlacement="UNDER $25"
-          />
-          <Box component="span"></Box>
-        </Box>
-      </ListItem>
-      <ListItem>
-        <Box>
-          <FormControlLabel
-            value="under"
-            control={
-              <BlueCheckbox
-                icon={<RadioButtonUncheckedIcon fontSize="small" />}
-                checkedIcon={<RadioButtonCheckedIcon fontSize="small" />}
-              />
-            }
-            label="UNDER $25"
-            labelPlacement="UNDER $25"
-          />
-          <Box component="span"></Box>
-        </Box>
+        <List>
+          <ListItem>
+            <RadioButton
+              label="UNDER $25"
+              selectedValue={selectedValue}
+              setSelectedValue={setSelectedValue}
+            />
+          </ListItem>
+          <ListItem>
+            <RadioButton
+              label="$25 to 50$"
+              selectedValue={selectedValue}
+              setSelectedValue={setSelectedValue}
+            />
+          </ListItem>
+          <ListItem>
+            <RadioButton
+              label="$50 to $100"
+              selectedValue={selectedValue}
+              setSelectedValue={setSelectedValue}
+            />
+          </ListItem>
+          <ListItem>
+            <RadioButton
+              label="$100 to $200"
+              selectedValue={selectedValue}
+              setSelectedValue={setSelectedValue}
+            />
+          </ListItem>
+          <ListItem>
+            <RadioButton
+              label="$200 ABOVE"
+              selectedValue={selectedValue}
+              setSelectedValue={setSelectedValue}
+            />
+          </ListItem>
+        </List>
       </ListItem>
       <ThemeProvider theme={theme}>
         <ListItem>
-          <TextField id="minPrice" label="$ Min" variant="outlined"></TextField>
+          <TextField
+            id="minPrice"
+            label="$ Min"
+            variant="outlined"
+            value={priceRange.min}
+          ></TextField>
           -
-          <TextField id="minPrice" label="$ Min" variant="outlined"></TextField>
+          <TextField
+            id="maxPrice"
+            label="$ Max"
+            variant="outlined"
+            value={priceRange.max}
+          ></TextField>
         </ListItem>
         <ListItem>
           <Box variant="h3" fontWeight={600} pt={3}>
@@ -180,7 +146,8 @@ function Price() {
                 <Slider
                   className={classes.slider}
                   defaultValue={50}
-                  value={typeof value === "number" ? value : 0}
+                  max={500}
+                  value={value}
                   onChange={handleSliderChange}
                 />
               </Box>

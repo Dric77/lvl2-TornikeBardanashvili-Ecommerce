@@ -1,12 +1,11 @@
 import { createMuiTheme, Grid, makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import Categories from "./Categories";
 import Filter from "./Filter";
 import Condition from "./Condition";
 import Review from "./Review";
 import Price from "./Price";
 import Size from "./Size";
-import Color from "./Color.js";
 
 const useStyle = makeStyles({
   fullWidth: {
@@ -34,7 +33,7 @@ const theme = createMuiTheme({
   }
 });
 
-function SideBar() {
+function SideBar({ priceRange, setPriceRange }) {
   return (
     <>
       <Grid
@@ -54,7 +53,7 @@ function SideBar() {
 
         <Review />
 
-        <Price />
+        <Price value={priceRange} setValue={setPriceRange} />
 
         <Size />
       </Grid>

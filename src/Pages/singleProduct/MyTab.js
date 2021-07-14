@@ -1,4 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import {
+  Link,
+  Route,
+  Router,
+  useRouteMatch,
+  Switch,
+  useLocation
+} from "react-router-dom";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -7,9 +15,10 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
-import { TableRow } from "@material-ui/core";
+import { List, ListItem, TableRow } from "@material-ui/core";
 import MyTable from "./MyTable";
 import Reviews from "./Reviews.js";
+import { SINGLE_PRODUCT } from "../../routes.js";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,10 +74,13 @@ const StyledTableRow = withStyles((theme) => ({
   }
 }))(TableRow);
 
-export default function MyTab({ singleData }) {
+export default function MyTab({ singleData, setSingleData }) {
   const classes = useStyles();
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+
+  const { pathname } = useLocation();
+  let { url } = useRouteMatch();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -89,9 +101,9 @@ export default function MyTab({ singleData }) {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="DESCRIPTION" {...a11yProps(0)} />
-          <Tab label="INFORMATION" {...a11yProps(1)} />
-          <Tab label="REVIEWS (1)" {...a11yProps(2)} />
+          <Tab label="DESCRIPTION" component={Link} {...a11yProps(0)} />
+          <Tab label="INFORMATION" {...a11yProps(1)} component={Link} />
+          <Tab label="REVIEWS (1)" {...a11yProps(2)} component={Link} />
         </Tabs>
       </AppBar>
 
@@ -123,7 +135,7 @@ export default function MyTab({ singleData }) {
       </TabPanel>
       <TabPanel value={value} index={2} dir={theme.direction}>
         <Typography component="h1">Product Description</Typography>
-        <Reviews singleData={singleData} />
+        <Reviews singleData={singleData} setSingleData={setSingleData} />
       </TabPanel>
     </div>
   );

@@ -16,7 +16,8 @@ const useStyle = makeStyles({
   },
   img: {
     width: "100%",
-    height: "30rem"
+    height: "40rem",
+    backgroundSize: "70%"
   },
   greyBg: {
     backgroundColor: "#E4E4E4",
@@ -55,7 +56,6 @@ const useStyle = makeStyles({
 function ProductImg({ singleData, setShopedItemData, shopedItemData }) {
   const classes = useStyle();
   const [currentImg, setCurrentImg] = useState(3);
-  console.log("singledatas", singleData);
 
   let handleImg = (activeImg) => {
     setCurrentImg(activeImg);
@@ -83,7 +83,9 @@ function ProductImg({ singleData, setShopedItemData, shopedItemData }) {
             ) : null}
             <CardMedia
               className={classes.img}
-              image={singleData.imgGroup[currentImg].imgUrl}
+              image={
+                singleData.img //Group[currentImg].imgUrl
+              }
             />
           </Grid>
         </Grid>

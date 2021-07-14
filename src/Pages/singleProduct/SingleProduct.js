@@ -4,6 +4,8 @@ import ProductDes from "./ProductDes.js";
 import MyTab from "./MyTab";
 import { useLocation, useParams } from "react-router";
 import ProductImg from "./ProductImg.js";
+import API from "../../api.js";
+import Loader from "../../Components/Loader.js";
 
 const useStyle = makeStyles((theme) => ({
   mb: {
@@ -16,11 +18,16 @@ const useStyle = makeStyles((theme) => ({
   fullWidth: {
     width: "100%",
     maxWidth: "100%"
+  },
+  loading: {
+    height: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   }
 }));
 
 function SingleProduct({
-  data,
   setAddedItem,
   addedItem,
   shopedItemData,
@@ -33,84 +40,63 @@ function SingleProduct({
 
   const [value, setValue] = useState(2);
   const [selectProduct, setSelectProduct] = useState();
-  // const [singleData, setSingleData] = useState();
+  const [singleData, setSingleData] = useState();
+  const [loading, setLoading] = useState(true);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  // useEffect(() => {
-  //   let getSingleData = (setProduct, data) => {
-  //     let parsedId = parseInt(id);
-  //     data.forEach((e) => {
-  //       if (parsedId === e.id) {
-  //         setProduct(e);
-  //         console.log(singleData);
-  //       }
-  //     });
-  //   };
-  // }, []);
-
-  let singleData = {};
-
   let { id } = useParams();
-  let parsedId = parseInt(id);
 
-  data.forEach((e) => {
-    if (parsedId === e.id) {
-      singleData = e;
-    }
+  useEffect(() => {
+    API.getSingleProduct(id, setSingleData).finally(() => setLoading(false));
   });
-
-  // useEffect(() => {
-  //   data.forEach((e) => {
-  //     if (parsedId === e.id) {
-  //       setSingleData(e);
-  //     }
-  //   });
-  // }, [data]);
 
   return (
     <>
-      <Container>
-        <Box
-          component="h1"
-          fontFamily="roboto"
-          fontSize="2rem"
-          textAlign="center"
-          color="#4f4f4f"
-          mt={10}
-        >
-          Product Page
-        </Box>
-        <Box mt={10}>
-          <Grid container spacing={3}>
-            <ProductImg
-              singleData={singleData}
-              setSelectProduct={setSelectProduct}
-              setShopedItemData={setShopedItemData}
-              shopedItemData={shopedItemData}
-            />
-            <ProductDes
-              setAddedItem={setAddedItem}
-              addedItem={addedItem}
-              singleData={singleData}
-              setSelectProduct={setSelectProduct}
-              setShopedItemData={setShopedItemData}
-              shopedItemData={shopedItemData}
-              productCount={productCount}
-              setProductCount={setProductCount}
-            />
-            <Grid xs={12}>
-              <MyTab singleData={singleData} />
-            </Grid>
-          </Grid>
-        </Box>
-      </Container>
+      {!!singleData && (
+        <Container className={loading && classes.loading}>
+          <Loader loading={loading}>
+            <Box
+              component="h1"
+              fontFamily="roboto"
+              fontSize="2rem"
+              textAlign="center"
+              color="#4f4f4f"
+              mt={10}
+            >
+              Product Page
+            </Box>
+            <Box mt={10}>
+              <Grid container spacing={3}>
+                <ProductImg
+                  singleData={singleData}
+                  setSelectProduct={setSelectProduct}
+                  setShopedItemData={setShopedItemData}
+                  shopedItemData={shopedItemData}
+                />
+                <ProductDes
+                  setAddedItem={setAddedItem}
+                  addedItem={addedItem}
+                  singleData={singleData}
+                  setSelectProduct={setSelectProduct}
+                  setShopedItemData={setShopedItemData}
+                  shopedItemData={shopedItemData}
+                  productCount={productCount}
+                  setProductCount={setProductCount}
+                />
+                <Grid xs={12}>
+                  <MyTab
+                    singleData={singleData}
+                    setSingleData={setSingleData}
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+          </Loader>
+        </Container>
+      )}
     </>
   );
 }

@@ -30,9 +30,8 @@ const useStyles = makeStyles({
     justifyContent: "space-evenly"
   },
   media: {
-    height: "100%",
-    width: "auto",
-    backgroundSize: "100%",
+    height: "auto",
+    width: 240,
     transition: "ease 0.2s",
     "&:hover": {
       transform: "scale(1.1)"

@@ -40,7 +40,7 @@ const useStyle = makeStyles((theme) => ({
   }
 }));
 
-function Reviews({ singleData }) {
+function Reviews({ setSingleData, singleData }) {
   const classes = useStyle();
   const [review, setReview] = useState({
     userName: "",
@@ -55,6 +55,13 @@ function Reviews({ singleData }) {
 
   let handleReview = (e) => {
     e.preventDefault();
+    let tmp = {
+      userName: name,
+      time: Date().toLocaleString(),
+      review: decriptio,
+      email: email,
+      reviewStar: stars
+    };
   };
 
   return (
@@ -125,8 +132,8 @@ function Reviews({ singleData }) {
                   multiline
                   rows={4}
                   variant="outlined"
-                  onChange={(event, newValue) => {
-                    setDecriptio(newValue);
+                  onChange={(event) => {
+                    setDecriptio(event.target.value);
                   }}
                 />
               </Grid>
@@ -137,8 +144,8 @@ function Reviews({ singleData }) {
                   label="Name"
                   placeholder="Name"
                   variant="outlined"
-                  onChange={(event, newValue) => {
-                    setname(newValue);
+                  onChange={(event) => {
+                    setname(event.target.value);
                   }}
                 />
               </Grid>
@@ -150,8 +157,8 @@ function Reviews({ singleData }) {
                   placeholder="email"
                   type="email"
                   variant="outlined"
-                  onChange={(event, newValue) => {
-                    setEmail(newValue);
+                  onChange={(event) => {
+                    setEmail(event.target.value);
                   }}
                 />
               </Grid>

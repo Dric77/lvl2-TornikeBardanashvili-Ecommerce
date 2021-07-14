@@ -4,15 +4,12 @@ import {
   Container,
   Grid,
   makeStyles,
-  ThemeProvider,
-  Typography
+  ThemeProvider
 } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import theme from "../CutumTheme";
-import Header from "../Components/Header";
 import ProductList from "../Components/ProductList";
 import Cover from "../Imgs/Cover.jpg";
-import Footer from "../Components/Footer";
 import SideBar from "../Components/SideBar/SideBar";
 
 const useStyle = makeStyles(() => ({
@@ -35,8 +32,10 @@ const useStyle = makeStyles(() => ({
   }
 }));
 
-function ProductPage({ data }) {
+function ProductPage({ data, loading }) {
   let classes = useStyle();
+
+  const [priceRange, setPriceRange] = useState(30);
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -60,8 +59,12 @@ function ProductPage({ data }) {
         </Box>
         <Container>
           <Grid container>
-            <SideBar />
-            <ProductList data={data} />
+            <SideBar priceRange={priceRange} setPriceRange={setPriceRange} />
+            <ProductList
+              data={data}
+              loading={loading}
+              priceRange={priceRange}
+            />
           </Grid>
         </Container>
       </ThemeProvider>
