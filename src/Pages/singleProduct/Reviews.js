@@ -19,7 +19,8 @@ const useStyle = makeStyles((theme) => ({
   },
   mainContainer: {
     width: "100%",
-    height: "auto"
+    height: "auto",
+    marginBottom: 50
   },
   imgContainer: {
     height: 100,
@@ -62,6 +63,9 @@ function Reviews({ setSingleData, singleData }) {
       email: email,
       reviewStar: stars
     };
+    let newReview = [...singleData.review, tmp];
+    setSingleData({ ...singleData, review: newReview });
+    console.log(singleData);
   };
 
   return (
@@ -122,7 +126,11 @@ function Reviews({ setSingleData, singleData }) {
           <form onSubmit={handleReview} className={classes.fullWidth}>
             <Grid container item spacing={4}>
               <Grid item lg={12}>
-                <HoverReview setstars={setstars} stars={stars} />
+                <HoverReview
+                  setstars={setstars}
+                  stars={stars}
+                  onChange={(event, newValue) => setstars(newValue)}
+                />
               </Grid>
               <Grid item lg={12}>
                 <TextField

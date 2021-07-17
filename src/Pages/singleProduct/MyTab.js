@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import {
   Link,
   Route,
-  Router,
   useRouteMatch,
   Switch,
-  useLocation
+  useLocation,
+  generatePath
 } from "react-router-dom";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
@@ -76,10 +76,8 @@ const StyledTableRow = withStyles((theme) => ({
 
 export default function MyTab({ singleData, setSingleData }) {
   const classes = useStyles();
-  const theme = useTheme();
   const [value, setValue] = useState(0);
 
-  const { pathname } = useLocation();
   let { url } = useRouteMatch();
 
   const handleChange = (event, newValue) => {
@@ -101,13 +99,83 @@ export default function MyTab({ singleData, setSingleData }) {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="DESCRIPTION" component={Link} {...a11yProps(0)} />
-          <Tab label="INFORMATION" {...a11yProps(1)} component={Link} />
-          <Tab label="REVIEWS (1)" {...a11yProps(2)} component={Link} />
+          <Tab
+            label="DESCRIPTION"
+            {...a11yProps(0)}
+            component={Link}
+            to={generatePath(SINGLE_PRODUCT, {
+              id: singleData.id
+            })}
+          />
+          <Tab
+            label="INFORMATION"
+            {...a11yProps(1)}
+            component={Link}
+            to={
+              generatePath(SINGLE_PRODUCT, {
+                id: singleData.id
+              }) + "/information"
+            }
+          />
+          <Tab
+            label="REVIEWS (1)"
+            {...a11yProps(2)}
+            component={Link}
+            to={
+              generatePath(SINGLE_PRODUCT, {
+                id: singleData.id
+              }) + "/review"
+            }
+          />
         </Tabs>
       </AppBar>
 
-      <TabPanel value={value} index={0} dir={theme.direction}>
+      <Switch>
+        <Route
+          path={generatePath(SINGLE_PRODUCT, {
+            id: singleData.id
+          })}
+          exact
+        >
+          <Box>
+            <Typography component="h1">Product Description</Typography>
+            <Typography component="h6"> {singleData.category} </Typography>
+            <Rating
+              className={classes.stars}
+              name="read-only"
+              defaultValue={4}
+              precision={0.5}
+              readOnly
+              className={classes.stars}
+            />
+            <Typography component="h4"> {singleData.price} $</Typography>
+            <Typography component="p"> {singleData.description} </Typography>
+          </Box>
+        </Route>
+        <Route
+          path={
+            generatePath(SINGLE_PRODUCT, {
+              id: singleData.id
+            }) + "/information"
+          }
+        >
+          <Box>
+            <MyTable />
+          </Box>
+        </Route>
+        <Route
+          path={
+            generatePath(SINGLE_PRODUCT, {
+              id: singleData.id
+            }) + "/review"
+          }
+        >
+          <Typography component="h1">Product Description</Typography>
+          <Reviews singleData={singleData} setSingleData={setSingleData} />
+        </Route>
+      </Switch>
+
+      {/* <TabPanel value={value} index={0} dir={theme.direction}>
         <Box>
           <Typography component="h1">Product Description</Typography>
           <Typography component="h6">SHIRTS</Typography>
@@ -136,7 +204,7 @@ export default function MyTab({ singleData, setSingleData }) {
       <TabPanel value={value} index={2} dir={theme.direction}>
         <Typography component="h1">Product Description</Typography>
         <Reviews singleData={singleData} setSingleData={setSingleData} />
-      </TabPanel>
+      </TabPanel> */}
     </div>
   );
 }

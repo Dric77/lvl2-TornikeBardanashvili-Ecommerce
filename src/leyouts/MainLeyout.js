@@ -1,8 +1,8 @@
 import React, { children } from "react";
-import Footer from "./Components/Footer.js";
-import Header from "./Components/Header.js";
+import Footer from "../Components/Footer.js";
+import Header from "../Components/Header.js";
 
-export default function Leyout({
+export default function MainLeyout({
   children,
   addedItem,
   setAddedItem,

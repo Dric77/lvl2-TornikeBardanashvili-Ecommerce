@@ -50,8 +50,9 @@ function SingleProduct({
   let { id } = useParams();
 
   useEffect(() => {
+    setLoading(true);
     API.getSingleProduct(id, setSingleData).finally(() => setLoading(false));
-  });
+  }, []);
 
   return (
     <>

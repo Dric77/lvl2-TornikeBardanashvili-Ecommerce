@@ -37,7 +37,7 @@ export default function HoverReview({ stars, setstars }) {
       <Rating
         className={classes.stars}
         name="hover-feedback"
-        value={setstars}
+        value={stars}
         precision={0.5}
         onChange={(event, newValue) => {
           setstars(newValue);

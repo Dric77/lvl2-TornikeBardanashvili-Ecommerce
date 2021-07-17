@@ -23,7 +23,6 @@ const useStyle = makeStyles((theme) => ({
 function ProductList({ data, loading, priceRange }) {
   const classes = useStyle();
   const [listStyle, setListStyle] = useState("gridView");
-  const [limitedData, setLimitedData] = useState([]);
 
   return (
     <Grid container item xs={12} sm={8} lg={8}>
