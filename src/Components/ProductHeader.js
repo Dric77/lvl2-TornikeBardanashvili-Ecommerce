@@ -2,7 +2,7 @@ import { Box, Grid, makeStyles } from "@material-ui/core";
 import GridViewIcon from "@material-ui/icons/GridView";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
 import Pagination from "@material-ui/lab/Pagination";
-import theme from "../CutumTheme.js";
+import CurrentPage from "../Components/CurrentPage";
 import React from "react";
 
 const useStyle = makeStyles((theme) => ({
@@ -14,7 +14,13 @@ const useStyle = makeStyles((theme) => ({
   }
 }));
 
-function ProductHeader({ setListStyle }) {
+function ProductHeader({
+  setListStyle,
+  currentPage,
+  handllePage,
+  pagination,
+  setPagination
+}) {
   const classes = useStyle();
 
   let gridHanldelClick = () => {
@@ -23,11 +29,10 @@ function ProductHeader({ setListStyle }) {
   let calendarHanldelClick = () => {
     setListStyle("calendarView");
   };
-  let handllePage = (e, page) => {
-    console.log(page);
-  };
+
   return (
     <Box display="flex" flexDirection="row" width="100%" height={0} pt={5}>
+      <Box component="span">{Pagination.currentPage} </Box>
       <Grid container xs={12} spacing={2}>
         <Grid
           container
@@ -50,7 +55,10 @@ function ProductHeader({ setListStyle }) {
         </Grid>
         <Grid container item xs={12} md={12} lg={4}>
           <Box component="span" fontWeight={100}>
-            Label Exammple
+            {/* <CurrentPage
+              pagination={pagination}
+              setPagination={setPagination}
+            /> */}
           </Box>
         </Grid>
         <Grid
@@ -64,7 +72,8 @@ function ProductHeader({ setListStyle }) {
           <Pagination
             count={4}
             defaultPage={1}
-            siblingCount={0}
+            siblingCount={1}
+            page={currentPage}
             color="primary"
             onChange={handllePage}
           />

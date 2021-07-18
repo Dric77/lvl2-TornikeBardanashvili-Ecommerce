@@ -12,6 +12,7 @@ const useStyle = makeStyles((theme) => ({
     zIndex: 1000,
     left: 0,
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center"
   },
@@ -55,7 +56,8 @@ function Moadl({
   ModalFooter,
   children,
   openModal,
-  setOpenModal
+  setOpenModal,
+  addedStatus
 }) {
   const classes = useStyle();
 
@@ -73,8 +75,7 @@ function Moadl({
           </Button>
         </Grid>
         <Grid item lg={12} className={classes.modalContent}>
-          {" "}
-          {children}{" "}
+          {children}
         </Grid>
         <Grid item lg={12} className={classes.modalFooter}>
           {ModalFooter}

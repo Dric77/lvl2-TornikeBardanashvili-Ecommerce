@@ -11,13 +11,15 @@ const useStyle = makeStyles((theme) => ({
   }
 }));
 
-function AddProductForm({ products, setProducts, setOpenModal }) {
+function AddProductForm({ products, setProducts, setAdedStatus }) {
   const classes = useStyle();
   const [addedStatus, setAddedStatus] = useState();
 
   let sendDataToAPI = (values) => {
     setProducts([...products, values]);
-    API.addProduct(values, setAddedStatus);
+    API.addProduct(values).then((res) => {
+      if (res.status === 200) setAddedStatus(true);
+    });
   };
 
   const formik = useFormik({

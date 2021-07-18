@@ -17,13 +17,12 @@ const API = {
     return this.getData(param, setData)
       .then((res) => res.json())
       .then((json) => {
-        setData(
-          json.map((product) => {
-            return serialize(product);
-          })
-        );
-      })
-      .catch((err) => console.log(err));
+        let serilizedData = [];
+        json.map((product) => {
+          serilizedData.push(serialize(product));
+        });
+        return serilizedData;
+      });
   },
   getSingleProduct: function (id, setSingleData) {
     return this.getData(`/products/${id}`, setSingleData)
@@ -32,13 +31,12 @@ const API = {
         setSingleData(serialize(product));
       });
   },
-  getAllUsers: function (param, setAllusers) {
-    return this.getData(param, setAllusers)
+  getAllUsers: function (param) {
+    return this.getData(param)
       .then((res) => res.json())
       .then((users) => {
-        setAllusers(users);
-      })
-      .catch((e) => console.log(e));
+        return users;
+      });
   },
   addData: function (addedUser, setStatus) {
     fetch(this.baseUrl + "users", {
@@ -62,7 +60,7 @@ const API = {
         setStatus(res);
         return res.json();
       })
-      .then((json) => console.log("console from api", json))
+      .then((json) => console.log("added data to base", json))
       .catch((e) => console.log(e));
   },
   deletUser: function (param, setStatus, method) {
@@ -71,10 +69,12 @@ const API = {
         setStatus(res.status);
         return res.json();
       })
-      .then((json) => console.log(json));
+      .then((json) => {
+        return json;
+      });
   },
-  addProduct: function (addedProduct, setStatus) {
-    return fetch(this.baseUrl + "productsd", {
+  addProduct: function (addedProduct) {
+    return fetch(this.baseUrl + "products", {
       method: "POST",
       body: JSON.stringify({
         id: 100,
@@ -83,13 +83,7 @@ const API = {
         category: addedProduct.category,
         description: addedProduct.description
       })
-    })
-      .then((res) => {
-        setStatus(res);
-        return res.json();
-      })
-      .then((json) => console.log("console from api", json))
-      .catch((e) => console.log(e));
+    });
   }
 };
 

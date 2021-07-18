@@ -17,7 +17,7 @@ import Typography from "@material-ui/core/Typography";
 import { useTheme } from "@material-ui/core/styles";
 import { NavLink } from "react-router-dom";
 import { Link } from "@material-ui/core";
-import { ADMIN } from "../../routes.js";
+import { ADMIN, PRODUCT_LIST } from "../../routes.js";
 import { useStyles } from "./MyDrawerStyle";
 
 function MyDrawer({ sideBarMenu, window }) {
@@ -73,6 +73,9 @@ function MyDrawer({ sideBarMenu, window }) {
           </IconButton>
           <Typography variant="h6" noWrap>
             Admin Panel
+          </Typography>
+          <Typography variant="h6" noWrap>
+            <Link to={PRODUCT_LIST}>Go To Product List</Link>
           </Typography>
         </Toolbar>
       </AppBar>

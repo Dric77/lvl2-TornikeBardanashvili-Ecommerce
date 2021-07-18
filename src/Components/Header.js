@@ -13,7 +13,7 @@ import { Link as Mlink } from "@material-ui/core";
 import theme from "../CutumTheme";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
-import { HOME } from "../routes.js";
+import { ADMIN, HOME } from "../routes.js";
 import Cart from "./Cart.js";
 
 const useStyles = makeStyles((theme) => ({
@@ -126,7 +126,6 @@ function Header({ addedItem, setAddedItem, productCount }) {
                 </Mlink>
               </Box>
             </Grid>
-
             <Grid
               container
               item
@@ -138,6 +137,13 @@ function Header({ addedItem, setAddedItem, productCount }) {
               alignItems="center"
               className={navBar}
             >
+              <Grid item>
+                <Box component="span">
+                  <Mlink component={Link} to={ADMIN}>
+                    admin
+                  </Mlink>
+                </Box>
+              </Grid>
               <Cart
                 addedItem={addedItem}
                 setAddedItem={setAddedItem}

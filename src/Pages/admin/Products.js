@@ -37,10 +37,14 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [addedStatus, setAdedStatus] = useState(false);
 
   useEffect(() => {
-    API.getProducts("products", setProducts).finally(() => setLoading(false));
-    console.log(products);
+    API.getProducts("products")
+      .then((el) => {
+        setProducts(el);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   let addproduct = () => {
@@ -60,11 +64,13 @@ function Products() {
         ModalFooter="footer"
         openModal={openModal}
         setOpenModal={setOpenModal}
+        addedStatus={addedStatus}
       >
         <AddProductForm
           products={products}
           setProducts={setProducts}
           setOpenModal={setOpenModal}
+          setAdedStatus={setAdedStatus}
         />
       </Modal>
 

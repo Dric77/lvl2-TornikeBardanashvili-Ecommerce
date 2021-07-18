@@ -2,14 +2,12 @@ import {
   Box,
   Button,
   Container,
-  createMuiTheme,
   Grid,
   Link,
   List,
   ListItem,
   makeStyles,
-  ThemeProvider,
-  Typography
+  ThemeProvider
 } from "@material-ui/core";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
@@ -107,7 +105,6 @@ function Footer() {
               <Grid item xs={12} sm={6} xs={12}>
                 <Box
                   component="h4"
-                  variant="h4"
                   fontFamily="Roboto,sans-serif"
                   fontWeight="small"
                   className={classes.socialTitle}

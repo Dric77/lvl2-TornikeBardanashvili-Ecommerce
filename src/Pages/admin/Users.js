@@ -13,12 +13,25 @@ import API from "../../api.js";
 import { Button, Typography } from "@material-ui/core";
 import Modal from "../../Components/Moadl";
 import AddUserForm from "./AddUserForm.js";
+import SeccessfulMessage from "../../Components/SeccessfulMessage.js";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650
+  },
+  userRow: {
+    animation: `$deleteEffect 3000ms ${theme.transitions.easing.easeInOut}`
+  },
+
+  "@keyframes deleteEffect": {
+    "0%": {
+      opacity: 1
+    },
+    "100%": {
+      opacity: 0
+    }
   }
-});
+}));
 
 export default function Users() {
   const classes = useStyles();
@@ -29,7 +42,9 @@ export default function Users() {
   const [deleteStatus, setDeleteStatus] = useState();
 
   useEffect(() => {
-    API.getAllUsers("/users", setUsers).finally(() => setLoading(false));
+    API.getAllUsers("/users")
+      .then((users) => setUsers(users))
+      .finally(() => setLoading(false));
   }, []);
 
   let addUser = () => {
@@ -38,11 +53,15 @@ export default function Users() {
 
   let deleteUser = (id) => {
     let newUsers = users.filter((user) => user.id != id);
+    API.deletUser(`/users/${id}`, setDeleteStatus, "DELETE").then((data) =>
+      console.log(data)
+    );
+    // for (let i = 0; i < 0; i++) {
+    //   if (users[i].id === id) {
+    //     users[i]
+    //   }
+    // }
     setUsers(newUsers);
-    API.deletUser(`/users/${id}`, setDeleteStatus, "DELETE");
-    if (deleteStatus === 200) {
-      setOpenModal(true);
-    }
   };
 
   return (
@@ -95,7 +114,7 @@ export default function Users() {
                       align="right"
                       onClick={() => deleteUser(user.id)}
                     >
-                      Delte User
+                      <Button> Delte User</Button>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -106,6 +125,10 @@ export default function Users() {
       <Button variant="contained" color="primary" onClick={addUser}>
         Add New User
       </Button>
+      <SeccessfulMessage
+        deleteStatus={deleteStatus}
+        setDeleteStatus={setDeleteStatus}
+      />
     </>
   );
 }

@@ -43,14 +43,11 @@ const useStyles = makeStyles((theme) => ({
 function Cart({ addedItem, setAddedItem, productCount }) {
   const classes = useStyles();
   const [totalPrice, setTotalPrice] = useState(0);
-  useEffect(() => {
-    getTotalPrice(addedItem);
-  }, [addedItem]);
 
   let getTotalPrice = (item) => {
     //use reduce
     let priceCount = 0;
-    item.map((product) => {
+    item.forEach((product) => {
       if (!!product.price) {
         let parsedPrice = parseInt(product.price);
         priceCount = priceCount + parsedPrice;
@@ -69,6 +66,10 @@ function Cart({ addedItem, setAddedItem, productCount }) {
       .concat(addedItem.slice(index + 1, addedItem.length));
     setAddedItem(tmp);
   };
+
+  useEffect(() => {
+    getTotalPrice(addedItem);
+  }, [addedItem]);
 
   return (
     <>

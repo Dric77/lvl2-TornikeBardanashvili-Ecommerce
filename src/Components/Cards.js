@@ -4,9 +4,7 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
-  createMuiTheme,
   makeStyles,
-  ThemeProvider,
   Typography,
   Link as Mlink
 } from "@material-ui/core";
