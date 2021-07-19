@@ -11,7 +11,7 @@ import Categories from "./Categories";
 function Admin() {
   let classes = useStyles();
 
-  const sideBarMenu = ["products", "users", "categories "];
+  const sideBarMenu = ["products", "users", "categories"];
 
   return (
     <div>

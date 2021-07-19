@@ -4,6 +4,7 @@ import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
 import Pagination from "@material-ui/lab/Pagination";
 import CurrentPage from "../Components/CurrentPage";
 import React from "react";
+import MyPagination from "./MyPagination.js";
 
 const useStyle = makeStyles((theme) => ({
   gridItem: {
@@ -39,7 +40,7 @@ function ProductHeader({
           item
           xs={12}
           md={12}
-          lg={4}
+          lg={2}
           className={classes.gridItem}
         >
           <GridViewIcon
@@ -53,7 +54,7 @@ function ProductHeader({
             onClick={calendarHanldelClick}
           />
         </Grid>
-        <Grid container item xs={12} md={12} lg={4}>
+        <Grid container item xs={12} md={12} lg={2}>
           <Box component="span" fontWeight={100}>
             {/* <CurrentPage
               pagination={pagination}
@@ -66,17 +67,18 @@ function ProductHeader({
           item
           xs={12}
           md={12}
-          lg={4}
+          lg={8}
           className={classes.gridItem}
         >
-          <Pagination
+          <MyPagination pagination={pagination} />
+          {/* <Pagination
             count={4}
             defaultPage={1}
             siblingCount={1}
             page={currentPage}
             color="primary"
             onChange={handllePage}
-          />
+          /> */}
         </Grid>
       </Grid>
     </Box>

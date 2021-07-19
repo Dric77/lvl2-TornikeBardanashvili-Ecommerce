@@ -10,6 +10,7 @@ import { ADMIN, HOME, PRODUCT_LIST, SINGLE_PRODUCT } from "./routes.js";
 import MainLeyout from "./leyouts/MainLeyout";
 import Admin from "./Pages/admin/Admin.js";
 import AdminLeyout from "./leyouts/adminLeyout.js";
+import TestComponent from "./Components/TestComponent.js";
 
 function App() {
   const [addedItem, setAddedItem] = useState([]);
@@ -27,10 +28,15 @@ function App() {
   });
   const [productCount, setProductCount] = useState(1);
 
+  console.log(pagination.currentPage);
+
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <Switch>
+          <Route path="/test" exact>
+            <TestComponent />
+          </Route>
           <Route path={ADMIN}>
             <AdminLeyout>
               <Redirect to={ADMIN + "/products"} />
