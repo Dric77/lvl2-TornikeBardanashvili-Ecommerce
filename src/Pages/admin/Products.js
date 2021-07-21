@@ -15,6 +15,7 @@ import Modal from "../../Components/Moadl";
 import { Link } from "react-router-dom";
 import { SINGLE_PRODUCT } from "../../routes.js";
 import AddProductForm from "./AddProductForm.js";
+import { serialize } from "../../serializers/serialize.js";
 
 const useStyles = makeStyles({
   table: {
@@ -42,7 +43,8 @@ function Products() {
   useEffect(() => {
     API.getProducts("products")
       .then((el) => {
-        setProducts(el);
+        let serilizedProducts = el.map((product) => serialize(product));
+        setProducts(serilizedProducts);
       })
       .finally(() => setLoading(false));
   }, []);

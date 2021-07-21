@@ -76,6 +76,7 @@ const useStyles = makeStyles({
 
 function Cards({ data }) {
   const classes = useStyles();
+
   return (
     <Mlink
       component={Link}

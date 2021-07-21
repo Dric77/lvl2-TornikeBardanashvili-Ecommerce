@@ -13,30 +13,15 @@ const API = {
       body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
   },
-  getProducts: function (param, setData) {
-    return this.getData(param, setData)
-      .then((res) => res.json())
-      .then((json) => {
-        let serilizedData = [];
-        json.map((product) => {
-          serilizedData.push(serialize(product));
-        });
-        return serilizedData;
-      });
-  },
-  getSingleProduct: function (id, setSingleData) {
-    return this.getData(`/products/${id}`, setSingleData)
-      .then((res) => res.json())
-      .then((product) => {
-        setSingleData(serialize(product));
-      });
-  },
-  getAllUsers: function (param) {
-    return this.getData(param)
-      .then((res) => res.json())
-      .then((users) => {
-        return users;
-      });
+  getProducts: function (param, method, setStatus) {
+    return this.getData(param, method)
+      .then((res) => {
+        if (setStatus) {
+          setStatus(res);
+        }
+        return res.json();
+      })
+      .then((json) => json);
   },
   addData: function (addedUser, setStatus) {
     fetch(this.baseUrl + "users", {

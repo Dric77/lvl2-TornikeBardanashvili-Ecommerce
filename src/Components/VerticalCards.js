@@ -8,8 +8,9 @@ import {
   makeStyles,
   Typography
 } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import API from "../api.js";
 import { SINGLE_PRODUCT } from "../routes.js";
 
 const useStyles = makeStyles({
@@ -79,6 +80,7 @@ const useStyles = makeStyles({
 
 function VerticalCards({ data }) {
   const classes = useStyles();
+
   return (
     <Card className={classes.card}>
       <Mlink

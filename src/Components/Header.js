@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   AppBar,
   Box,
@@ -13,8 +13,9 @@ import { Link as Mlink } from "@material-ui/core";
 import theme from "../CutumTheme";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
-import { ADMIN, HOME } from "../routes.js";
+import { ADMIN, HOME, SIGN_IN } from "../routes.js";
 import Cart from "./Cart.js";
+import AuthContext from "./context/auth-context.js";
 
 const useStyles = makeStyles((theme) => ({
   noneBg: {
@@ -81,6 +82,8 @@ function Header({ addedItem, setAddedItem, productCount }) {
   const [navBar, setNavBar] = useState(classes.navBar);
   const [navBarOpen, setNavbarOpen] = useState(false);
 
+  const ctx = useContext(AuthContext);
+
   useEffect(() => {
     window.onscroll = (e) => {
       if (window.scrollY >= 60) {
@@ -99,6 +102,11 @@ function Header({ addedItem, setAddedItem, productCount }) {
       setNavBar(classes.openNavBar);
       setNavbarOpen(true);
     }
+  };
+
+  let logOutHandler = () => {
+    localStorage.setItem("isLoggedIn", "0");
+    console.log(ctx.setIsLoggedIn);
   };
 
   return (
@@ -166,9 +174,26 @@ function Header({ addedItem, setAddedItem, productCount }) {
                 </Box>
               </Grid>
               <Grid item>
-                <Button color="inherit" className={classes.borderBtn}>
-                  Sing in
-                </Button>
+                {ctx.isLoggedIn ? (
+                  <Button
+                    component={Link}
+                    to={SIGN_IN}
+                    color="inherit"
+                    className={classes.borderBtn}
+                    onClick={logOutHandler}
+                  >
+                    Log Out
+                  </Button>
+                ) : (
+                  <Button
+                    component={Link}
+                    to={SIGN_IN}
+                    color="inherit"
+                    className={classes.borderBtn}
+                  >
+                    Sing in
+                  </Button>
+                )}
               </Grid>
             </Grid>
             <Grid

@@ -14,6 +14,7 @@ import { Button, Typography } from "@material-ui/core";
 import Modal from "../../Components/Moadl";
 import AddUserForm from "./AddUserForm.js";
 import SeccessfulMessage from "../../Components/SeccessfulMessage.js";
+import { serialize } from "../../serializers/serialize.js";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -42,8 +43,10 @@ export default function Users() {
   const [deleteStatus, setDeleteStatus] = useState();
 
   useEffect(() => {
-    API.getAllUsers("/users")
-      .then((users) => setUsers(users))
+    API.getProducts("users")
+      .then((users) => {
+        setUsers(users);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -53,8 +56,8 @@ export default function Users() {
 
   let deleteUser = (id) => {
     let newUsers = users.filter((user) => user.id != id);
-    API.deletUser(`/users/${id}`, setDeleteStatus, "DELETE").then((data) =>
-      console.log(data)
+    API.getProducts(`/users/${id}`, setDeleteStatus, "DELETE").then((data) =>
+      console.log("deleted user", data)
     );
     // for (let i = 0; i < 0; i++) {
     //   if (users[i].id === id) {

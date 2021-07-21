@@ -1,6 +1,8 @@
-import { Box, Container, Grid, makeStyles } from "@material-ui/core";
+import { Box, Container, Grid, Link, makeStyles } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import API from "../api.js";
+import { SINGLE_PRODUCT } from "../routes.js";
+import { serialize } from "../serializers/serialize.js";
 import Cards from "./Cards";
 import Loader from "./Loader.js";
 import ProductHeader from "./ProductHeader";
@@ -28,20 +30,6 @@ function ProductList({ priceRange, pagination, setPagination }) {
   const [listStyle, setListStyle] = useState("gridView");
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    API.getProducts(`products?limit=${pagination.perPage}`)
-      .then((el) => setData(el))
-      .finally(() => {
-        setLoading(false);
-        setPagination({
-          currentPage: 1,
-          totalProduct: data.length,
-          perPage: 5,
-          totalPage: data.length / 5
-        });
-      });
-  }, []);
-
   let handllePage = (e, page) => {
     setCurrentPage(page);
 
@@ -58,6 +46,23 @@ function ProductList({ priceRange, pagination, setPagination }) {
       currentPage: page
     });
   };
+
+  useEffect(() => {
+    API.getProducts("products")
+      .then((el) => {
+        let serilizedProducts = el.map((product) => serialize(product));
+        setData(serilizedProducts);
+      })
+      .finally(() => {
+        setLoading(false);
+        setPagination({
+          currentPage: 1,
+          totalProduct: data.length,
+          perPage: 5,
+          totalPage: data.length / 5
+        });
+      });
+  }, []);
 
   return (
     <Grid container item xs={12} sm={8} lg={8}>

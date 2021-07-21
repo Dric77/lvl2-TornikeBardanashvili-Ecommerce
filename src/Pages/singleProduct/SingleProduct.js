@@ -6,6 +6,7 @@ import { useLocation, useParams } from "react-router";
 import ProductImg from "./ProductImg.js";
 import API from "../../api.js";
 import Loader from "../../Components/Loader.js";
+import { serilizeSingleProduct } from "../../serializers/serilizeSingleProduct.js";
 
 const useStyle = makeStyles((theme) => ({
   mb: {
@@ -51,11 +52,16 @@ function SingleProduct({
 
   useEffect(() => {
     setLoading(true);
-    API.getSingleProduct(id, setSingleData).finally(() => setLoading(false));
+    API.getProducts(`/products/${id}`)
+      .then((product) => {
+        let serilizedProduct = serilizeSingleProduct(product);
+        setSingleData(serilizedProduct);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   return (
-    <>
+    <Loader loading={loading}>
       {!!singleData && (
         <Container className={loading && classes.loading}>
           <Loader loading={loading}>
@@ -98,7 +104,7 @@ function SingleProduct({
           </Loader>
         </Container>
       )}
-    </>
+    </Loader>
   );
 }
 
