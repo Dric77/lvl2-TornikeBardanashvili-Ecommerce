@@ -41,9 +41,9 @@ function Products() {
   const [addedStatus, setAdedStatus] = useState(false);
 
   useEffect(() => {
-    API.getProducts("products")
+    API.getAllData("products")
       .then((el) => {
-        let serilizedProducts = el.map((product) => serialize(product));
+        let serilizedProducts = el.data.map((product) => serialize(product));
         setProducts(serilizedProducts);
       })
       .finally(() => setLoading(false));

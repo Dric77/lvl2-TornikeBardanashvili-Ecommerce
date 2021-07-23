@@ -92,7 +92,7 @@ function Header({ addedItem, setAddedItem, productCount }) {
         setNavBarStyle(false);
       }
     };
-  });
+  }, []);
 
   let handlleNavBar = () => {
     if (navBarOpen) {
@@ -102,11 +102,6 @@ function Header({ addedItem, setAddedItem, productCount }) {
       setNavBar(classes.openNavBar);
       setNavbarOpen(true);
     }
-  };
-
-  let logOutHandler = () => {
-    localStorage.setItem("isLoggedIn", "0");
-    console.log(ctx.setIsLoggedIn);
   };
 
   return (
@@ -176,22 +171,15 @@ function Header({ addedItem, setAddedItem, productCount }) {
               <Grid item>
                 {ctx.isLoggedIn ? (
                   <Button
-                    component={Link}
-                    to={SIGN_IN}
                     color="inherit"
                     className={classes.borderBtn}
-                    onClick={logOutHandler}
+                    onClick={ctx.onLogout}
                   >
                     Log Out
                   </Button>
                 ) : (
-                  <Button
-                    component={Link}
-                    to={SIGN_IN}
-                    color="inherit"
-                    className={classes.borderBtn}
-                  >
-                    Sing in
+                  <Button color="inherit" className={classes.borderBtn}>
+                    <Link to={SIGN_IN}> Sing in </Link>
                   </Button>
                 )}
               </Grid>

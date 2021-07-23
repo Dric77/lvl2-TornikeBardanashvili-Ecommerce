@@ -9,10 +9,10 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useFormik } from "formik";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import AuthContext from "../../Components/context/auth-context.js";
-import { PRODUCT_LIST } from "../../routes.js";
 import MyCheckbox from "./MyCheckbox.js";
+import { SIGN_UP } from "../../routes";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -38,16 +38,9 @@ function SignInPage() {
       RemberCheckStaus: false
     },
     onSubmit: (values) => {
-      localStorage.setItem("isLoggedIn", "1");
-      ctx.setIsLoggedIn(true);
+      ctx.onLogin(values);
     }
   });
-
-  // const loginHandler = () => {
-  //   localStorage.setItem("isLoggedIn", "1");
-  //   ctx.setIsLoggedIn(true);
-  // };
-
   return (
     <div>
       <Container className={classes.mainContainer}>
@@ -93,11 +86,11 @@ function SignInPage() {
                 <Button color="primary">Forget Password ?</Button>
               </Box>
               <Button variant="contained" color="primary" type="submit">
-                <Link to={PRODUCT_LIST}>Sing In</Link>
+                Sing In
               </Button>
             </form>
             <Box component={Grid} item>
-              Not a member? <Link to="#"> Register</Link>
+              Not a member? <Link to={SIGN_UP}> Register</Link>
             </Box>
             <Box
               component={Grid}

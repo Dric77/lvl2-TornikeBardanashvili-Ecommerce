@@ -33,7 +33,7 @@ const useStyle = makeStyles(() => ({
   }
 }));
 
-function ProductPage({ pagination, setPagination }) {
+function ProductPage() {
   let classes = useStyle();
 
   const [priceRange, setPriceRange] = useState(30);
@@ -62,11 +62,7 @@ function ProductPage({ pagination, setPagination }) {
         <Container>
           <Grid container>
             <SideBar priceRange={priceRange} setPriceRange={setPriceRange} />
-            <ProductList
-              priceRange={priceRange}
-              pagination={pagination}
-              setPagination={setPagination}
-            />
+            <ProductList priceRange={priceRange} />
           </Grid>
         </Container>
       </ThemeProvider>

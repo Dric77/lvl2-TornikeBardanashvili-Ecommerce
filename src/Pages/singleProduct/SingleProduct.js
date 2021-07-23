@@ -52,7 +52,7 @@ function SingleProduct({
 
   useEffect(() => {
     setLoading(true);
-    API.getProducts(`/products/${id}`)
+    API.getAllData(`products/${id}`, "GET")
       .then((product) => {
         let serilizedProduct = serilizeSingleProduct(product);
         setSingleData(serilizedProduct);

@@ -15,13 +15,7 @@ const useStyle = makeStyles((theme) => ({
   }
 }));
 
-function ProductHeader({
-  setListStyle,
-  currentPage,
-  handllePage,
-  pagination,
-  setPagination
-}) {
+function ProductHeader({ setListStyle, currentPage, handllePage }) {
   const classes = useStyle();
 
   let gridHanldelClick = () => {
@@ -40,7 +34,7 @@ function ProductHeader({
           item
           xs={12}
           md={12}
-          lg={2}
+          lg={4}
           className={classes.gridItem}
         >
           <GridViewIcon
@@ -54,12 +48,9 @@ function ProductHeader({
             onClick={calendarHanldelClick}
           />
         </Grid>
-        <Grid container item xs={12} md={12} lg={2}>
+        <Grid container item xs={12} md={12} lg={4}>
           <Box component="span" fontWeight={100}>
-            {/* <CurrentPage
-              pagination={pagination}
-              setPagination={setPagination}
-            /> */}
+            Label Example
           </Box>
         </Grid>
         <Grid
@@ -67,18 +58,17 @@ function ProductHeader({
           item
           xs={12}
           md={12}
-          lg={8}
+          lg={4}
           className={classes.gridItem}
         >
-          <MyPagination pagination={pagination} />
-          {/* <Pagination
+          <Pagination
             count={4}
             defaultPage={1}
             siblingCount={1}
             page={currentPage}
             color="primary"
             onChange={handllePage}
-          /> */}
+          />
         </Grid>
       </Grid>
     </Box>

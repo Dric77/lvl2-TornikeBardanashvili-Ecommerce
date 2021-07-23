@@ -23,7 +23,7 @@ const useStyle = makeStyles((theme) => ({
   }
 }));
 
-function ProductList({ priceRange, pagination, setPagination }) {
+function ProductList({ priceRange }) {
   const classes = useStyle();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,31 +36,24 @@ function ProductList({ priceRange, pagination, setPagination }) {
     setLoading(true);
     setData([]);
 
-    API.getProducts(`products?limit=${pagination.perPage}`)
-      .then((el) => setData(el))
-      .finally(() => {
-        setLoading(false);
-      });
-    setPagination({
-      ...pagination,
-      currentPage: page
-    });
-  };
-
-  useEffect(() => {
-    API.getProducts("products")
+    API.getAllData(`products`)
       .then((el) => {
-        let serilizedProducts = el.map((product) => serialize(product));
+        let serilizedProducts = el.data.map((product) => serialize(product));
         setData(serilizedProducts);
       })
       .finally(() => {
         setLoading(false);
-        setPagination({
-          currentPage: 1,
-          totalProduct: data.length,
-          perPage: 5,
-          totalPage: data.length / 5
-        });
+      });
+  };
+
+  useEffect(() => {
+    API.getAllData("products")
+      .then((el) => {
+        let serilizedProducts = el.data.map((product) => serialize(product));
+        setData(serilizedProducts);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -73,8 +66,6 @@ function ProductList({ priceRange, pagination, setPagination }) {
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}
             handllePage={handllePage}
-            pagination={pagination}
-            setPagination={setPagination}
           />
         </Box>
         <Grid container spacing={5} className={classes.cardList}>

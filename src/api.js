@@ -2,8 +2,8 @@ import { serialize } from "./serializers/serialize.js";
 import { serilizeAddUser } from "./serializers/SerilizeAddUser";
 
 const API = {
-  baseUrl: "https://fakestoreapi.com/",
-  getData: function (productUrl, data, method = "GET") {
+  baseUrl: "http://159.65.126.180/api/",
+  getData: function (productUrl, method = "GET", data) {
     return fetch(this.baseUrl + productUrl, {
       method: method, // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -13,7 +13,7 @@ const API = {
       body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
   },
-  getProducts: function (param, method, setStatus) {
+  getAllData: function (param, method, setStatus) {
     return this.getData(param, method)
       .then((res) => {
         if (setStatus) {
