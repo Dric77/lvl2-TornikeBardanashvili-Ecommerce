@@ -43,9 +43,9 @@ export default function Users() {
   const [deleteStatus, setDeleteStatus] = useState();
 
   useEffect(() => {
-    API.getProducts("users")
+    API.getAllData("users", "GET")
       .then((users) => {
-        setUsers(users);
+        setUsers(users.data);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -56,14 +56,9 @@ export default function Users() {
 
   let deleteUser = (id) => {
     let newUsers = users.filter((user) => user.id != id);
-    API.getProducts(`/users/${id}`, setDeleteStatus, "DELETE").then((data) =>
+    API.getAllData(`users/${id}`, setDeleteStatus, "DELETE").then((data) =>
       console.log("deleted user", data)
     );
-    // for (let i = 0; i < 0; i++) {
-    //   if (users[i].id === id) {
-    //     users[i]
-    //   }
-    // }
     setUsers(newUsers);
   };
 

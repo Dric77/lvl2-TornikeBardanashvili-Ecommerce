@@ -3,13 +3,13 @@ import {
   Button,
   Container,
   Grid,
-  Link,
   TextField,
   Typography
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useFormik } from "formik";
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import AuthContext from "../../Components/context/auth-context.js";
 import MyCheckbox from "./MyCheckbox.js";
 import { SIGN_UP } from "../../routes";
@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
 
 function SignInPage() {
   const classes = useStyles();
+  const [singInData, setSingInData] = useState();
 
   const ctx = useContext(AuthContext);
 
-  const [singInData, setSingInData] = useState();
   const formik = useFormik({
     initialValues: {
       email: "",

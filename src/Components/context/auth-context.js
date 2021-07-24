@@ -1,20 +1,40 @@
 import React, { useEffect, useState } from "react";
-import API from "../../api";
 
 const AuthContext = React.createContext({
   isLoggedIn: false,
   onLogout: () => {},
-  onLogin: (values) => {}
+  onLogin: (values) => {},
+  userData: {}
 });
 
 export const AuthContextProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState({});
 
-  const loginHandler = () => {
-    localStorage.setItem("isLoggedIn", "1");
-    setIsLoggedIn(true);
+  let test = (email, password) => {
+    fetch("http://159.65.126.180/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((user) => {
+        setUserData(user);
+        localStorage.setItem("isLoggedIn", user.token.access_token);
+      })
+      .catch((e) => console.log(e));
+  };
 
-    API.getAllData("auth/login", "POST").then((user) => console.log(user));
+  const loginHandler = (values) => {
+    test(values.email, values.password);
   };
 
   let logOutHandler = () => {
@@ -35,7 +55,8 @@ export const AuthContextProvider = ({ children }) => {
       value={{
         isLoggedIn: isLoggedIn,
         onLogout: logOutHandler,
-        onLogin: loginHandler
+        onLogin: loginHandler,
+        userData: userData
       }}
     >
       {children}
