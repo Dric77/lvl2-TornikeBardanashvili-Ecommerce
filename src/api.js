@@ -7,8 +7,8 @@ const API = {
     return fetch(this.baseUrl + productUrl, {
       method: method, // *GET, POST, PUT, DELETE, etc.
       headers: {
-        "Content-Type": "application/json"
-        // 'Content-Type': 'application/x-www-form-urlencoded',
+        "Content-Type": "application/json",
+        Accept: "application/json"
       },
       body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
@@ -22,6 +22,9 @@ const API = {
         return res.json();
       })
       .then((json) => json);
+  },
+  authUser: function (param, method, data) {
+    return this.getData(param, method, data);
   },
   addData: function (addedUser, setStatus) {
     fetch(this.baseUrl + "users", {

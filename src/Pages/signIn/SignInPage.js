@@ -1,42 +1,40 @@
 import {
   Box,
   Button,
+  CircularProgress,
   Container,
   Grid,
   TextField,
   Typography
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../Components/context/auth-context.js";
 import MyCheckbox from "./MyCheckbox.js";
+import { useStyles } from "./singinStyle";
 import { SIGN_UP } from "../../routes";
-
-const useStyles = makeStyles((theme) => ({
-  mainContainer: {
-    marginTop: 150,
-    maxWidth: 700
-  },
-  input: {
-    width: "100%",
-    marginBottom: 25
-  }
-}));
 
 function SignInPage() {
   const classes = useStyles();
-  const [singInData, setSingInData] = useState();
 
   const ctx = useContext(AuthContext);
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
+    password: Yup.string().required("password is required")
+  });
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
-      RemberCheckStaus: false
+      remberCheckStaus: false
     },
+    validationSchema: validationSchema,
     onSubmit: (values) => {
       ctx.onLogin(values);
     }
@@ -44,6 +42,13 @@ function SignInPage() {
   return (
     <div>
       <Container className={classes.mainContainer}>
+        {ctx.loading && (
+          <CircularProgress
+            color="primary"
+            size={50}
+            className={classes.loader}
+          />
+        )}
         <Box component={Grid} container wrap="nowrap" flexDirection="column">
           <Box component={Grid} item textAlign="center" lg={12} pb={15}>
             <Typography component="h1" variant="h5">
@@ -61,7 +66,11 @@ function SignInPage() {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 className={classes.input}
+                error={formik.values.email}
               />
+              <Box mt={2} mb={3} fontSize={15} color="error.main">
+                {formik.errors.email}
+              </Box>
               <TextField
                 id="password"
                 label="Your Password"
@@ -72,6 +81,18 @@ function SignInPage() {
                 onChange={formik.handleChange}
                 className={classes.input}
               />
+              <Box mt={2} mb={3} fontSize={15} color="error.main">
+                {formik.errors.password}
+              </Box>
+              <Box
+                component="h5"
+                fontSize={20}
+                fontWeight={400}
+                m={0}
+                color="error.main"
+              >
+                {ctx.errorMessage}
+              </Box>
               <Box
                 component="div"
                 display="flex"
@@ -80,7 +101,7 @@ function SignInPage() {
                 <MyCheckbox
                   name="RemberCheckStaus"
                   label="REMEBER ME"
-                  checkStaus={formik.values.RemberCheckStaus}
+                  checked={formik.values.remberCheckStaus}
                   value={formik.values.rememberMe}
                 />
                 <Button color="primary">Forget Password ?</Button>
@@ -89,7 +110,7 @@ function SignInPage() {
                 Sing In
               </Button>
             </form>
-            <Box component={Grid} item>
+            <Box component={Grid} item pt={4}>
               Not a member? <Link to={SIGN_UP}> Register</Link>
             </Box>
             <Box

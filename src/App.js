@@ -25,6 +25,7 @@ import RegistrationPage from "./Pages/resgitration/RegistrationPage.js";
 function App() {
   const [addedItem, setAddedItem] = useState([]);
   const [productCount, setProductCount] = useState(1);
+  const [registrationStatus, setRegistrationStatus] = useState(false);
   const [shopedItemData, setShopedItemData] = useState({
     color: "",
     quantity: 1,
@@ -74,7 +75,13 @@ function App() {
               {ctx.isLoggedIn && <Redirect to={PRODUCT_LIST} />}
               <SignInPage />
             </Route>
-            <Route path={SIGN_UP} component={RegistrationPage} />
+            <Route path={SIGN_UP}>
+              <RegistrationPage
+                registrationStatus={registrationStatus}
+                setRegistrationStatus={setRegistrationStatus}
+              />
+              {registrationStatus && <Redirect to={PRODUCT_LIST} />}
+            </Route>
           </MainLeyout>
         </Switch>
       </ThemeProvider>

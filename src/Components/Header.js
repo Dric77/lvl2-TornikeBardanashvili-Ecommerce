@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   AppBar,
   Box,
-  Button,
   Grid,
   makeStyles,
   Select,
@@ -12,10 +11,12 @@ import {
 import { Link as Mlink } from "@material-ui/core";
 import theme from "../CutumTheme";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from "react-router-dom";
-import { ADMIN, HOME, SIGN_IN } from "../routes.js";
+import { Link, useLocation } from "react-router-dom";
+import { ADMIN, HOME, PRODUCT_LIST } from "../routes.js";
 import Cart from "./Cart.js";
 import AuthContext from "./context/auth-context.js";
+import AuthorizationBtns from "./AuthorizationBtns.js";
+import AuthorizedUser from "./AuthorizedUser.js";
 
 const useStyles = makeStyles((theme) => ({
   noneBg: {
@@ -83,10 +84,11 @@ function Header({ addedItem, setAddedItem, productCount }) {
   const [navBarOpen, setNavbarOpen] = useState(false);
 
   const ctx = useContext(AuthContext);
+  let { pathname } = useLocation();
 
   useEffect(() => {
     window.onscroll = (e) => {
-      if (window.scrollY >= 60) {
+      if (window.scrollY >= 60 && pathname === PRODUCT_LIST) {
         setNavBarStyle(true);
       } else {
         setNavBarStyle(false);
@@ -108,7 +110,11 @@ function Header({ addedItem, setAddedItem, productCount }) {
     <ThemeProvider theme={theme}>
       <AppBar
         position="fixed"
-        className={navBarStyle ? classes.bgColor : classes.noneBg}
+        className={
+          !navBarStyle && pathname === PRODUCT_LIST
+            ? classes.noneBg
+            : classes.bgColor
+        }
       >
         <Toolbar className={classes.navContainer}>
           <Grid
@@ -154,8 +160,7 @@ function Header({ addedItem, setAddedItem, productCount }) {
               />
               <Grid item>
                 <Box component="span">
-                  {" "}
-                  <Select />{" "}
+                  <Select />
                 </Box>
               </Grid>
               <Grid item>
@@ -168,21 +173,7 @@ function Header({ addedItem, setAddedItem, productCount }) {
                   Contact
                 </Box>
               </Grid>
-              <Grid item>
-                {ctx.isLoggedIn ? (
-                  <Button
-                    color="inherit"
-                    className={classes.borderBtn}
-                    onClick={ctx.onLogout}
-                  >
-                    Log Out
-                  </Button>
-                ) : (
-                  <Button color="inherit" className={classes.borderBtn}>
-                    <Link to={SIGN_IN}> Sing in </Link>
-                  </Button>
-                )}
-              </Grid>
+              {ctx.isLoggedIn ? <AuthorizedUser /> : <AuthorizationBtns />}
             </Grid>
             <Grid
               item

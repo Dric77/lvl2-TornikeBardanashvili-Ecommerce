@@ -10,11 +10,10 @@ import Paper from "@material-ui/core/Paper";
 import Loader from "../../Components/Loader";
 import { useState, useEffect } from "react";
 import API from "../../api.js";
-import { Button, Typography } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import Modal from "../../Components/Moadl";
 import AddUserForm from "./AddUserForm.js";
 import SeccessfulMessage from "../../Components/SeccessfulMessage.js";
-import { serialize } from "../../serializers/serialize.js";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -54,13 +53,13 @@ export default function Users() {
     setOpenModal(true);
   };
 
-  let deleteUser = (id) => {
-    let newUsers = users.filter((user) => user.id != id);
-    API.getAllData(`users/${id}`, setDeleteStatus, "DELETE").then((data) =>
-      console.log("deleted user", data)
-    );
-    setUsers(newUsers);
-  };
+  // let deleteUser = (id) => {
+  //   let newUsers = users.filter((user) => user.id != id);
+  //   API.getAllData(`users/${id}`, setDeleteStatus, "DELETE").then((data) =>
+  //     console.log("deleted user", data)
+  //   );
+  //   setUsers(newUsers);
+  // };
 
   return (
     <>
@@ -108,12 +107,12 @@ export default function Users() {
                     </TableCell>
                     <TableCell align="right">{user.phone}</TableCell>
                     <TableCell align="right">{user.id}</TableCell>
-                    <TableCell
+                    {/* <TableCell
                       align="right"
                       onClick={() => deleteUser(user.id)}
                     >
                       <Button> Delte User</Button>
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 ))}
             </TableBody>

@@ -6,30 +6,19 @@ import {
   TextField,
   Typography
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
-import { useFormik } from "formik";
-import React, { useState } from "react";
-import Loader from "../../Components/Loader";
+import { useStyles } from "./regitrationStyle";
 import API from "../../api.js";
+import { useFormik } from "formik";
+import { validationSchema } from "./validation";
+import React, { useContext, useState } from "react";
+import AuthContext from "../../Components/context/auth-context.js";
 
-const useStyles = makeStyles((theme) => ({
-  mainContainer: {
-    marginTop: 150,
-    maxWidth: 700
-  },
-  input: {
-    width: "100%",
-    marginBottom: 25
-  },
-  loading: {
-    opacity: 0.7
-  }
-}));
-function RegistrationPage() {
+function RegistrationPage({ registrationStatus, setRegistrationStatus }) {
   const classes = useStyles();
-
-  const [registrationStatus, setRegistrationStatus] = useState();
   const [loader, setLoader] = useState(false);
+  const [errorText, setErrorText] = useState();
+
+  const ctx = useContext(AuthContext);
 
   const formik = useFormik({
     initialValues: {
@@ -37,14 +26,34 @@ function RegistrationPage() {
       lastName: "",
       email: "",
       password: "",
+      confirmPassword: "",
       phone: ""
     },
+    validationSchema: validationSchema,
     onSubmit: (values) => {
-      setLoader(true);
-      API.getAllData("register", "POST")
-        .then((user) => console.log(user))
-        .catch((e) => console.log(e))
-        .finally(() => setLoader(false));
+      let newUserInfo = {
+        name: values.firstName,
+        email: values.email,
+        password: values.password,
+        password_confirmation: values.confirmPassword
+      };
+      API.authUser("register", "POST", newUserInfo)
+        .then((res) => {
+          if (!res.ok) {
+            res.text().then((error) => setErrorText(JSON.parse(error)));
+          }
+          setRegistrationStatus(res.ok);
+          if (registrationStatus) {
+            console.log(res.ok, registrationStatus);
+            ctx.onLogin(values);
+          }
+          return res.json();
+        })
+        .then((data) => console.log(data))
+        .catch((e) => console.log("error", e))
+        .finally(() => {
+          setLoader(false);
+        });
     }
   });
 
@@ -64,7 +73,7 @@ function RegistrationPage() {
             </Typography>
           </Box>
           <Box component={Grid} item textAlign="center" lg={12}>
-            <form onSubmit={formik.handleSubmit}>
+            <form onSubmit={formik.handleSubmit} noValidate>
               <Grid container spacing={2}>
                 <Grid item lg={6}>
                   <TextField
@@ -76,7 +85,16 @@ function RegistrationPage() {
                     value={formik.values.firstName}
                     onChange={formik.handleChange}
                     className={classes.input}
+                    error={formik.errors.firstName}
                   />
+                  <Box
+                    component="div"
+                    color="error.main"
+                    fontSize={15}
+                    className={classes.errorMessage}
+                  >
+                    {formik.errors.firstName && formik.errors.firstName}
+                  </Box>
                 </Grid>
                 <Grid item lg={6}>
                   <TextField
@@ -88,7 +106,16 @@ function RegistrationPage() {
                     value={formik.values.lastName}
                     onChange={formik.handleChange}
                     className={classes.input}
+                    error={formik.errors.lastName}
                   />
+                  <Box
+                    component="div"
+                    color="error.main"
+                    fontSize={15}
+                    className={classes.errorMessage}
+                  >
+                    {formik.errors.lastName && formik.errors.lastName}
+                  </Box>
                 </Grid>
               </Grid>
               <TextField
@@ -100,7 +127,16 @@ function RegistrationPage() {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 className={classes.input}
+                error={formik.errors.email}
               />
+              <Box
+                component="div"
+                color="error.main"
+                fontSize={15}
+                className={classes.errorMessage}
+              >
+                {formik.errors.email && formik.errors.email}
+              </Box>
               <TextField
                 id="password"
                 label="password"
@@ -110,7 +146,35 @@ function RegistrationPage() {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 className={classes.input}
+                error={formik.errors.password}
               />
+              <Box
+                component="div"
+                color="error.main"
+                fontSize={15}
+                className={classes.errorMessage}
+              >
+                {formik.errors.password && formik.errors.password}
+              </Box>
+              <TextField
+                id="confirmPassword"
+                label="confirmPassword"
+                type="password"
+                variant="outlined"
+                name="confirmPassword"
+                value={formik.values.confirmPassword}
+                onChange={formik.handleChange}
+                className={classes.input}
+                error={formik.errors.confirmPassword}
+              />
+              <Box
+                component="div"
+                color="error.main"
+                fontSize={15}
+                className={classes.errorMessage}
+              >
+                {formik.errors.confirmPassword && formik.errors.confirmPassword}
+              </Box>
               <TextField
                 id="phone"
                 label="phone"
@@ -120,9 +184,21 @@ function RegistrationPage() {
                 value={formik.values.phone}
                 onChange={formik.handleChange}
                 className={classes.input}
+                error={formik.errors.phone}
               />
+              <Box
+                component="div"
+                color="error.main"
+                fontSize={15}
+                className={classes.errorMessage}
+              >
+                {formik.errors.phone && formik.errors.phone}
+              </Box>
+              <Box component="h5" color="error.main">
+                {/* {!!errorText && console.log(errorText.errors.email)} */}
+              </Box>
               <Button variant="contained" color="primary" type="submit">
-                Sing Up
+                Sign Up
               </Button>
             </form>
           </Box>
