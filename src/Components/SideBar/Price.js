@@ -55,9 +55,9 @@ const BlueCheckbox = withStyles({
   checked: {}
 })((props) => <Checkbox color="default" {...props} />);
 
-function Price({ value, setValue }) {
+function Price() {
   const classes = useStyle();
-
+  const [value, setValue] = useState();
   const [priceRange, setPriceRange] = useState({
     min: 0,
     max: value
@@ -151,7 +151,7 @@ function Price({ value, setValue }) {
                   onChange={handleSliderChange}
                 />
               </Box>
-              <Box component="span">{value + "$"}</Box>
+              <Box component="span">{500 + "$"}</Box>
             </Grid>
           </Grid>
         </ListItem>

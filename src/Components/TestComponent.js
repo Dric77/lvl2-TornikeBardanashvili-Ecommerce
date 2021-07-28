@@ -19,10 +19,8 @@ function pagination(c, m) {
   for (let i of range) {
     if (l) {
       if (i - l === 2) {
-        console.log("add");
         rangeWithDots.push(l + 1);
       } else if (i - l !== 1) {
-        console.log("dots", i, l);
         rangeWithDots.push("...");
       }
     }

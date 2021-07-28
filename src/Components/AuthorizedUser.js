@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { SIGN_IN } from "../routes.js";
+import { ADMIN, SIGN_IN } from "../routes.js";
 import AuthContext from "./context/auth-context.js";
 
 const useStyle = makeStyles((theme) => ({
@@ -35,6 +35,11 @@ function AuthorizedUser() {
     <>
       {!!userData.name && (
         <>
+          <Grid item>
+            <Mlink component={Link} to={ADMIN}>
+              admin
+            </Mlink>
+          </Grid>
           <Grid item>
             <CardMedia image={userData.avatar} className={classes.avatar} />
           </Grid>

@@ -1,7 +1,8 @@
-import { Box, Container, Grid, Link, makeStyles } from "@material-ui/core";
+import { Box, Container, Grid, makeStyles } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
+import { Route, useHistory, useLocation } from "react-router";
 import API from "../api.js";
-import { SINGLE_PRODUCT } from "../routes.js";
+import { PRODUCT_LIST } from "../routes.js";
 import { serialize } from "../serializers/serialize.js";
 import Cards from "./Cards";
 import Loader from "./Loader.js";
@@ -23,22 +24,43 @@ const useStyle = makeStyles((theme) => ({
   }
 }));
 
-function ProductList({ priceRange }) {
+function ProductList({ currentPage, setCurrentPage }) {
   const classes = useStyle();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [listStyle, setListStyle] = useState("gridView");
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
+  let [pagination, setPagination] = useState({
+    page: "",
+    last_page: "",
+    per_page: "",
+    from: "",
+    to: "",
+    total: ""
+  });
+
+  const history = useHistory();
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [currentPage]);
 
   let handllePage = (e, page) => {
     setCurrentPage(page);
-
     setLoading(true);
-    setData([]);
-
-    API.getAllData(`products`)
+    history.push(PRODUCT_LIST.replace("1", page));
+    API.getAllData(`products?page=${page}`)
       .then((el) => {
+        setPagination({
+          page: el.page,
+          last_page: el.last_page,
+          per_page: el.per_page,
+          from: el.from,
+          to: el.to,
+          total: el.total
+        });
         let serilizedProducts = el.data.map((product) => serialize(product));
+        setData([]);
         setData(serilizedProducts);
       })
       .finally(() => {
@@ -49,6 +71,14 @@ function ProductList({ priceRange }) {
   useEffect(() => {
     API.getAllData("products")
       .then((el) => {
+        setPagination({
+          page: el.page,
+          last_page: el.last_page,
+          per_page: el.per_page,
+          from: el.from,
+          to: el.to,
+          total: el.total
+        });
         let serilizedProducts = el.data.map((product) => serialize(product));
         setData(serilizedProducts);
       })
@@ -90,6 +120,7 @@ function ProductList({ priceRange }) {
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}
             handllePage={handllePage}
+            pagination={pagination}
           />
         </Box>
       </Container>

@@ -2,9 +2,7 @@ import { Box, Grid, makeStyles } from "@material-ui/core";
 import GridViewIcon from "@material-ui/icons/GridView";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
 import Pagination from "@material-ui/lab/Pagination";
-import CurrentPage from "../Components/CurrentPage";
-import React from "react";
-import MyPagination from "./MyPagination.js";
+import React, { useEffect, useState } from "react";
 
 const useStyle = makeStyles((theme) => ({
   gridItem: {
@@ -15,8 +13,9 @@ const useStyle = makeStyles((theme) => ({
   }
 }));
 
-function ProductHeader({ setListStyle, currentPage, handllePage }) {
+function ProductHeader({ setListStyle, currentPage, handllePage, pagination }) {
   const classes = useStyle();
+  const [totalPages, setTotalPages] = useState();
 
   let gridHanldelClick = () => {
     setListStyle("gridView");
@@ -24,6 +23,12 @@ function ProductHeader({ setListStyle, currentPage, handllePage }) {
   let calendarHanldelClick = () => {
     setListStyle("calendarView");
   };
+
+  useEffect(() => {
+    if (pagination && pagination.total) {
+      setTotalPages(pagination.total);
+    }
+  }, [pagination]);
 
   return (
     <Box display="flex" flexDirection="row" width="100%" height={0} pt={5}>
@@ -62,7 +67,7 @@ function ProductHeader({ setListStyle, currentPage, handllePage }) {
           className={classes.gridItem}
         >
           <Pagination
-            count={4}
+            count={20}
             defaultPage={1}
             siblingCount={1}
             page={currentPage}

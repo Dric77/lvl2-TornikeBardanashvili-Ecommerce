@@ -8,25 +8,18 @@ import {
   Typography
 } from "@material-ui/core";
 import { useFormik } from "formik";
-import * as Yup from "yup";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../Components/context/auth-context.js";
 import MyCheckbox from "./MyCheckbox.js";
 import { useStyles } from "./singinStyle";
 import { SIGN_UP } from "../../routes";
+import { validationSchema } from "./validation";
 
 function SignInPage() {
   const classes = useStyles();
 
   const ctx = useContext(AuthContext);
-
-  const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .email("Invalid email format")
-      .required("Email is required"),
-    password: Yup.string().required("password is required")
-  });
 
   const formik = useFormik({
     initialValues: {
@@ -39,6 +32,7 @@ function SignInPage() {
       ctx.onLogin(values);
     }
   });
+
   return (
     <div>
       <Container className={classes.mainContainer}>

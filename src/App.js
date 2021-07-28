@@ -8,12 +8,12 @@ import {
 } from "./routes.js";
 import { ThemeProvider } from "@material-ui/styles";
 import "./App.scss";
-import ProductPage from "./Pages/ProductPage";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import theme from "./CutumTheme";
-import SingleProduct from "./Pages/singleProduct/SingleProduct.js";
-import { useContext, useState } from "react";
+import ProductPage from "./Pages/ProductPage";
 import Home from "./Pages/Home";
+import SingleProduct from "./Pages/singleProduct/SingleProduct.js";
+import { useContext, useEffect, useState } from "react";
 import MainLeyout from "./leyouts/MainLeyout";
 import Admin from "./Pages/admin/Admin.js";
 import AdminLeyout from "./leyouts/adminLeyout.js";
@@ -25,15 +25,20 @@ import RegistrationPage from "./Pages/resgitration/RegistrationPage.js";
 function App() {
   const [addedItem, setAddedItem] = useState([]);
   const [productCount, setProductCount] = useState(1);
-  const [registrationStatus, setRegistrationStatus] = useState(false);
   const [shopedItemData, setShopedItemData] = useState({
     color: "",
     quantity: 1,
     size: "",
     price: 0
   });
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const { pathname } = useLocation();
   const ctx = useContext(AuthContext);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   return (
     <div className="App">
@@ -53,11 +58,13 @@ function App() {
             setAddedItem={setAddedItem}
             productCount={productCount}
           >
-            <Route path={PRODUCT_LIST}>
-              <ProductPage />
+            <Route path={PRODUCT_LIST.replace("1", currentPage)}>
+              <ProductPage
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+              />
             </Route>
             <Route path={SINGLE_PRODUCT}>
-              {" "}
               <SingleProduct
                 setAddedItem={setAddedItem}
                 addedItem={addedItem}
@@ -76,11 +83,8 @@ function App() {
               <SignInPage />
             </Route>
             <Route path={SIGN_UP}>
-              <RegistrationPage
-                registrationStatus={registrationStatus}
-                setRegistrationStatus={setRegistrationStatus}
-              />
-              {registrationStatus && <Redirect to={PRODUCT_LIST} />}
+              <RegistrationPage />
+              {ctx.isLoggedIn && <Redirect to={PRODUCT_LIST} />}
             </Route>
           </MainLeyout>
         </Switch>

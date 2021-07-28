@@ -33,7 +33,7 @@ const theme = createMuiTheme({
   }
 });
 
-function SideBar({ priceRange, setPriceRange }) {
+function SideBar() {
   return (
     <>
       <Grid
@@ -53,7 +53,7 @@ function SideBar({ priceRange, setPriceRange }) {
 
         <Review />
 
-        <Price value={priceRange} setValue={setPriceRange} />
+        <Price />
 
         <Size />
       </Grid>

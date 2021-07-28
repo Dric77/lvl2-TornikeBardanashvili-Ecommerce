@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import API from "../../api.js";
+import { AuthHelpers } from "./authHelpers.js";
 
-const AuthContext = React.createContext({
+const AuthContext = createContext({
   isLoggedIn: false,
   onLogout: () => {},
   onLogin: (values) => {},
@@ -24,13 +25,14 @@ export const AuthContextProvider = ({ children }) => {
         return res.json();
       })
       .then((user) => {
-        checkUserLogedIn(user);
+        AuthHelpers.checkUserLogedIn(user, setErrorMessage);
       })
       .catch((e) => console.log("auth error", e))
       .finally(() => setLoadign(false));
   };
 
   const loginHandler = (values) => {
+    console.log("clicke log");
     let userInfo = {
       email: values.email,
       password: values.password
@@ -42,16 +44,6 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("userToken");
     setIsLoggedIn(false);
-  };
-
-  let checkUserLogedIn = (user) => {
-    if (user.token) {
-      setUserData(user);
-      localStorage.setItem("userToken", user.token.access_token);
-      localStorage.setItem("isLoggedIn", "1");
-    } else {
-      setErrorMessage("Wrong Email or Password");
-    }
   };
 
   useEffect(() => {
@@ -66,7 +58,8 @@ export const AuthContextProvider = ({ children }) => {
         }
       })
         .then((res) => res.json())
-        .then((user) => setUserData(user))
+        .then((user) => AuthHelpers.checkData(user))
+        .then((data) => setUserData(data))
         .catch((e) => console.log(e));
     }
 

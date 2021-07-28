@@ -6,12 +6,11 @@ import {
   makeStyles,
   ThemeProvider
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import theme from "../CutumTheme";
 import ProductList from "../Components/ProductList";
 import Cover from "../Imgs/Cover.jpg";
 import SideBar from "../Components/SideBar/SideBar";
-import API from "../api.js";
 
 const useStyle = makeStyles(() => ({
   coverImg: {
@@ -33,10 +32,8 @@ const useStyle = makeStyles(() => ({
   }
 }));
 
-function ProductPage() {
+function ProductPage({ currentPage, setCurrentPage }) {
   let classes = useStyle();
-
-  const [priceRange, setPriceRange] = useState(30);
 
   return (
     <div>
@@ -61,8 +58,11 @@ function ProductPage() {
         </Box>
         <Container>
           <Grid container>
-            <SideBar priceRange={priceRange} setPriceRange={setPriceRange} />
-            <ProductList priceRange={priceRange} />
+            <SideBar />
+            <ProductList
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
           </Grid>
         </Container>
       </ThemeProvider>

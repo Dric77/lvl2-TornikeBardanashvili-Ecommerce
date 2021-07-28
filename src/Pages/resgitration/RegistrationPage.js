@@ -7,55 +7,17 @@ import {
   Typography
 } from "@material-ui/core";
 import { useStyles } from "./regitrationStyle";
-import API from "../../api.js";
-import { useFormik } from "formik";
-import { validationSchema } from "./validation";
 import React, { useContext, useState } from "react";
 import AuthContext from "../../Components/context/auth-context.js";
+import { UseFormik } from "./UseFormik.js";
 
-function RegistrationPage({ registrationStatus, setRegistrationStatus }) {
+function RegistrationPage() {
   const classes = useStyles();
   const [loader, setLoader] = useState(false);
-  const [errorText, setErrorText] = useState();
 
   const ctx = useContext(AuthContext);
 
-  const formik = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      phone: ""
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      let newUserInfo = {
-        name: values.firstName,
-        email: values.email,
-        password: values.password,
-        password_confirmation: values.confirmPassword
-      };
-      API.authUser("register", "POST", newUserInfo)
-        .then((res) => {
-          if (!res.ok) {
-            res.text().then((error) => setErrorText(JSON.parse(error)));
-          }
-          setRegistrationStatus(res.ok);
-          if (registrationStatus) {
-            console.log(res.ok, registrationStatus);
-            ctx.onLogin(values);
-          }
-          return res.json();
-        })
-        .then((data) => console.log(data))
-        .catch((e) => console.log("error", e))
-        .finally(() => {
-          setLoader(false);
-        });
-    }
-  });
+  const formik = UseFormik(ctx, setLoader);
 
   return (
     <div>
@@ -195,7 +157,9 @@ function RegistrationPage({ registrationStatus, setRegistrationStatus }) {
                 {formik.errors.phone && formik.errors.phone}
               </Box>
               <Box component="h5" color="error.main">
-                {/* {!!errorText && console.log(errorText.errors.email)} */}
+                {formik.errors &&
+                  formik.errors.errors &&
+                  formik.errors.errors.email}
               </Box>
               <Button variant="contained" color="primary" type="submit">
                 Sign Up

@@ -12,7 +12,7 @@ import { Link as Mlink } from "@material-ui/core";
 import theme from "../CutumTheme";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link, useLocation } from "react-router-dom";
-import { ADMIN, HOME, PRODUCT_LIST } from "../routes.js";
+import { HOME, PRODUCT_LIST } from "../routes.js";
 import Cart from "./Cart.js";
 import AuthContext from "./context/auth-context.js";
 import AuthorizationBtns from "./AuthorizationBtns.js";
@@ -59,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       transition: ".5s",
       transform: "translateY(-300px)"
-      // flexDirection: "column"
     }
   },
   openNavBar: {
@@ -146,13 +145,6 @@ function Header({ addedItem, setAddedItem, productCount }) {
               alignItems="center"
               className={navBar}
             >
-              <Grid item>
-                <Box component="span">
-                  <Mlink component={Link} to={ADMIN}>
-                    admin
-                  </Mlink>
-                </Box>
-              </Grid>
               <Cart
                 addedItem={addedItem}
                 setAddedItem={setAddedItem}

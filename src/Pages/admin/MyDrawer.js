@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -15,15 +15,18 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { useTheme } from "@material-ui/core/styles";
-import { NavLink } from "react-router-dom";
-import { Link } from "@material-ui/core";
+import { NavLink, Link as RouterLink } from "react-router-dom";
+import { Box, Card, CardMedia, Grid, Link } from "@material-ui/core";
 import { ADMIN, PRODUCT_LIST } from "../../routes.js";
 import { useStyles } from "./MyDrawerStyle";
+import AuthContext from "../../Components/context/auth-context.js";
 
 function MyDrawer({ sideBarMenu, window }) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const ctx = useContext(AuthContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -71,12 +74,38 @@ function MyDrawer({ sideBarMenu, window }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Admin Panel
-          </Typography>
-          <Typography variant="h6" noWrap>
-            <Link to={PRODUCT_LIST}>Go To Product List</Link>
-          </Typography>
+          <Box
+            display="flex"
+            width="100%"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Typography variant="h6" noWrap>
+              Admin Panel
+            </Typography>
+            <Box display="flex" alignItems="center">
+              {ctx.userData && (
+                <>
+                  <Typography variant="h6" noWrap>
+                    {ctx.userData.name}
+                  </Typography>
+                  <Box
+                    component={CardMedia}
+                    image={ctx.userData.avatar}
+                    width={50}
+                    height={50}
+                    ml={2}
+                  />
+                  <RouterLink to={PRODUCT_LIST}>
+                    <Box ml={2} color="secondary.main">
+                      {" "}
+                      Back to product list{" "}
+                    </Box>
+                  </RouterLink>
+                </>
+              )}
+            </Box>
+          </Box>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
