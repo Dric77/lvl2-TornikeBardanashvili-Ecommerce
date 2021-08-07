@@ -3,20 +3,20 @@ import {
   createMuiTheme,
   List,
   ListItem,
-  makeStyles
+  makeStyles,
 } from "@material-ui/core";
 import React from "react";
 
 const useStyle = makeStyles({
   fullWidth: {
-    width: "100%"
-  }
+    width: "100%",
+  },
 });
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: "Roboto,sans-serif"
-  }
+    fontFamily: "Roboto,sans-serif",
+  },
 });
 
 function Categories() {

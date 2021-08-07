@@ -12,26 +12,26 @@ const fullData = [
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "Nice one, love it!",
-        reviewStar: 5
+        reviewStar: 5,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "poor product!",
-        reviewStar: 1
+        reviewStar: 1,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "Nice one, love it!",
-        reviewStar: 5
+        reviewStar: 5,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "poor product!",
-        reviewStar: 1
-      }
+        reviewStar: 1,
+      },
     ],
     model: "Shirt 5407x",
     color: "Blue",
@@ -42,25 +42,25 @@ const fullData = [
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
-        color: "blue"
+        color: "blue",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
-        color: "red"
+        color: "red",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
-        color: "gray"
+        color: "gray",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
-        color: "black"
-      }
+        color: "black",
+      },
     ],
-    id: 1
+    id: 1,
   },
   {
     title: "Black denim jacket2",
@@ -75,14 +75,14 @@ const fullData = [
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "poor product!",
-        reviewStar: 1
+        reviewStar: 1,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "Nice one, love it!",
-        reviewStar: 5
-      }
+        reviewStar: 5,
+      },
     ],
     model: "Shirt 5407x",
     color: "Blue",
@@ -93,25 +93,25 @@ const fullData = [
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
-        color: "blue"
+        color: "blue",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
-        color: "red"
+        color: "red",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
-        color: "gray"
+        color: "gray",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
-        color: "black"
-      }
+        color: "black",
+      },
     ],
-    id: 2
+    id: 2,
   },
   {
     title: "Black denim jacket3",
@@ -126,26 +126,26 @@ const fullData = [
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "Nice one, love it!",
-        reviewStar: 5
+        reviewStar: 5,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "poor product!",
-        reviewStar: 1
+        reviewStar: 1,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "Nice one, love it!",
-        reviewStar: 5
+        reviewStar: 5,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "poor product!",
-        reviewStar: 1
-      }
+        reviewStar: 1,
+      },
     ],
     model: "Shirt 5407x",
     color: "Blue",
@@ -156,25 +156,25 @@ const fullData = [
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
-        color: "blue"
+        color: "blue",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
-        color: "red"
+        color: "red",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
-        color: "gray"
+        color: "gray",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
-        color: "black"
-      }
+        color: "black",
+      },
     ],
-    id: 3
+    id: 3,
   },
   {
     title: "Black denim jacket4",
@@ -189,38 +189,38 @@ const fullData = [
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "Nice one, love it!",
-        reviewStar: 5
+        reviewStar: 5,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "poor product!",
-        reviewStar: 1
+        reviewStar: 1,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "Nice one, love it!",
-        reviewStar: 5
+        reviewStar: 5,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "poor product!",
-        reviewStar: 1
+        reviewStar: 1,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "Nice one, love it!",
-        reviewStar: 5
+        reviewStar: 5,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "poor product!",
-        reviewStar: 1
-      }
+        reviewStar: 1,
+      },
     ],
     model: "Shirt 5407x",
     color: "Blue",
@@ -231,25 +231,25 @@ const fullData = [
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
-        color: "blue"
+        color: "blue",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
-        color: "red"
+        color: "red",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
-        color: "gray"
+        color: "gray",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
-        color: "black"
-      }
+        color: "black",
+      },
     ],
-    id: 4
+    id: 4,
   },
   {
     title: "Black denim jacket5",
@@ -264,14 +264,14 @@ const fullData = [
         userName: "Marthasteward2",
         time: "January 28, 2020",
         reviewDes: "poor product!",
-        reviewStar: 1
+        reviewStar: 1,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "poor product!",
-        reviewStar: 1
-      }
+        reviewStar: 1,
+      },
     ],
     model: "Shirt 5407x",
     color: "Blue",
@@ -282,26 +282,26 @@ const fullData = [
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
-        color: "blue"
+        color: "blue",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
-        color: "red"
+        color: "red",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
-        color: "gray"
+        color: "gray",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
-        color: "black"
-      }
+        color: "black",
+      },
     ],
-    id: 5
-  }
+    id: 5,
+  },
 ];
 
 export default fullData;

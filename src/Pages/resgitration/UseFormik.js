@@ -11,7 +11,7 @@ export const UseFormik = (ctx, setLoader) => {
       email: "",
       password: "",
       confirmPassword: "",
-      phone: ""
+      phone: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values, { setErrors }) => {
@@ -19,16 +19,19 @@ export const UseFormik = (ctx, setLoader) => {
         name: values.firstName,
         email: values.email,
         password: values.password,
-        password_confirmation: values.confirmPassword
+        password_confirmation: values.confirmPassword,
       };
       setLoader(true);
       API.authUser("register", "POST", newUserInfo)
         .then((res) => {
-          Helpers.errorHandling(res, setErrors, ctx.onLogin, values);
+          let err = Helpers.errorHandling(res);
+          setErrors({ apiErors: err });
+          console.log(err);
+          return res.json();
         })
         .then((data) => console.log(data))
         .catch((e) => e)
         .finally(() => setLoader(false));
-    }
+    },
   });
 };

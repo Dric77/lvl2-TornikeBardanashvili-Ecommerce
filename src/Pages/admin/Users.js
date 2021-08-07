@@ -17,20 +17,20 @@ import SeccessfulMessage from "../../Components/SeccessfulMessage.js";
 
 const useStyles = makeStyles((theme) => ({
   table: {
-    minWidth: 650
+    minWidth: 650,
   },
   userRow: {
-    animation: `$deleteEffect 3000ms ${theme.transitions.easing.easeInOut}`
+    animation: `$deleteEffect 3000ms ${theme.transitions.easing.easeInOut}`,
   },
 
   "@keyframes deleteEffect": {
     "0%": {
-      opacity: 1
+      opacity: 1,
     },
     "100%": {
-      opacity: 0
-    }
-  }
+      opacity: 0,
+    },
+  },
 }));
 
 export default function Users() {

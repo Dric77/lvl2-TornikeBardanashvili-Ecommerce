@@ -5,7 +5,7 @@ import {
   List,
   ListItem,
   makeStyles,
-  withStyles
+  withStyles,
 } from "@material-ui/core";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
@@ -14,16 +14,16 @@ import React, { useState } from "react";
 
 const useStyle = makeStyles({
   fullWidth: {
-    width: "100%"
+    width: "100%",
   },
   colorCircle: {
     width: "100%",
-    height: "100%"
+    height: "100%",
   },
   colorBorder: {
     border: "1px solid #000",
-    borderRadius: "50%"
-  }
+    borderRadius: "50%",
+  },
 });
 
 function Color() {
@@ -32,8 +32,8 @@ function Color() {
   const [colors, setColors] = useState([
     {
       title: "Black",
-      code: "#000"
-    }
+      code: "#000",
+    },
   ]);
   const [selected, setSelected] = useState(true);
   return (

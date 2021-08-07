@@ -6,7 +6,7 @@ import {
   CardMedia,
   Grid,
   makeStyles,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "flex-start",
     boxShadow: "none",
-    borderRadius: "5px"
+    borderRadius: "5px",
   },
   root: {
     maxWidth: "100%",
@@ -28,15 +28,15 @@ const useStyles = makeStyles({
     height: 300,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-evenly"
+    justifyContent: "space-evenly",
   },
   media: {
     height: "auto",
     width: 240,
     transition: "ease 0.2s",
     "&:hover": {
-      transform: "scale(1.1)"
-    }
+      transform: "scale(1.1)",
+    },
   },
   imgBg: {
     width: "100%",
@@ -45,37 +45,37 @@ const useStyles = makeStyles({
     overflow: "hidden",
     display: "flex",
     justifyContent: "flex-start",
-    alignItems: "center"
+    alignItems: "center",
   },
   cardContent: {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
-    color: "#4f4f4f"
+    color: "#4f4f4f",
   },
   title: {
     fontSize: "2rem",
-    textTransform: "uppercase"
+    textTransform: "uppercase",
   },
   imgMask: {
     height: "100%",
     width: 230,
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   description: {
     fontSize: "1rem",
     marginTop: "1rem",
-    fontWeight: 400
+    fontWeight: 400,
   },
   disCountPrice: {
-    color: "#ff3d71"
+    color: "#ff3d71",
   },
   oldPrice: {
     color: "#9e9e9e",
-    textDecoration: "line-through"
-  }
+    textDecoration: "line-through",
+  },
 });
 
 function VerticalCards({ data }) {

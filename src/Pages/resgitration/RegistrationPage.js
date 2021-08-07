@@ -4,11 +4,11 @@ import {
   Container,
   Grid,
   TextField,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import { useStyles } from "./regitrationStyle";
 import React, { useContext, useState } from "react";
-import AuthContext from "../../Components/context/auth-context.js";
+import AuthContext from "../../store/auth-context";
 import { UseFormik } from "./UseFormik.js";
 
 function RegistrationPage() {
@@ -157,9 +157,7 @@ function RegistrationPage() {
                 {formik.errors.phone && formik.errors.phone}
               </Box>
               <Box component="h5" color="error.main">
-                {formik.errors &&
-                  formik.errors.errors &&
-                  formik.errors.errors.email}
+                {console.log(formik.errors)}
               </Box>
               <Button variant="contained" color="primary" type="submit">
                 Sign Up

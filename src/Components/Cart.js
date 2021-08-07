@@ -6,7 +6,7 @@ import {
   List,
   ListItem,
   Popover,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
@@ -22,12 +22,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     width: 25,
     height: 25,
-    borderRadius: "10rem"
+    borderRadius: "10rem",
   },
   img: {
     width: 105,
     height: 105,
-    backgroundSize: "100%"
+    backgroundSize: "100%",
   },
   removeItem: {
     cursor: "pointer",
@@ -36,8 +36,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
     textAlign: "center",
     margin: "20px 50px",
-    borderRadius: "2rem"
-  }
+    borderRadius: "2rem",
+  },
 }));
 
 function Cart({ addedItem, setAddedItem, productCount }) {
@@ -98,11 +98,11 @@ function Cart({ addedItem, setAddedItem, productCount }) {
                   {...bindPopover(popupState)}
                   anchorOrigin={{
                     vertical: "bottom",
-                    horizontal: "center"
+                    horizontal: "center",
                   }}
                   transformOrigin={{
                     vertical: "top",
-                    horizontal: "center"
+                    horizontal: "center",
                   }}
                 >
                   <Box pt={2}>

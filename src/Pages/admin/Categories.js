@@ -6,8 +6,8 @@ const useStyle = makeStyles((theme) => ({
   container: {
     width: 500,
     height: 500,
-    backgroundColor: "#000"
-  }
+    backgroundColor: "#000",
+  },
 }));
 
 function Categories() {

@@ -5,7 +5,7 @@ import {
   useRouteMatch,
   Switch,
   useLocation,
-  generatePath
+  generatePath,
 } from "react-router-dom";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
@@ -43,35 +43,35 @@ function TabPanel(props) {
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired
+  value: PropTypes.any.isRequired,
 };
 
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
-    "aria-controls": `full-width-tabpanel-${index}`
+    "aria-controls": `full-width-tabpanel-${index}`,
   };
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%"
+    width: "100%",
   },
   tablePanel: {
     background: "none",
-    boxShadow: "none"
+    boxShadow: "none",
   },
   stars: {
-    color: "#1266f1"
-  }
+    color: "#1266f1",
+  },
 }));
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
     "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover
-    }
-  }
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
 }))(TableRow);
 
 export default function MyTab({ singleData, setSingleData }) {
@@ -104,7 +104,7 @@ export default function MyTab({ singleData, setSingleData }) {
             {...a11yProps(0)}
             component={Link}
             to={generatePath(SINGLE_PRODUCT, {
-              id: singleData.id
+              id: singleData.id,
             })}
           />
           <Tab
@@ -113,7 +113,7 @@ export default function MyTab({ singleData, setSingleData }) {
             component={Link}
             to={
               generatePath(SINGLE_PRODUCT, {
-                id: singleData.id
+                id: singleData.id,
               }) + "/information"
             }
           />
@@ -123,7 +123,7 @@ export default function MyTab({ singleData, setSingleData }) {
             component={Link}
             to={
               generatePath(SINGLE_PRODUCT, {
-                id: singleData.id
+                id: singleData.id,
               }) + "/review"
             }
           />
@@ -133,7 +133,7 @@ export default function MyTab({ singleData, setSingleData }) {
       <Switch>
         <Route
           path={generatePath(SINGLE_PRODUCT, {
-            id: singleData.id
+            id: singleData.id,
           })}
           exact
         >
@@ -155,7 +155,7 @@ export default function MyTab({ singleData, setSingleData }) {
         <Route
           path={
             generatePath(SINGLE_PRODUCT, {
-              id: singleData.id
+              id: singleData.id,
             }) + "/information"
           }
         >
@@ -166,7 +166,7 @@ export default function MyTab({ singleData, setSingleData }) {
         <Route
           path={
             generatePath(SINGLE_PRODUCT, {
-              id: singleData.id
+              id: singleData.id,
             }) + "/review"
           }
         >

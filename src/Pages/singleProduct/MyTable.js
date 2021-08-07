@@ -12,19 +12,19 @@ import { Box, Typography } from "@material-ui/core";
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: "",
-    color: theme.palette.secondary
+    color: theme.palette.secondary,
   },
   body: {
-    fontSize: 14
-  }
+    fontSize: 14,
+  },
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
     "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover
-    }
-  }
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
 }))(TableRow);
 
 function createData(Weight, Dimensions) {
@@ -33,13 +33,13 @@ function createData(Weight, Dimensions) {
 
 const rows = [
   createData("Weight", "0.3 kg"),
-  createData("Dimensions", "	50 × 60 cm")
+  createData("Dimensions", "	50 × 60 cm"),
 ];
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 700
-  }
+    minWidth: 700,
+  },
 });
 
 export default function MyTable() {

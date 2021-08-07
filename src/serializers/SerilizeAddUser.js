@@ -5,12 +5,12 @@ export const serilizeAddUser = (user) => {
     password: user.password,
     name: {
       firstname: user.name.firstname,
-      lastname: user.name.lastname
+      lastname: user.name.lastname,
     },
     address: {
       city: user.city,
-      street: user.street
+      street: user.street,
     },
-    phone: user.phone
+    phone: user.phone,
   });
 };

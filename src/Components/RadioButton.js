@@ -8,16 +8,16 @@ const GreenRadio = withStyles({
   root: {
     color: "#2a76f2",
     "&$checked": {
-      color: "#2a76f2"
-    }
+      color: "#2a76f2",
+    },
   },
-  checked: {}
+  checked: {},
 })((props) => <Radio color="default" size="small" {...props} />);
 
 export default function RadioButton({
   label,
   selectedValue,
-  setSelectedValue
+  setSelectedValue,
 }) {
   const handleChange = (event) => {
     setSelectedValue(event.target.value);

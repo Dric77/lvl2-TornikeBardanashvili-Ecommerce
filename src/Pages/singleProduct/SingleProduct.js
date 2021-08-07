@@ -10,22 +10,22 @@ import { serilizeSingleProduct } from "../../serializers/serilizeSingleProduct.j
 
 const useStyle = makeStyles((theme) => ({
   mb: {
-    marginBottom: "1rem"
+    marginBottom: "1rem",
   },
   fullSize: {
     width: "100%",
-    height: "100%"
+    height: "100%",
   },
   fullWidth: {
     width: "100%",
-    maxWidth: "100%"
+    maxWidth: "100%",
   },
   loading: {
     height: "100vh",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 }));
 
 function SingleProduct({
@@ -34,7 +34,7 @@ function SingleProduct({
   shopedItemData,
   setShopedItemData,
   productCount,
-  setProductCount
+  setProductCount,
 }) {
   const classes = useStyle();
   const { pathname } = useLocation();

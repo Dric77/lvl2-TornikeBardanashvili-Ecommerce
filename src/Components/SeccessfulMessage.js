@@ -13,12 +13,12 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     marginTop: "2rem",
     "& > * + *": {
-      marginTop: theme.spacing(2)
+      marginTop: theme.spacing(2),
     },
     alertMessage: {
-      transition: "1s"
-    }
-  }
+      transition: "1s",
+    },
+  },
 }));
 
 export default function SeccessfulMessage({ deleteStatus, setDeleteStatus }) {

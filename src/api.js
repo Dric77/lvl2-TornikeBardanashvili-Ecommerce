@@ -1,27 +1,24 @@
-import { serialize } from "./serializers/serialize.js";
-import { serilizeAddUser } from "./serializers/SerilizeAddUser";
-
 const API = {
   baseUrl: "http://159.65.126.180/api/",
-  getData: function (productUrl, method = "GET", data) {
+  getData: function (productUrl, method = "GET", data, barrer) {
     return fetch(this.baseUrl + productUrl, {
       method: method, // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
       },
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
+      body: JSON.stringify(data), // body data type must match "Content-Type" header
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return res.text().then((text) => {
+        throw text;
+      });
     });
   },
   getAllData: function (param, method, setStatus) {
-    return this.getData(param, method)
-      .then((res) => {
-        if (setStatus) {
-          setStatus(res);
-        }
-        return res.json();
-      })
-      .then((json) => json);
+    return this.getData(param, method).then((json) => json);
   },
   authUser: function (param, method, data) {
     return this.getData(param, method, data);
@@ -35,14 +32,14 @@ const API = {
         password: addedUser.password,
         name: {
           firstname: addedUser.firstname,
-          lastname: addedUser.lastname
+          lastname: addedUser.lastname,
         },
         address: {
           city: addedUser.city,
-          street: addedUser.street
+          street: addedUser.street,
         },
-        phone: addedUser.phone
-      })
+        phone: addedUser.phone,
+      }),
     })
       .then((res) => {
         setStatus(res);
@@ -69,10 +66,10 @@ const API = {
         title: addedProduct.title,
         price: addedProduct.price,
         category: addedProduct.category,
-        description: addedProduct.description
-      })
+        description: addedProduct.description,
+      }),
     });
-  }
+  },
 };
 
 export default API;

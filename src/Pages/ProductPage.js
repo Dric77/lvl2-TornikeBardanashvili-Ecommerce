@@ -4,7 +4,7 @@ import {
   Container,
   Grid,
   makeStyles,
-  ThemeProvider
+  ThemeProvider,
 } from "@material-ui/core";
 import React from "react";
 import theme from "../CutumTheme";
@@ -14,7 +14,7 @@ import SideBar from "../Components/SideBar/SideBar";
 
 const useStyle = makeStyles(() => ({
   coverImg: {
-    height: "400px"
+    height: "400px",
   },
   overly: {
     width: "100%",
@@ -24,12 +24,12 @@ const useStyle = makeStyles(() => ({
     justifyContent: "center",
     alignContent: "center",
     fontSize: "1.8rem",
-    color: "#fff"
+    color: "#fff",
   },
   coverContainer: {
     height: 400,
-    overflow: "hidden"
-  }
+    overflow: "hidden",
+  },
 }));
 
 function ProductPage({ currentPage, setCurrentPage }) {

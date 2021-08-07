@@ -19,18 +19,18 @@ import { serialize } from "../../serializers/serialize.js";
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650
+    minWidth: 650,
   },
   img: {
     width: "3rem",
     height: "3rem",
-    backgroundSize: "70%".ModalFooter
+    backgroundSize: "70%".ModalFooter,
   },
   imgRow: {
     width: "3rem",
     height: "3rem",
-    paddingLeft: 60
-  }
+    paddingLeft: 60,
+  },
 });
 
 function Products() {

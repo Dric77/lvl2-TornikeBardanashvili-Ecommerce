@@ -4,31 +4,31 @@ import "typeface-roboto";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#4285f4"
+      main: "#4285f4",
     },
     secondary: {
-      main: "#f8f9fa"
+      main: "#f8f9fa",
     },
-    shadows: "none"
+    shadows: "none",
   },
   props: {
     MuiCheckbox: {
-      color: "primary"
-    }
+      color: "primary",
+    },
   },
   overrides: {
     MuiTimeline: {
       root: {
-        backgroundColor: "#000"
-      }
-    }
+        backgroundColor: "#000",
+      },
+    },
   },
   typography: {
-    fontFamily: "Roboto,sans-serif"
+    fontFamily: "Roboto,sans-serif",
   },
   box: {
-    fontFamily: "Roboto,sans-serif"
-  }
+    fontFamily: "Roboto,sans-serif",
+  },
 });
 
 export default theme;

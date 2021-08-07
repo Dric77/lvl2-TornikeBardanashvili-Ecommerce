@@ -5,24 +5,24 @@ import {
   List,
   ListItem,
   makeStyles,
-  withStyles
+  withStyles,
 } from "@material-ui/core";
 import React from "react";
 
 const useStyle = makeStyles({
   fullWidth: {
-    width: "100%"
-  }
+    width: "100%",
+  },
 });
 
 const BlueCheckbox = withStyles({
   root: {
     color: "#1266f1",
     "&$checked": {
-      color: "#1266f1"
-    }
+      color: "#1266f1",
+    },
   },
-  checked: {}
+  checked: {},
 })((props) => <Checkbox color="default" {...props} />);
 
 function Condition() {

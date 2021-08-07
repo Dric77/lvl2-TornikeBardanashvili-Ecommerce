@@ -14,10 +14,10 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   modalclose: {
-    display: "none"
+    display: "none",
   },
   moadlHeader: {
     display: "flex",
@@ -26,19 +26,19 @@ const useStyle = makeStyles((theme) => ({
     padding: 10,
     backgroundColor: "#4285f4",
     color: "#fff",
-    marginBottom: 5
+    marginBottom: 5,
   },
   modalContainer: {
     maxWidth: 400,
     minWidth: 250,
     width: 400,
     height: "auto",
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   modalContent: {
     display: "flex",
     justifyContent: "center",
-    padding: 10
+    padding: 10,
   },
   modalFooter: {
     display: "flex",
@@ -47,8 +47,8 @@ const useStyle = makeStyles((theme) => ({
     padding: 10,
     backgroundColor: "#4285f4",
     color: "#fff",
-    marginBottom: 5
-  }
+    marginBottom: 5,
+  },
 }));
 
 function Moadl({
@@ -57,7 +57,7 @@ function Moadl({
   children,
   openModal,
   setOpenModal,
-  addedStatus
+  addedStatus,
 }) {
   const classes = useStyle();
 

@@ -4,31 +4,31 @@ import {
   InputBase,
   List,
   ListItem,
-  makeStyles
+  makeStyles,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import React from "react";
 
 const useStyle = makeStyles({
   fullWidth: {
-    width: "100%"
+    width: "100%",
   },
   searchIcon: {
-    cursor: "pointer"
-  }
+    cursor: "pointer",
+  },
 });
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: "Roboto,sans-serif;"
+    fontFamily: "Roboto,sans-serif;",
   },
   overrides: {
     MuiInputBase: {
       input: {
-        height: 12
-      }
-    }
-  }
+        height: 12,
+      },
+    },
+  },
 });
 
 function Filter() {

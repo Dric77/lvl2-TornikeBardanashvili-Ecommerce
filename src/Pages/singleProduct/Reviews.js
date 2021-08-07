@@ -5,7 +5,7 @@ import {
   Grid,
   makeStyles,
   TextField,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import React, { useState } from "react";
@@ -15,30 +15,30 @@ const useStyle = makeStyles((theme) => ({
   img: {
     height: 100,
     width: 100,
-    backgroundSize: "90%"
+    backgroundSize: "90%",
   },
   mainContainer: {
     width: "100%",
     height: "auto",
-    marginBottom: 50
+    marginBottom: 50,
   },
   imgContainer: {
     height: 100,
-    display: "flex"
+    display: "flex",
   },
   stars: {
-    color: "#1266f1"
+    color: "#1266f1",
   },
   fullWidth: {
-    width: "100%"
+    width: "100%",
   },
   reviewBtn: {
     padding: ".7rem 1.4rem",
     "&:hover": {
       backgroundColor: "#4285f4",
-      boxShadow: " 0 4px 10px 0 rgb(0 0 0 / 20%), 0 2px 10px 0 rgb(0 0 0 / 5%)"
-    }
-  }
+      boxShadow: " 0 4px 10px 0 rgb(0 0 0 / 20%), 0 2px 10px 0 rgb(0 0 0 / 5%)",
+    },
+  },
 }));
 
 function Reviews({ setSingleData, singleData }) {
@@ -47,7 +47,7 @@ function Reviews({ setSingleData, singleData }) {
     userName: "",
     time: "",
     reviewDes: "",
-    reviewStar: 0
+    reviewStar: 0,
   });
   const [stars, setstars] = useState();
   const [decriptio, setDecriptio] = useState();
@@ -61,7 +61,7 @@ function Reviews({ setSingleData, singleData }) {
       time: Date().toLocaleString(),
       review: decriptio,
       email: email,
-      reviewStar: stars
+      reviewStar: stars,
     };
     let newReview = [...singleData.review, tmp];
     setSingleData({ ...singleData, review: newReview });

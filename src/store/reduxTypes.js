@@ -1,0 +1,1 @@
+export const SECCESS_LOGEDIN = "SECCESS_LOGEDIN";

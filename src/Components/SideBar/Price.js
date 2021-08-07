@@ -11,48 +11,48 @@ import {
   Slider,
   TextField,
   ThemeProvider,
-  withStyles
+  withStyles,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import RadioButton from "../RadioButton.js";
 
 const useStyle = makeStyles({
   fullWidth: {
-    width: "100%"
+    width: "100%",
   },
   reiting: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   stars: {
-    color: "#1266f1"
+    color: "#1266f1",
   },
   slider: {
-    width: "70%"
-  }
+    width: "70%",
+  },
 });
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: "Roboto,sans-serif;"
+    fontFamily: "Roboto,sans-serif;",
   },
   overrides: {
     MuiInputBase: {
       input: {
-        height: 12
-      }
-    }
-  }
+        height: 12,
+      },
+    },
+  },
 });
 
 const BlueCheckbox = withStyles({
   root: {
     color: "#1266f1",
     "&$checked": {
-      color: "#1266f1"
-    }
+      color: "#1266f1",
+    },
   },
-  checked: {}
+  checked: {},
 })((props) => <Checkbox color="default" {...props} />);
 
 function Price() {
@@ -60,7 +60,7 @@ function Price() {
   const [value, setValue] = useState();
   const [priceRange, setPriceRange] = useState({
     min: 0,
-    max: value
+    max: value,
   });
   const [selectedValue, setSelectedValue] = useState();
 

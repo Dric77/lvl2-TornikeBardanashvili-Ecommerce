@@ -13,15 +13,15 @@ const useStyle = makeStyles((theme) => ({
   cardList: {
     justifyContent: "flex-star",
     [theme.breakpoints.down("md")]: {
-      justifyContent: "center"
+      justifyContent: "center",
     },
     [theme.breakpoints.down("sm")]: {
-      marginTop: 20
-    }
+      marginTop: 20,
+    },
   },
   fullWidth: {
-    width: "100% !important"
-  }
+    width: "100% !important",
+  },
 }));
 
 function ProductList({ currentPage, setCurrentPage }) {
@@ -36,7 +36,7 @@ function ProductList({ currentPage, setCurrentPage }) {
     per_page: "",
     from: "",
     to: "",
-    total: ""
+    total: "",
   });
 
   const history = useHistory();
@@ -57,7 +57,7 @@ function ProductList({ currentPage, setCurrentPage }) {
           per_page: el.per_page,
           from: el.from,
           to: el.to,
-          total: el.total
+          total: el.total,
         });
         let serilizedProducts = el.data.map((product) => serialize(product));
         setData([]);
@@ -77,7 +77,7 @@ function ProductList({ currentPage, setCurrentPage }) {
           per_page: el.per_page,
           from: el.from,
           to: el.to,
-          total: el.total
+          total: el.total,
         });
         let serilizedProducts = el.data.map((product) => serialize(product));
         setData(serilizedProducts);

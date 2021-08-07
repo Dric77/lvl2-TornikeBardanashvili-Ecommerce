@@ -13,18 +13,18 @@ const labels = {
   3.5: "Good",
   4: "Good+",
   4.5: "Excellent",
-  5: "Excellent+"
+  5: "Excellent+",
 };
 
 const useStyles = makeStyles({
   root: {
     width: 200,
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
   },
   stars: {
-    color: "#1266f1"
-  }
+    color: "#1266f1",
+  },
 });
 
 export default function HoverReview({ stars, setstars }) {

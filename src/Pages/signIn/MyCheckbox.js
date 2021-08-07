@@ -6,10 +6,10 @@ function MyCheckbox({ label, value, checkStaus }) {
     root: {
       color: "#1266f1",
       "&$checked": {
-        color: "#1266f1"
-      }
+        color: "#1266f1",
+      },
     },
-    checked: {}
+    checked: {},
   })((props) => <Checkbox color="default" {...props} />);
   return (
     <>

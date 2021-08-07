@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Typography } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import MyDrawer from "./MyDrawer";
 import { Route, Switch } from "react-router";
 import { ADMIN } from "../../routes.js";

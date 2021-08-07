@@ -8,11 +8,11 @@ const useStyle = makeStyles((theme) => ({
   form: {
     display: "flex",
     flexDirection: "column",
-    width: "100%"
+    width: "100%",
   },
   fullWidth: {
-    width: "100%"
-  }
+    width: "100%",
+  },
 }));
 
 function AddUserForm({ users, setUsers, setOpenModal }) {
@@ -28,7 +28,7 @@ function AddUserForm({ users, setUsers, setOpenModal }) {
       password: "",
       city: "",
       street: "",
-      phone: 0
+      phone: 0,
     },
     onSubmit: (values) => {
       let data = JSON.stringify(values, null, 2);
@@ -39,18 +39,18 @@ function AddUserForm({ users, setUsers, setOpenModal }) {
         password: values.password,
         name: {
           firstname: values.firstname,
-          lastname: values.lastname
+          lastname: values.lastname,
         },
         address: {
           city: values.city,
-          street: values.street
+          street: values.street,
         },
-        phone: values.phone
+        phone: values.phone,
       };
       setUsers([...users, apiDataSeilize]);
       API.addData(values, setAddedStatus);
       // setOpenModal(false);
-    }
+    },
   });
 
   return (

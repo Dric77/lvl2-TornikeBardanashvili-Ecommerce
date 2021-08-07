@@ -4,25 +4,25 @@ import React, { useState } from "react";
 
 const useStyle = makeStyles({
   mb: {
-    marginBottom: "1rem"
+    marginBottom: "1rem",
   },
   fullSize: {
     width: "100%",
-    height: "100%"
+    height: "100%",
   },
   fullWidth: {
     width: "100%",
-    maxWidth: "100%"
+    maxWidth: "100%",
   },
   img: {
     width: "100%",
     height: "40rem",
-    backgroundSize: "70%"
+    backgroundSize: "70%",
   },
   greyBg: {
     backgroundColor: "#E4E4E4",
     borderRadius: ".6rem",
-    boxShadow: "0 2px 5px 0 rgb(0 0 0 / 7%), 0 2px 10px 0 rgb(0 0 0 / 7%)"
+    boxShadow: "0 2px 5px 0 rgb(0 0 0 / 7%), 0 2px 10px 0 rgb(0 0 0 / 7%)",
   },
   imgGroup: {
     width: "25%",
@@ -33,11 +33,11 @@ const useStyle = makeStyles({
     cursor: "pointer",
     transition: "ease-in-out .2s",
     "&:hover": {
-      boxShadow: "0 4px 7px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);"
-    }
+      boxShadow: "0 4px 7px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);",
+    },
   },
   smallImg: {
-    height: "9rem"
+    height: "9rem",
   },
   saleMark: {
     fontSize: "1.5rem",
@@ -49,8 +49,8 @@ const useStyle = makeStyles({
     padding: "0.2rem 1.6rem",
     borderRadius: "1rem",
     position: "absolute",
-    margin: "1rem"
-  }
+    margin: "1rem",
+  },
 });
 
 function ProductImg({ singleData, setShopedItemData, shopedItemData }) {
@@ -63,7 +63,7 @@ function ProductImg({ singleData, setShopedItemData, shopedItemData }) {
       color: singleData.imgGroup[activeImg].color,
       quantity: shopedItemData.quantity,
       size: shopedItemData.size,
-      price: shopedItemData.price
+      price: shopedItemData.price,
     });
   };
   return (

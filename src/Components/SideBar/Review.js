@@ -4,16 +4,16 @@ import React from "react";
 
 const useStyle = makeStyles({
   fullWidth: {
-    width: "100%"
+    width: "100%",
   },
   reiting: {
     display: "flex",
     flexDirection: "column",
-    cursor: "pointer"
+    cursor: "pointer",
   },
   stars: {
-    color: "#1266f1"
-  }
+    color: "#1266f1",
+  },
 });
 
 function Review() {

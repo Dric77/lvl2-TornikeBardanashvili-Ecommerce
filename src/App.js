@@ -1,26 +1,27 @@
+import { ThemeProvider } from "@material-ui/styles";
+import { useContext, useEffect, useState } from "react";
+import { Redirect, Route, Switch, useLocation } from "react-router-dom";
+import "./App.scss";
+import AuthContext from "./store/auth-context.js";
+import TestComponent from "./Components/TestComponent.js";
+import theme from "./CutumTheme";
+import AdminLeyout from "./leyouts/adminLeyout.js";
+import MainLeyout from "./leyouts/MainLeyout";
+import Admin from "./Pages/admin/Admin.js";
+import Home from "./Pages/Home";
+import ProductPage from "./Pages/ProductPage";
+import RegistrationPage from "./Pages/resgitration/RegistrationPage.js";
+import SignInPage from "./Pages/signIn/SignInPage.js";
+import SingleProduct from "./Pages/singleProduct/SingleProduct.js";
 import {
   ADMIN,
   HOME,
   PRODUCT_LIST,
   SIGN_IN,
   SIGN_UP,
-  SINGLE_PRODUCT
+  SINGLE_PRODUCT,
 } from "./routes.js";
-import { ThemeProvider } from "@material-ui/styles";
-import "./App.scss";
-import { Switch, Route, Redirect, useLocation } from "react-router-dom";
-import theme from "./CutumTheme";
-import ProductPage from "./Pages/ProductPage";
-import Home from "./Pages/Home";
-import SingleProduct from "./Pages/singleProduct/SingleProduct.js";
-import { useContext, useEffect, useState } from "react";
-import MainLeyout from "./leyouts/MainLeyout";
-import Admin from "./Pages/admin/Admin.js";
-import AdminLeyout from "./leyouts/adminLeyout.js";
-import TestComponent from "./Components/TestComponent.js";
-import SignInPage from "./Pages/signIn/SignInPage.js";
-import AuthContext from "./Components/context/auth-context.js";
-import RegistrationPage from "./Pages/resgitration/RegistrationPage.js";
+import PriviteRoute from "./Components/PrivitateRoute";
 
 function App() {
   const [addedItem, setAddedItem] = useState([]);
@@ -29,7 +30,7 @@ function App() {
     color: "",
     quantity: 1,
     size: "",
-    price: 0
+    price: 0,
   });
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -79,8 +80,7 @@ function App() {
               <Home />
             </Route>
             <Route path={SIGN_IN}>
-              {ctx.isLoggedIn && <Redirect to={PRODUCT_LIST} />}
-              <SignInPage />
+              <PriviteRoute component={SignInPage} path={SIGN_IN} exact />
             </Route>
             <Route path={SIGN_UP}>
               <RegistrationPage />

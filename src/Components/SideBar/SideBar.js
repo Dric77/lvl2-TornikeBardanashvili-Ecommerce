@@ -9,28 +9,28 @@ import Size from "./Size";
 
 const useStyle = makeStyles({
   fullWidth: {
-    width: "100%"
+    width: "100%",
   },
   reiting: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   stars: {
-    color: "#1266f1"
-  }
+    color: "#1266f1",
+  },
 });
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: "Roboto,sans-serif;"
+    fontFamily: "Roboto,sans-serif;",
   },
   overrides: {
     MuiInputBase: {
       input: {
-        height: 12
-      }
-    }
-  }
+        height: 12,
+      },
+    },
+  },
 });
 
 function SideBar() {

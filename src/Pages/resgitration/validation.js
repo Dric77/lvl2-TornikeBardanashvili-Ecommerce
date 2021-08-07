@@ -13,5 +13,5 @@ export const validationSchema = Yup.object().shape({
     [Yup.ref("password"), null],
     "Password must mutch"
   ),
-  phone: Yup.string().required("phone numebr is required")
+  phone: Yup.string().required("phone numebr is required"),
 });

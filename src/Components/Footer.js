@@ -7,7 +7,7 @@ import {
   List,
   ListItem,
   makeStyles,
-  ThemeProvider
+  ThemeProvider,
 } from "@material-ui/core";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
@@ -25,73 +25,73 @@ const useStyle = makeStyles((theme) => ({
     color: "#fff",
     [theme.breakpoints.down("md")]: {
       display: "flex",
-      justifyContent: "center"
-    }
+      justifyContent: "center",
+    },
   },
   socialTitle: {
     [theme.breakpoints.down("md")]: {
       display: "flex",
-      justifyContent: "center"
-    }
+      justifyContent: "center",
+    },
   },
   socialMediaIcons: {
     display: "flex",
     justifyContent: "flex-end",
     alignItems: "center",
     "& > *": {
-      padding: "0 5px"
+      padding: "0 5px",
     },
     [theme.breakpoints.down("md")]: {
       justifyContent: "center",
-      alignItems: "center"
-    }
+      alignItems: "center",
+    },
   },
   paragraph: {
     [theme.breakpoints.down("md")]: {
-      textAlign: "center"
-    }
+      textAlign: "center",
+    },
   },
   footerBottom: {
     backgroundColor: "#2E2E2E",
     [theme.breakpoints.down("md")]: {
       justifyContent: "center",
-      alignItems: "center"
-    }
+      alignItems: "center",
+    },
   },
   mainGrid: {
-    justifyContent: "center"
+    justifyContent: "center",
   },
   ul: {
     width: "auto",
     [theme.breakpoints.down("sm")]: {
       "& > *": {
-        justifyContent: "center"
-      }
-    }
+        justifyContent: "center",
+      },
+    },
   },
   underline: {
     width: "70%",
     backgroundColor: "#6610f2",
     height: 4,
-    marginTop: 5
+    marginTop: 5,
   },
   bottomLine: {
-    backgroundColor: "#252525"
+    backgroundColor: "#252525",
   },
   button: {
     fontWeight: 200,
-    fontSize: "0.9rem"
+    fontSize: "0.9rem",
   },
   list: {
     paddingBottom: 0,
-    paddingTop: 0
+    paddingTop: 0,
   },
   link: {
-    color: "#fff"
+    color: "#fff",
   },
   fullWidth: {
-    width: "100%"
-  }
+    width: "100%",
+  },
 }));
 
 function Footer() {

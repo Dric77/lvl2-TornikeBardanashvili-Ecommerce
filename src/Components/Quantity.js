@@ -11,9 +11,9 @@ const BootstrapInput = withStyles((theme) => ({
     padding: "10px 12px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
     "&:focus": {
-      borderColor: theme.palette.primary.main
-    }
-  }
+      borderColor: theme.palette.primary.main,
+    },
+  },
 }))(InputBase);
 
 const useStyle = makeStyles((theme) => ({
@@ -23,8 +23,8 @@ const useStyle = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     border: "1px solid #ced4da",
-    cursor: "pointer"
-  }
+    cursor: "pointer",
+  },
 }));
 
 function Quantity({ value, setValue }) {

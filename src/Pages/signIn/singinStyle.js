@@ -6,13 +6,13 @@ export const useStyles = makeStyles((theme) => ({
     maxWidth: 700,
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   loader: {
     zIndex: 1000,
-    position: "absolute"
+    position: "absolute",
   },
   input: {
-    width: "100%"
-  }
+    width: "100%",
+  },
 }));

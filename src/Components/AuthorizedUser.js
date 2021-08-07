@@ -3,18 +3,18 @@ import {
   CardMedia,
   Grid,
   Link as Mlink,
-  makeStyles
+  makeStyles,
 } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ADMIN, SIGN_IN } from "../routes.js";
-import AuthContext from "./context/auth-context.js";
+import AuthContext from "../store/auth-context.js";
 
 const useStyle = makeStyles((theme) => ({
   avatar: {
     width: 30,
-    height: 30
-  }
+    height: 30,
+  },
 }));
 
 function AuthorizedUser() {

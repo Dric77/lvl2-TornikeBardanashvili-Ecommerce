@@ -7,8 +7,8 @@ const useStyle = makeStyles((theme) => ({
   form: {
     display: "flex",
     flexDirection: "column",
-    width: "100%"
-  }
+    width: "100%",
+  },
 }));
 
 function AddProductForm({ products, setProducts, setAdedStatus }) {
@@ -28,12 +28,12 @@ function AddProductForm({ products, setProducts, setAdedStatus }) {
       title: "",
       price: "",
       category: "",
-      description: ""
+      description: "",
     },
     onSubmit: (values) => {
       let data = JSON.stringify(values, null, 2);
       sendDataToAPI(values);
-    }
+    },
   });
 
   return (

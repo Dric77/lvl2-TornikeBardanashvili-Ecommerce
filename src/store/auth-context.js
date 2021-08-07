@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import API from "../../api.js";
+import API from "../api.js";
 import { AuthHelpers } from "./authHelpers.js";
 
 const AuthContext = createContext({
@@ -8,34 +8,38 @@ const AuthContext = createContext({
   onLogin: (values) => {},
   userData: {},
   loading: false,
-  errorMessage: ""
+  errorMessage: "",
 });
 
 export const AuthContextProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState([]);
   const [loading, setLoadign] = useState(false);
   const [userData, setUserData] = useState({});
 
   let userLogedIn = (userInfo) => {
-    setLoadign(true);
+    setLoadign(false);
     API.authUser("auth/login", "POST", userInfo)
-      .then((res) => {
-        setIsLoggedIn(res.ok);
-        return res.json();
-      })
       .then((user) => {
-        AuthHelpers.checkUserLogedIn(user, setErrorMessage);
+        if (user.user) {
+          AuthHelpers.checkUserLogedIn(user);
+          setIsLoggedIn(true);
+        }
       })
-      .catch((e) => console.log("auth error", e))
+      .catch((e) => {
+        let errs = JSON.parse(e);
+        console.log(errs);
+        errs.errors.map((el) => {
+          setErrorMessage(...errorMessage, el);
+        });
+      })
       .finally(() => setLoadign(false));
   };
 
   const loginHandler = (values) => {
-    console.log("clicke log");
     let userInfo = {
       email: values.email,
-      password: values.password
+      password: values.password,
     };
     userLogedIn(userInfo);
   };
@@ -54,8 +58,8 @@ export const AuthContextProvider = ({ children }) => {
       fetch("http://159.65.126.180/api/auth/me", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
+          Authorization: `Bearer ${accessToken}`,
+        },
       })
         .then((res) => res.json())
         .then((user) => AuthHelpers.checkData(user))
@@ -76,7 +80,7 @@ export const AuthContextProvider = ({ children }) => {
         onLogin: loginHandler,
         userData: userData,
         loading: loading,
-        errorMessage: errorMessage
+        errorMessage: errorMessage,
       }}
     >
       {children}

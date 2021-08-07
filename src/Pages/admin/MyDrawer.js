@@ -19,7 +19,8 @@ import { NavLink, Link as RouterLink } from "react-router-dom";
 import { Box, Card, CardMedia, Grid, Link } from "@material-ui/core";
 import { ADMIN, PRODUCT_LIST } from "../../routes.js";
 import { useStyles } from "./MyDrawerStyle";
-import AuthContext from "../../Components/context/auth-context.js";
+import AuthContext from "../../store/auth-context.js";
+import AuthorizedUser from "../../Components/AuthorizedUser.js";
 
 function MyDrawer({ sideBarMenu, window }) {
   const classes = useStyles();
@@ -86,16 +87,7 @@ function MyDrawer({ sideBarMenu, window }) {
             <Box display="flex" alignItems="center">
               {ctx.userData && (
                 <>
-                  <Typography variant="h6" noWrap>
-                    {ctx.userData.name}
-                  </Typography>
-                  <Box
-                    component={CardMedia}
-                    image={ctx.userData.avatar}
-                    width={50}
-                    height={50}
-                    ml={2}
-                  />
+                  <AuthorizedUser />
                   <RouterLink to={PRODUCT_LIST}>
                     <Box ml={2} color="secondary.main">
                       {" "}
@@ -118,10 +110,10 @@ function MyDrawer({ sideBarMenu, window }) {
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
-              paper: classes.drawerPaper
+              paper: classes.drawerPaper,
             }}
             ModalProps={{
-              keepMounted: true // Better open performance on mobile.
+              keepMounted: true, // Better open performance on mobile.
             }}
           >
             {drawer}
@@ -130,7 +122,7 @@ function MyDrawer({ sideBarMenu, window }) {
         <Hidden xsDown implementation="css">
           <Drawer
             classes={{
-              paper: classes.drawerPaper
+              paper: classes.drawerPaper,
             }}
             variant="permanent"
             open
@@ -148,7 +140,7 @@ MyDrawer.propTypes = {
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
-  window: PropTypes.func
+  window: PropTypes.func,
 };
 
 export default MyDrawer;

@@ -6,7 +6,7 @@ import {
   makeStyles,
   Select,
   ThemeProvider,
-  Toolbar
+  Toolbar,
 } from "@material-ui/core";
 import { Link as Mlink } from "@material-ui/core";
 import theme from "../CutumTheme";
@@ -14,52 +14,52 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { Link, useLocation } from "react-router-dom";
 import { HOME, PRODUCT_LIST } from "../routes.js";
 import Cart from "./Cart.js";
-import AuthContext from "./context/auth-context.js";
+import AuthContext from "../store/auth-context";
 import AuthorizationBtns from "./AuthorizationBtns.js";
 import AuthorizedUser from "./AuthorizedUser.js";
 
 const useStyles = makeStyles((theme) => ({
   noneBg: {
     background: "none",
-    boxShadow: "none"
+    boxShadow: "none",
   },
   textMainColor: {
-    color: "#fff"
+    color: "#fff",
   },
   bgColor: {
     backgroundColor: "#fff",
     color: "#343a40",
     transition: "ease .8s",
-    height: "auto"
+    height: "auto",
   },
   borderBtn: {
     fontSize: "0.7rem",
     border: "2px solid #ccc",
     padding: "7px 29px",
-    borderRadius: "10rem"
+    borderRadius: "10rem",
   },
   mt: {
-    marginTop: 20
+    marginTop: 20,
   },
   navContainer: {
     [theme.breakpoints.down("sm")]: {
-      marginTop: 20
-    }
+      marginTop: 20,
+    },
   },
   burgerMenu: {
     display: "none",
     [theme.breakpoints.down("sm")]: {
       display: "flex",
-      justifyContent: "flex-end"
-    }
+      justifyContent: "flex-end",
+    },
   },
   navBar: {
     alignItems: "center",
     justifyContent: "flex-end",
     [theme.breakpoints.down("sm")]: {
       transition: ".5s",
-      transform: "translateY(-300px)"
-    }
+      transform: "translateY(-300px)",
+    },
   },
   openNavBar: {
     [theme.breakpoints.down("sm")]: {
@@ -68,12 +68,12 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "column",
       textAlign: "center",
       fontSize: "1rem",
-      paddingBottom: "15px"
-    }
+      paddingBottom: "15px",
+    },
   },
   noWrap: {
-    flexWrap: "nowrap"
-  }
+    flexWrap: "nowrap",
+  },
 }));
 
 function Header({ addedItem, setAddedItem, productCount }) {

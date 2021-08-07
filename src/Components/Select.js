@@ -8,11 +8,11 @@ import NativeSelect from "@material-ui/core/NativeSelect";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120
+    minWidth: 120,
   },
   selectEmpty: {
-    marginTop: theme.spacing(2)
-  }
+    marginTop: theme.spacing(2),
+  },
 }));
 
 function Select() {
@@ -25,7 +25,7 @@ function Select() {
           defaultValue={30}
           inputProps={{
             name: "name",
-            id: "uncontrolled-native"
+            id: "uncontrolled-native",
           }}
         >
           <option value={10} color="#000">

@@ -11,26 +11,26 @@ export function serialize(product) {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "Nice one, love it!",
-        reviewStar: 5
+        reviewStar: 5,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "poor product!",
-        reviewStar: 1
+        reviewStar: 1,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "Nice one, love it!",
-        reviewStar: 5
+        reviewStar: 5,
       },
       {
         userName: "Marthasteward",
         time: "January 28, 2020",
         reviewDes: "poor product!",
-        reviewStar: 1
-      }
+        reviewStar: 1,
+      },
     ],
     model: "Shirt 5407x",
     color: "Blue",
@@ -41,24 +41,24 @@ export function serialize(product) {
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg",
-        color: "blue"
+        color: "blue",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg",
-        color: "red"
+        color: "red",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg",
-        color: "gray"
+        color: "gray",
       },
       {
         imgUrl:
           "https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg",
-        color: "black"
-      }
+        color: "black",
+      },
     ],
-    id: product.id
+    id: product.id,
   };
 }

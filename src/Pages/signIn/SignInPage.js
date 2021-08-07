@@ -5,32 +5,36 @@ import {
   Container,
   Grid,
   TextField,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import { useFormik } from "formik";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import AuthContext from "../../Components/context/auth-context.js";
+import AuthContext from "../../store/auth-context";
 import MyCheckbox from "./MyCheckbox.js";
 import { useStyles } from "./singinStyle";
 import { SIGN_UP } from "../../routes";
 import { validationSchema } from "./validation";
+import { useDispatch } from "react-redux";
+import { ONLOG_IN } from "../../store/reduxTypes";
+import logInHandler from "../../store/user-actions";
 
 function SignInPage() {
   const classes = useStyles();
-
   const ctx = useContext(AuthContext);
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
-      remberCheckStaus: false
+      remberCheckStaus: false,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      ctx.onLogin(values);
-    }
+      // ctx.onLogin(values);
+      logInHandler(values);
+    },
   });
 
   return (
@@ -85,7 +89,7 @@ function SignInPage() {
                 m={0}
                 color="error.main"
               >
-                {ctx.errorMessage}
+                {/* {ctx.errorMessage} */}
               </Box>
               <Box
                 component="div"

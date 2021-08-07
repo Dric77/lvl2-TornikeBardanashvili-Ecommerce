@@ -6,37 +6,37 @@ import RadioButtons from "../../Components/RadioButton.js";
 
 const useStyle = makeStyles({
   mb: {
-    marginBottom: "1rem"
+    marginBottom: "1rem",
   },
   emptyGrid: {
-    height: "5rem"
+    height: "5rem",
   },
   reiting: {
     display: "flex",
     flexDirection: "column",
-    cursor: "pointer"
+    cursor: "pointer",
   },
   stars: {
-    color: "#1266f1"
+    color: "#1266f1",
   },
   title: {
-    color: "#4f4f4f"
+    color: "#4f4f4f",
   },
   radioButton: {
-    fontSize: "10px"
+    fontSize: "10px",
   },
   brBottom: {
-    borderBottom: ".5px solid #4f4f4f2e"
+    borderBottom: ".5px solid #4f4f4f2e",
   },
   disCountPrice: {
     color: "#ff3d71",
     fontSize: "1.2rem",
-    fontWeight: 700
+    fontWeight: 700,
   },
   oldPrice: {
     color: "#9e9e9e",
-    textDecoration: "line-through"
-  }
+    textDecoration: "line-through",
+  },
 });
 
 function MyTable({
@@ -46,7 +46,7 @@ function MyTable({
   shopedItemData,
   setShopedItemData,
   productCount,
-  setProductCount
+  setProductCount,
 }) {
   const classes = useStyle();
   const [selectedValue, setSelectedValue] = useState("small");
@@ -58,7 +58,7 @@ function MyTable({
       color: shopedItemData.color,
       quantity: productCount,
       size: radioButton,
-      price: singleData.price
+      price: singleData.price,
     });
   }, [productCount, radioButton, selectedValue]);
 

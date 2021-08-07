@@ -6,7 +6,7 @@ export default function MainLeyout({
   children,
   addedItem,
   setAddedItem,
-  productCount
+  productCount,
 }) {
   return (
     <>

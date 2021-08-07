@@ -8,9 +8,9 @@ const useStyle = makeStyles((theme) => ({
   gridItem: {
     justifyContent: "flex-start",
     [theme.breakpoints.down("md")]: {
-      justifyContent: "center"
-    }
-  }
+      justifyContent: "center",
+    },
+  },
 }));
 
 function ProductHeader({ setListStyle, currentPage, handllePage, pagination }) {

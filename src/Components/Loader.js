@@ -9,9 +9,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     margin: " 60px 0",
     "& > * + *": {
-      marginLeft: theme.spacing(2)
-    }
-  }
+      marginLeft: theme.spacing(2),
+    },
+  },
 }));
 
 export default function Loader({ loading, children }) {

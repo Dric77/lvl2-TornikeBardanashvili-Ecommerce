@@ -3,7 +3,7 @@ import {
   Button,
   Grid,
   Link as Mlink,
-  makeStyles
+  makeStyles,
 } from "@material-ui/core";
 import { SIGN_IN, SIGN_UP } from "../routes.js";
 import React from "react";
@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "0.7rem",
     border: "2px solid #ccc",
     padding: "7px 29px",
-    borderRadius: "10rem"
-  }
+    borderRadius: "10rem",
+  },
 }));
 
 function AuthorizationBtns() {
