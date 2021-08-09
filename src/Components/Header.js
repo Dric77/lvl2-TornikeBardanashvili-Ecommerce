@@ -14,9 +14,11 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { Link, useLocation } from "react-router-dom";
 import { HOME, PRODUCT_LIST } from "../routes.js";
 import Cart from "./Cart.js";
-import AuthContext from "../store/auth-context";
 import AuthorizationBtns from "./AuthorizationBtns.js";
 import AuthorizedUser from "./AuthorizedUser.js";
+import { selectLoading, selectLogedin } from "../store/user/userSelectors";
+import { useSelector } from "react-redux";
+import Loader from "./Loader";
 
 const useStyles = makeStyles((theme) => ({
   noneBg: {
@@ -81,8 +83,9 @@ function Header({ addedItem, setAddedItem, productCount }) {
   const [navBarStyle, setNavBarStyle] = useState(false);
   const [navBar, setNavBar] = useState(classes.navBar);
   const [navBarOpen, setNavbarOpen] = useState(false);
+  const isLogedin = useSelector(selectLogedin);
+  const loading = useSelector(selectLoading);
 
-  const ctx = useContext(AuthContext);
   let { pathname } = useLocation();
 
   useEffect(() => {
@@ -165,7 +168,9 @@ function Header({ addedItem, setAddedItem, productCount }) {
                   Contact
                 </Box>
               </Grid>
-              {ctx.isLoggedIn ? <AuthorizedUser /> : <AuthorizationBtns />}
+              <Loader loading={loading}>
+                {isLogedin ? <AuthorizedUser /> : <AuthorizationBtns />}
+              </Loader>
             </Grid>
             <Grid
               item

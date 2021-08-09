@@ -1,8 +1,7 @@
 import { ThemeProvider } from "@material-ui/styles";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import "./App.scss";
-import AuthContext from "./store/auth-context.js";
 import TestComponent from "./Components/TestComponent.js";
 import theme from "./CutumTheme";
 import AdminLeyout from "./leyouts/adminLeyout.js";
@@ -22,6 +21,8 @@ import {
   SINGLE_PRODUCT,
 } from "./routes.js";
 import PriviteRoute from "./Components/PrivitateRoute";
+import { getDataWithToken } from "./store/user/user-actions";
+import { useDispatch } from "react-redux";
 
 function App() {
   const [addedItem, setAddedItem] = useState([]);
@@ -33,12 +34,13 @@ function App() {
     price: 0,
   });
   const [currentPage, setCurrentPage] = useState(1);
+  const dispatch = useDispatch();
 
   const { pathname } = useLocation();
-  const ctx = useContext(AuthContext);
 
   useEffect(() => {
     window.scroll(0, 0);
+    dispatch(getDataWithToken());
   }, []);
 
   return (
@@ -83,8 +85,7 @@ function App() {
               <PriviteRoute component={SignInPage} path={SIGN_IN} exact />
             </Route>
             <Route path={SIGN_UP}>
-              <RegistrationPage />
-              {ctx.isLoggedIn && <Redirect to={PRODUCT_LIST} />}
+              <PriviteRoute component={RegistrationPage} path={SIGN_UP} exact />
             </Route>
           </MainLeyout>
         </Switch>

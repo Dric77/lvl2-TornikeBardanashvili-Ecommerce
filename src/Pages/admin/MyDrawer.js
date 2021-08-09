@@ -16,18 +16,19 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { useTheme } from "@material-ui/core/styles";
 import { NavLink, Link as RouterLink } from "react-router-dom";
-import { Box, Card, CardMedia, Grid, Link } from "@material-ui/core";
+import { Box, Link } from "@material-ui/core";
 import { ADMIN, PRODUCT_LIST } from "../../routes.js";
 import { useStyles } from "./MyDrawerStyle";
-import AuthContext from "../../store/auth-context.js";
 import AuthorizedUser from "../../Components/AuthorizedUser.js";
+import { useSelector } from "react-redux";
+import { selectLogedin } from "../../store/user/userSelectors";
 
 function MyDrawer({ sideBarMenu, window }) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const ctx = useContext(AuthContext);
+  const isLogedin = useSelector(selectLogedin);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -85,13 +86,12 @@ function MyDrawer({ sideBarMenu, window }) {
               Admin Panel
             </Typography>
             <Box display="flex" alignItems="center">
-              {ctx.userData && (
+              {isLogedin && (
                 <>
                   <AuthorizedUser />
                   <RouterLink to={PRODUCT_LIST}>
                     <Box ml={2} color="secondary.main">
-                      {" "}
-                      Back to product list{" "}
+                      Back to product list
                     </Box>
                   </RouterLink>
                 </>

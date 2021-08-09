@@ -1,16 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import AuthContext from "../store/auth-context";
 import { ADMIN } from "../routes";
+import { useSelector } from "react-redux";
+import { selectLogedin } from "../store/user/userSelectors";
 
 const PriviteRoute = ({ component: Component, ...rest }) => {
-  const ctx = useContext(AuthContext);
+  const isLogedIn = useSelector(selectLogedin);
 
   return (
     <Route
       {...rest}
       render={(props) =>
-        ctx.isLoggedIn ? <Redirect to={ADMIN} /> : <Component {...props} />
+        isLogedIn ? <Redirect to={ADMIN} /> : <Component {...props} />
       }
     />
   );

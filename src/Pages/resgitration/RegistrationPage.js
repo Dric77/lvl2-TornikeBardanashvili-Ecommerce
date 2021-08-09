@@ -7,17 +7,36 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useStyles } from "./regitrationStyle";
-import React, { useContext, useState } from "react";
-import AuthContext from "../../store/auth-context";
-import { UseFormik } from "./UseFormik.js";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useFormik } from "formik";
+import { validationSchema } from "./validation";
+import { singupHandler } from "../../store/user/user-actions";
+import { selectErrors, selectLoading } from "../../store/user/userSelectors";
 
 function RegistrationPage() {
   const classes = useStyles();
-  const [loader, setLoader] = useState(false);
+  const dispatch = useDispatch();
 
-  const ctx = useContext(AuthContext);
+  const loading = useSelector(selectLoading);
+  const errors = useSelector(selectErrors);
 
-  const formik = UseFormik(ctx, setLoader);
+  // const formik = UseFormik(setLoader, setRegStaus);
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      phone: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      dispatch(singupHandler(values));
+    },
+  });
 
   return (
     <div>
@@ -27,7 +46,7 @@ function RegistrationPage() {
           container
           wrap="nowrap"
           flexDirection="column"
-          className={loader && classes.loading}
+          className={loading && classes.loading}
         >
           <Box component={Grid} item textAlign="center" lg={12} pb={15}>
             <Typography component="h1" variant="h5">
@@ -156,8 +175,16 @@ function RegistrationPage() {
               >
                 {formik.errors.phone && formik.errors.phone}
               </Box>
-              <Box component="h5" color="error.main">
-                {console.log(formik.errors)}
+              <Box
+                component="h5"
+                fontSize={20}
+                fontWeight={400}
+                m={0}
+                color="error.main"
+              >
+                {errors &&
+                  errors[0] &&
+                  errors.map((err) => <Typography>{err}</Typography>)}
               </Box>
               <Button variant="contained" color="primary" type="submit">
                 Sign Up

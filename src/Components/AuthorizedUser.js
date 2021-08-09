@@ -6,9 +6,11 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ADMIN, SIGN_IN } from "../routes.js";
-import AuthContext from "../store/auth-context.js";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../store/user/user-actions";
+import Box from "@material-ui/core/Box";
 
 const useStyle = makeStyles((theme) => ({
   avatar: {
@@ -19,21 +21,23 @@ const useStyle = makeStyles((theme) => ({
 
 function AuthorizedUser() {
   const classes = useStyle();
+  const { pathname } = useLocation();
   const [userData, setUserData] = useState({});
 
-  const ctx = useContext(AuthContext);
+  const data = useSelector((state) => state.user.userData);
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logoutUser());
+  };
 
   useEffect(() => {
-    if (ctx.userData.user) {
-      setUserData(ctx.userData.user);
-    } else {
-      setUserData(ctx.userData);
-    }
-  }, [ctx.userData]);
+    setUserData(data);
+  }, []);
 
   return (
     <>
-      {!!userData.name && (
+      {userData && userData.name && (
         <>
           <Grid item>
             <Mlink component={Link} to={ADMIN}>
@@ -45,8 +49,8 @@ function AuthorizedUser() {
           </Grid>
           <Grid item>{userData.name}</Grid>
           <Grid item>
-            <Mlink onClick={ctx.onLogout} component={Link} to={SIGN_IN}>
-              Log Out
+            <Mlink onClick={logoutHandler} component={Link} to={SIGN_IN}>
+              <Box>Log Out</Box>
             </Mlink>
           </Grid>
         </>

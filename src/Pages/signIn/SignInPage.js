@@ -8,21 +8,22 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useFormik } from "formik";
-import React, { useContext } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthContext from "../../store/auth-context";
 import MyCheckbox from "./MyCheckbox.js";
 import { useStyles } from "./singinStyle";
 import { SIGN_UP } from "../../routes";
 import { validationSchema } from "./validation";
-import { useDispatch } from "react-redux";
-import { ONLOG_IN } from "../../store/reduxTypes";
-import logInHandler from "../../store/user-actions";
+import { useDispatch, useSelector } from "react-redux";
+import { logInHandler } from "../../store/user/user-actions";
+import { selectErrors, selectLogedin } from "../../store/user/userSelectors";
 
 function SignInPage() {
   const classes = useStyles();
-  const ctx = useContext(AuthContext);
   const dispatch = useDispatch();
+
+  const isLoading = useSelector(selectLogedin);
+  const errors = useSelector(selectErrors);
 
   const formik = useFormik({
     initialValues: {
@@ -32,15 +33,14 @@ function SignInPage() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // ctx.onLogin(values);
-      logInHandler(values);
+      dispatch(logInHandler(values));
     },
   });
 
   return (
     <div>
       <Container className={classes.mainContainer}>
-        {ctx.loading && (
+        {isLoading && (
           <CircularProgress
             color="primary"
             size={50}
@@ -89,7 +89,9 @@ function SignInPage() {
                 m={0}
                 color="error.main"
               >
-                {/* {ctx.errorMessage} */}
+                {errors &&
+                  errors[0] &&
+                  errors.map((err) => <Typography>{err}</Typography>)}
               </Box>
               <Box
                 component="div"

@@ -1,24 +1,13 @@
-import { createStore } from "redux";
-import logInHandler from "./user-actions";
-import { SECCESS_LOGEDIN } from "./reduxTypes";
+import { createStore, applyMiddleware } from "redux";
+import rootReducer from "./rootReducer";
+import thunkMiddleware from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-const initialState = {
-  userData: {},
-  token: "",
-  isLoggedIn: false,
-  loading: false,
-};
+const middleware = [thunkMiddleware];
 
-const user = (state = initialState, action) => {
-  switch (action.type) {
-    case SECCESS_LOGEDIN:
-      return {
-        userData: action.payload,
-        token: action.payload.token.access_token,
-        isLoggedIn: true,
-        loading: false,
-      };
-  }
-};
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
 
-export const store = createStore(user);
+export default store;
