@@ -23,6 +23,8 @@ import {
 import PriviteRoute from "./Components/PrivitateRoute";
 import { getDataWithToken } from "./store/user/user-actions";
 import { useDispatch } from "react-redux";
+import {USER_PROFILE} from "./routes";
+import UserProfile from "./Pages/userPage/UserProfile";
 
 function App() {
   const [addedItem, setAddedItem] = useState([]);
@@ -84,6 +86,7 @@ function App() {
             <Route path={SIGN_IN}>
               <PriviteRoute component={SignInPage} path={SIGN_IN} exact />
             </Route>
+            <Route path={USER_PROFILE} component={UserProfile} />
             <Route path={SIGN_UP}>
               <PriviteRoute component={RegistrationPage} path={SIGN_UP} exact />
             </Route>

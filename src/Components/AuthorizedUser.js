@@ -11,6 +11,7 @@ import { ADMIN, SIGN_IN } from "../routes.js";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../store/user/user-actions";
 import Box from "@material-ui/core/Box";
+import { USER_PROFILE } from "../routes";
 
 const useStyle = makeStyles((theme) => ({
   avatar: {
@@ -45,7 +46,9 @@ function AuthorizedUser() {
             </Mlink>
           </Grid>
           <Grid item>
-            <CardMedia image={userData.avatar} className={classes.avatar} />
+            <Mlink to={USER_PROFILE} component={Link}>
+              <CardMedia image={userData.avatar} className={classes.avatar} />
+            </Mlink>
           </Grid>
           <Grid item>{userData.name}</Grid>
           <Grid item>
