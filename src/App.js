@@ -23,7 +23,7 @@ import {
 import PriviteRoute from "./Components/PrivitateRoute";
 import { getDataWithToken } from "./store/user/user-actions";
 import { useDispatch } from "react-redux";
-import {USER_PROFILE} from "./routes";
+import { USER_PROFILE } from "./routes";
 import UserProfile from "./Pages/userPage/UserProfile";
 
 function App() {
@@ -39,10 +39,13 @@ function App() {
   const dispatch = useDispatch();
 
   const { pathname } = useLocation();
+  let token = localStorage.getItem("userToken");
 
   useEffect(() => {
     window.scroll(0, 0);
-    dispatch(getDataWithToken());
+    if (token) {
+      dispatch(getDataWithToken());
+    }
   }, []);
 
   return (

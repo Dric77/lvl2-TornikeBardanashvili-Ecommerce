@@ -6,7 +6,6 @@ import { selectLogedin } from "../store/user/userSelectors";
 
 const PriviteRoute = ({ component: Component, ...rest }) => {
   const isLogedIn = useSelector(selectLogedin);
-  console.log("rest", rest);
   return (
     <Route
       {...rest}

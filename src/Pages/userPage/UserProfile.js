@@ -4,40 +4,23 @@ import { useFormik } from "formik";
 import { useStyles } from "./userProfileStyle";
 import Container from "@material-ui/core/Container";
 import { useSelector } from "react-redux";
-import { selectToken } from "../../store/user/userSelectors";
+import { selectUserData } from "../../store/user/userSelectors";
+import CardMedia from "@material-ui/core/CardMedia";
+import API from "../../api";
 
 const UserProfile = () => {
   const classes = useStyles();
-
-  const updateuserInfo = (newInfo) => {
-    fetch(`http://159.65.126.180/api/users/${39}/update`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-      },
-      body: JSON.stringify(newInfo), // body data type must match "Content-Type" header
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return res.text().then((text) => {
-          throw text;
-        });
-      })
-      .then((newData) => console.log(newData));
-  };
+  const userData = useSelector(selectUserData);
 
   const formik = useFormik({
     initialValues: {
-      email: "",
-      name: "",
+      email: userData.email,
+      name: userData.name,
     },
     // validationSchema: validationSchema,
     onSubmit: (values) => {
-      updateuserInfo(values);
+      console.log(values);
+      API.updateUserProfile(userData.id, values);
     },
   });
 
@@ -45,12 +28,27 @@ const UserProfile = () => {
     <Container>
       <Box mt={15}>
         <form onSubmit={formik.handleSubmit}>
+          <CardMedia image={userData.avatar} className={classes.avatar} />
+          <TextField
+            id="avatar"
+            label="New avatar"
+            type="file"
+            variant="outlined"
+            name="avatar"
+            defaultValue={userData.avatar}
+            value={formik.values.avatar}
+            onChange={(e) => formik.setFieldValue("photo1", e.target.files[0])}
+            className={classes.input}
+            error={formik.values.avatar}
+          />
+          <Box fontSize={20}> {userData.email} </Box>
           <TextField
             id="email"
             label="New Email"
             type="email"
             variant="outlined"
             name="email"
+            defaultValue={userData.email}
             value={formik.values.email}
             onChange={formik.handleChange}
             className={classes.input}
@@ -59,16 +57,20 @@ const UserProfile = () => {
           <Box mt={2} mb={3} fontSize={15} color="error.main">
             {formik.errors.email}
           </Box>
+          <Box component="span" fontSize={20}>
+            {" "}
+            {userData.name}{" "}
+          </Box>
           <TextField
             id="name"
             label="new user name"
             type="text"
             variant="outlined"
             name="name"
-            value={formik.values.userName}
+            value={formik.values.name}
             onChange={formik.handleChange}
             className={classes.input}
-            error={formik.values.userName}
+            error={formik.values.name}
           />
           <Box mt={2} mb={3} fontSize={15} color="error.main">
             {formik.errors.email}

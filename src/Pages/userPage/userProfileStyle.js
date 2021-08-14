@@ -15,4 +15,11 @@ export const useStyles = makeStyles((theme) => ({
   input: {
     width: "100%",
   },
+  form: {
+    marginTop: 100,
+  },
+  avatar: {
+    height: 200,
+    backgroundSize: "12%",
+  },
 }));

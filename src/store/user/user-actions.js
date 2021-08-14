@@ -66,8 +66,14 @@ const getDataWithToken = () => (dispatch) => {
       },
     })
       .then((res) => res.json())
-      .then((user) => dispatch(setUser(user)))
-      .catch((e) => console.log(e));
+      .then((user) => {
+        if (user.error) {
+          localStorage.removeItem("userToken");
+        } else {
+          dispatch(setUser(user));
+        }
+      })
+      .catch((e) => console.log("log in error", e));
   }
 };
 

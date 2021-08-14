@@ -1,11 +1,12 @@
 const API = {
   baseUrl: "http://159.65.126.180/api/",
-  getData: function (productUrl, method = "GET", data, barrer) {
-    return fetch(this.baseUrl + productUrl, {
+  getData: function (url, method = "GET", data) {
+    return fetch(this.baseUrl + url, {
       method: method, // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
       body: JSON.stringify(data), // body data type must match "Content-Type" header
     }).then((res) => {
@@ -48,6 +49,16 @@ const API = {
       .then((json) => console.log("added data to base", json))
       .catch((e) => console.log(e));
   },
+  updateUserProfile: function (userId, newUserInfo) {
+    let userData = {
+      email: newUserInfo.email,
+      name: newUserInfo.name,
+      avatar: newUserInfo.photo1,
+    };
+    console.log(userData);
+    this.getData(`users/${userId}/update`, "POST", userData);
+  },
+
   deletUser: function (param, setStatus, method) {
     return this.getData(param, setStatus, method)
       .then((res) => {
