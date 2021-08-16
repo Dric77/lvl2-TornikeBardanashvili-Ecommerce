@@ -12,15 +12,17 @@ const UserProfile = () => {
   const classes = useStyles();
   const userData = useSelector(selectUserData);
 
+
   const formik = useFormik({
     initialValues: {
-      email: userData.email,
-      name: userData.name,
+      // email: '',
+      // name:  '',
+      avatar: ''
     },
     // validationSchema: validationSchema,
     onSubmit: (values) => {
       console.log(values);
-      API.updateUserProfile(userData.id, values);
+      API.updateUserProfile(39, values);
     },
   });
 
@@ -28,53 +30,48 @@ const UserProfile = () => {
     <Container>
       <Box mt={15}>
         <form onSubmit={formik.handleSubmit}>
-          <CardMedia image={userData.avatar} className={classes.avatar} />
-          <TextField
-            id="avatar"
-            label="New avatar"
-            type="file"
-            variant="outlined"
-            name="avatar"
-            defaultValue={userData.avatar}
-            value={formik.values.avatar}
-            onChange={(e) => formik.setFieldValue("photo1", e.target.files[0])}
-            className={classes.input}
-            error={formik.values.avatar}
-          />
-          <Box fontSize={20}> {userData.email} </Box>
-          <TextField
-            id="email"
-            label="New Email"
-            type="email"
-            variant="outlined"
-            name="email"
-            defaultValue={userData.email}
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            className={classes.input}
-            error={formik.values.email}
-          />
-          <Box mt={2} mb={3} fontSize={15} color="error.main">
-            {formik.errors.email}
+          <Box display='flex' flexDirection='column' alignItems='center'>
+            <CardMedia image={userData && userData.avatar} className={classes.avatar} />
+            <TextField
+                id="avatar"
+                type="file"
+                variant="outlined"
+                name="avatar"
+                onChange={(e) => formik.setFieldValue("avatar", e.target.files[0])}
+                className={classes.uploadInp}
+                />
           </Box>
-          <Box component="span" fontSize={20}>
-            {" "}
-            {userData.name}{" "}
-          </Box>
-          <TextField
-            id="name"
-            label="new user name"
-            type="text"
-            variant="outlined"
-            name="name"
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            className={classes.input}
-            error={formik.values.name}
-          />
-          <Box mt={2} mb={3} fontSize={15} color="error.main">
-            {formik.errors.email}
-          </Box>
+          {/*<Box fontSize={20}> {userData.email} </Box>*/}
+          {/*<TextField*/}
+          {/*  id="email"*/}
+          {/*  label="New Email"*/}
+          {/*  type="email"*/}
+          {/*  variant="outlined"*/}
+          {/*  name="email"*/}
+          {/*  value={formik.values.email}*/}
+          {/*  onChange={formik.handleChange}*/}
+          {/*  className={classes.input}*/}
+          {/*/>*/}
+          {/*<Box mt={2} mb={3} fontSize={15} color="error.main">*/}
+          {/*  {formik.errors.email}*/}
+          {/*</Box>*/}
+          {/*<Box component="span" fontSize={20}>*/}
+          {/*  {" "}*/}
+          {/*  {userData.name}{" "}*/}
+          {/*</Box>*/}
+          {/*<TextField*/}
+          {/*  id="name"*/}
+          {/*  label="new user name"*/}
+          {/*  type="text"*/}
+          {/*  variant="outlined"*/}
+          {/*  name="name"*/}
+          {/*  value={formik.values.name}*/}
+          {/*  onChange={formik.handleChange}*/}
+          {/*  className={classes.input}*/}
+          {/*/>*/}
+          {/*<Box mt={2} mb={3} fontSize={15} color="error.main">*/}
+          {/*  {formik.errors.email}*/}
+          {/*</Box>*/}
           <Button variant="contained" color="primary" type="submit">
             Update Feilds
           </Button>

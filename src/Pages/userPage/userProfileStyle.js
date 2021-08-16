@@ -20,6 +20,11 @@ export const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     height: 200,
-    backgroundSize: "12%",
+    width: 500,
+    backgroundSize: "30%",
+    marginBottom: 25
   },
+  uploadInput: {
+
+  }
 }));

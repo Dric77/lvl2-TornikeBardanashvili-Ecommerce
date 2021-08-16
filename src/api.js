@@ -1,14 +1,16 @@
+import { serialize } from 'object-to-formdata';
+
 const API = {
   baseUrl: "http://159.65.126.180/api/",
-  getData: function (url, method = "GET", data) {
+  getData: function (url, method = "GET", data, isFile) {
     return fetch(this.baseUrl + url, {
       method: method, // *GET, POST, PUT, DELETE, etc.
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": isFile ? "multipart/form-data" :  "application/json",
         Accept: "application/json",
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
       },
-      body: JSON.stringify(data), // body data type must match "Content-Type" header
+      body: isFile ? serialize(data) : JSON.stringify(data), // body data type must match "Content-Type" header
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -49,14 +51,11 @@ const API = {
       .then((json) => console.log("added data to base", json))
       .catch((e) => console.log(e));
   },
+
   updateUserProfile: function (userId, newUserInfo) {
-    let userData = {
-      email: newUserInfo.email,
-      name: newUserInfo.name,
-      avatar: newUserInfo.photo1,
-    };
-    console.log(userData);
-    this.getData(`users/${userId}/update`, "POST", userData);
+    let from_data = new FormData()
+    from_data.append('avatar', from_data)
+    this.getData(`users/${userId}/update`, "POST", newUserInfo, true)
   },
 
   deletUser: function (param, setStatus, method) {

@@ -86,9 +86,7 @@ function App() {
               <Redirect to={PRODUCT_LIST} />
               <Home />
             </Route>
-            <Route path={SIGN_IN}>
               <PriviteRoute component={SignInPage} path={SIGN_IN} exact />
-            </Route>
             <Route path={USER_PROFILE} component={UserProfile} />
             <Route path={SIGN_UP}>
               <PriviteRoute component={RegistrationPage} path={SIGN_UP} exact />
