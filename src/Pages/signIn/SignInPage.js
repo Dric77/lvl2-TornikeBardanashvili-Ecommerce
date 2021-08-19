@@ -64,10 +64,13 @@ function SignInPage() {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 className={classes.input}
-                error={formik.values.email}
+                onBlur={formik.handleBlur}
+                error={formik.errors.email && formik.touched.email && true}
               />
               <Box mt={2} mb={3} fontSize={15} color="error.main">
-                {formik.errors.email}
+                {formik.errors.email &&
+                  formik.touched.email &&
+                  formik.errors.email}
               </Box>
               <TextField
                 id="password"
@@ -77,10 +80,16 @@ function SignInPage() {
                 name="password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className={classes.input}
+                error={
+                  formik.errors.password && formik.touched.password && true
+                }
               />
               <Box mt={2} mb={3} fontSize={15} color="error.main">
-                {formik.errors.password}
+                {formik.errors.password &&
+                  formik.touched.password &&
+                  formik.errors.password}
               </Box>
               <Box
                 component="h5"

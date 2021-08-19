@@ -2,7 +2,7 @@ export function serialize(product) {
   return {
     title: product.title,
     price: product.price,
-    // disCountPrice: "21,99",
+    disCountPrice: "21,99",
     description: product.description,
     category: product.category,
     reviewCount: 4,

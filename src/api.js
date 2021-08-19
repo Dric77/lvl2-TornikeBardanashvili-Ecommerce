@@ -1,15 +1,26 @@
-import { serialize } from 'object-to-formdata';
+import { serialize } from "object-to-formdata";
 
 const API = {
   baseUrl: "http://159.65.126.180/api/",
   getData: function (url, method = "GET", data, isFile) {
-    return fetch(this.baseUrl + url, {
-      method: method, // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        "Content-Type": isFile ? "multipart/form-data" :  "application/json",
+    let headers = {};
+
+    if (!isFile) {
+      headers = {
+        "Content-Type": "application/json",
         Accept: "application/json",
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-      },
+      };
+    } else {
+      headers = {
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      };
+    }
+
+    return fetch(this.baseUrl + url, {
+      method: method, // *GET, POST, PUT, DELETE, etc.
+      headers,
       body: isFile ? serialize(data) : JSON.stringify(data), // body data type must match "Content-Type" header
     }).then((res) => {
       if (res.ok) {
@@ -53,21 +64,9 @@ const API = {
   },
 
   updateUserProfile: function (userId, newUserInfo) {
-    let from_data = new FormData()
-    from_data.append('avatar', from_data)
-    this.getData(`users/${userId}/update`, "POST", newUserInfo, true)
+    return this.getData(`users/${userId}/update`, "POST", newUserInfo, true);
   },
 
-  deletUser: function (param, setStatus, method) {
-    return this.getData(param, setStatus, method)
-      .then((res) => {
-        setStatus(res.status);
-        return res.json();
-      })
-      .then((json) => {
-        return json;
-      });
-  },
   addProduct: function (addedProduct) {
     return fetch(this.baseUrl + "products", {
       method: "POST",

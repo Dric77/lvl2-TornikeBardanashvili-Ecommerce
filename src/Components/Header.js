@@ -19,6 +19,7 @@ import AuthorizedUser from "./AuthorizedUser.js";
 import { selectLoading, selectLogedin } from "../store/user/userSelectors";
 import { useSelector } from "react-redux";
 import Loader from "./Loader";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 const useStyles = makeStyles((theme) => ({
   noneBg: {
@@ -108,83 +109,90 @@ function Header({ addedItem, setAddedItem, productCount }) {
     }
   };
 
+  let closeNavbar = () => {
+    setNavBar(classes.navBar);
+    setNavbarOpen(false);
+  }
+
   return (
     <ThemeProvider theme={theme}>
-      <AppBar
-        position="fixed"
-        className={
-          !navBarStyle && pathname === PRODUCT_LIST
-            ? classes.noneBg
-            : classes.bgColor
-        }
-      >
-        <Toolbar className={classes.navContainer}>
-          <Grid
-            container
-            direction="row"
-            justify="end"
-            className={classes.noWrap}
-          >
-            <Grid item xs={2}>
-              <Box component="span" fontSize="large">
-                <Mlink
-                  component={Link}
-                  underline="none"
-                  color="inherit"
-                  to={HOME}
-                >
-                  Logo
-                </Mlink>
-              </Box>
-            </Grid>
+      <ClickAwayListener onClickAway={closeNavbar}>
+        <AppBar
+            position="fixed"
+            className={
+              !navBarStyle && pathname === PRODUCT_LIST
+                  ? classes.noneBg
+                  : classes.bgColor
+            }
+        >
+          <Toolbar className={classes.navContainer}>
             <Grid
-              container
-              item
-              sm={10}
-              lg={10}
-              xl={10}
-              spacing={2}
-              justify="flex-end"
-              alignItems="center"
-              className={navBar}
+                container
+                direction="row"
+                justify="end"
+                className={classes.noWrap}
             >
-              <Cart
-                addedItem={addedItem}
-                setAddedItem={setAddedItem}
-                productCount={productCount}
-              />
-              <Grid item>
-                <Box component="span">
-                  <Select />
+              <Grid item xs={2}>
+                <Box component="span" fontSize="large">
+                  <Mlink
+                      component={Link}
+                      underline="none"
+                      color="inherit"
+                      to={PRODUCT_LIST}
+                  >
+                    Logo
+                  </Mlink>
                 </Box>
               </Grid>
-              <Grid item>
-                <Box variant="h6" fontWeight={200}>
-                  News
-                </Box>
+              <Grid
+                  container
+                  item
+                  sm={10}
+                  lg={10}
+                  xl={10}
+                  spacing={2}
+                  justify="flex-end"
+                  alignItems="center"
+                  className={navBar}
+              >
+                <Cart
+                    addedItem={addedItem}
+                    setAddedItem={setAddedItem}
+                    productCount={productCount}
+                />
+                <Grid item>
+                  <Box component="span">
+                    <Select />
+                  </Box>
+                </Grid>
+                <Grid item>
+                  <Box variant="h6" fontWeight={200}>
+                    News
+                  </Box>
+                </Grid>
+                <Grid item>
+                  <Box variant="h6" fontWeight={200}>
+                    Contact
+                  </Box>
+                </Grid>
+                <Loader loading={loading}>
+                  {isLogedin ? <AuthorizedUser /> : <AuthorizationBtns />}
+                </Loader>
               </Grid>
-              <Grid item>
-                <Box variant="h6" fontWeight={200}>
-                  Contact
-                </Box>
+              <Grid
+                  item
+                  sm={2}
+                  xs={2}
+                  lg={0}
+                  xl={0}
+                  className={classes.burgerMenu}
+              >
+                <MenuIcon fontSize="large" onClick={handlleNavBar} />
               </Grid>
-              <Loader loading={loading}>
-                {isLogedin ? <AuthorizedUser /> : <AuthorizationBtns />}
-              </Loader>
             </Grid>
-            <Grid
-              item
-              sm={2}
-              xs={2}
-              lg={0}
-              xl={0}
-              className={classes.burgerMenu}
-            >
-              <MenuIcon fontSize="large" onClick={handlleNavBar} />
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
+          </Toolbar>
+        </AppBar>
+      </ClickAwayListener>
     </ThemeProvider>
   );
 }

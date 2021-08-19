@@ -22,9 +22,7 @@ export const useStyles = makeStyles((theme) => ({
     height: 200,
     width: 500,
     backgroundSize: "30%",
-    marginBottom: 25
+    marginBottom: 25,
   },
-  uploadInput: {
-
-  }
+  uploadInput: {},
 }));

@@ -19,12 +19,13 @@ import {
   SIGN_IN,
   SIGN_UP,
   SINGLE_PRODUCT,
+  USER_PROFILE
 } from "./routes.js";
 import PriviteRoute from "./Components/PrivitateRoute";
 import { getDataWithToken } from "./store/user/user-actions";
-import { useDispatch } from "react-redux";
-import { USER_PROFILE } from "./routes";
+import {useDispatch, useSelector} from "react-redux";
 import UserProfile from "./Pages/userPage/UserProfile";
+import {selectLogedin} from "./store/user/userSelectors";
 
 function App() {
   const [addedItem, setAddedItem] = useState([]);
@@ -37,6 +38,7 @@ function App() {
   });
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
+  const isLogedin = useSelector(selectLogedin)
 
   const { pathname } = useLocation();
   let token = localStorage.getItem("userToken");
@@ -83,10 +85,10 @@ function App() {
               />
             </Route>
             <Route path={HOME} exact>
-              <Redirect to={PRODUCT_LIST} />
+              {!isLogedin && <Redirect to={SIGN_IN}/>}
               <Home />
             </Route>
-              <PriviteRoute component={SignInPage} path={SIGN_IN} exact />
+            <PriviteRoute component={SignInPage} path={SIGN_IN} exact />
             <Route path={USER_PROFILE} component={UserProfile} />
             <Route path={SIGN_UP}>
               <PriviteRoute component={RegistrationPage} path={SIGN_UP} exact />

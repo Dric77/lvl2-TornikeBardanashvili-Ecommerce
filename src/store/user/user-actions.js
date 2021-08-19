@@ -39,9 +39,7 @@ const singupHandler = (action) => (dispatch) => {
   dispatch(setLoader(true));
   API.authUser("register", "POST", newUserInfo)
     .then((data) => {
-      if (data.user) {
-        dispatch(setUser(data.user));
-      }
+      dispatch(setUser(data.user));
     })
     .catch((e) => {
       let parsedError = helpers.parseErrors(e).errors.email;
@@ -70,11 +68,20 @@ const getDataWithToken = () => (dispatch) => {
         if (user.error) {
           localStorage.removeItem("userToken");
         } else {
+          console.log('user fro mtoken', user)
           dispatch(setUser(user));
         }
       })
-      .catch((e) => console.log("log in error", e));
+      .catch((e) => console.log("log in error", e))
+      .finally(() => setLoader(false));
   }
 };
+
+export const updateUserProfileHandler =
+  (currentUserId, values) => (dispatch) => {
+    API.updateUserProfile(currentUserId, values).then((data) =>
+      dispatch(setUser(data))
+    );
+  };
 
 export { logInHandler, getDataWithToken, singupHandler, logoutUser };
