@@ -212,6 +212,18 @@ function Footer() {
                       </Button>
                     </Box>
                   </ListItem>
+                  <ListItem className={classes.list}>
+                    <Box
+                        component="div"
+                        fontFamily="Roboto,sans-serif"
+                        fontWeight={400}
+                        fontSize="0.9rem"
+                    >
+                      <Button color="secondary" className={classes.button}>
+                        MDBootstrap
+                      </Button>
+                    </Box>
+                  </ListItem>
                 </List>
               </Grid>
               <Grid item lg={3} md={3} sm={8} xs={12}>
@@ -295,51 +307,7 @@ function Footer() {
                       </Button>
                     </Box>
                   </ListItem>
-                  <ListItem>
-                    <Box
-                      component="div"
-                      fontFamily="Roboto,sans-serif"
-                      fontWeight={400}
-                      fontSize="0.9rem"
-                      display="flex"
-                      alignItems="center"
-                    >
-                      <MapIcon color="secondary" />
-                      <Button color="secondary" className={classes.button}>
-                        New York, Avenue Street 10
-                      </Button>
-                    </Box>
-                  </ListItem>
-                  <ListItem>
-                    <Box
-                      component="div"
-                      fontFamily="Roboto,sans-serif"
-                      fontWeight={400}
-                      fontSize="0.9rem"
-                      display="flex"
-                      alignItems="center"
-                    >
-                      <MapIcon color="secondary" />
-                      <Button color="secondary" className={classes.button}>
-                        New York, Avenue Street 10
-                      </Button>
-                    </Box>
-                  </ListItem>
-                  <ListItem>
-                    <Box
-                      component="div"
-                      fontFamily="Roboto,sans-serif"
-                      fontWeight={400}
-                      fontSize="0.9rem"
-                      display="flex"
-                      alignItems="center"
-                    >
-                      <MapIcon color="secondary" />
-                      <Button color="secondary" className={classes.button}>
-                        New York, Avenue Street 10
-                      </Button>
-                    </Box>
-                  </ListItem>
+
                 </List>
               </Grid>
             </Grid>

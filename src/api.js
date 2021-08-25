@@ -32,10 +32,15 @@ const API = {
     });
   },
   getAllData: function (param, method, setStatus) {
-    return this.getData(param, method).then((json) => json);
+    return this.getData(param, method).then((json) => {
+      return json
+    });
   },
   authUser: function (param, method, data) {
     return this.getData(param, method, data);
+  },
+  getSingleProduct: function(id) {
+    return this.getData(`products/${id}`, 'GET' );
   },
   addData: function (addedUser, setStatus) {
     fetch(this.baseUrl + "users", {

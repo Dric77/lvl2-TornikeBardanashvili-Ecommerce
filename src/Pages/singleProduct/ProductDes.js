@@ -1,74 +1,58 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, Button, Grid, makeStyles, Typography } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import Quantity from "../../Components/Quantity.js";
 import RadioButtons from "../../Components/RadioButton.js";
+import { addProduct } from "../../store/cart/cartActions";
+import { useDispatch } from "react-redux";
 
 const useStyle = makeStyles({
   mb: {
-    marginBottom: "1rem",
+    marginBottom: "1rem"
   },
   emptyGrid: {
-    height: "5rem",
+    height: "5rem"
   },
   reiting: {
     display: "flex",
     flexDirection: "column",
-    cursor: "pointer",
+    cursor: "pointer"
   },
   stars: {
-    color: "#1266f1",
+    color: "#1266f1"
   },
   title: {
-    color: "#4f4f4f",
+    color: "#4f4f4f"
   },
   radioButton: {
-    fontSize: "10px",
+    fontSize: "10px"
   },
   brBottom: {
-    borderBottom: ".5px solid #4f4f4f2e",
+    borderBottom: ".5px solid #4f4f4f2e"
   },
   disCountPrice: {
     color: "#ff3d71",
     fontSize: "1.2rem",
-    fontWeight: 700,
+    fontWeight: 700
   },
   oldPrice: {
     color: "#9e9e9e",
-    textDecoration: "line-through",
-  },
+    textDecoration: "line-through"
+  }
 });
 
-function MyTable({
-  singleData,
-  setAddedItem,
-  addedItem,
-  shopedItemData,
-  setShopedItemData,
-  productCount,
-  setProductCount,
-}) {
+function MyTable({ singleData, productCount, setProductCount }) {
   const classes = useStyle();
   const [selectedValue, setSelectedValue] = useState("small");
   const [radioButton, setRadioButton] = useState("small");
   const [review, setReview] = useState(0);
 
-  useEffect(() => {
-    setShopedItemData({
-      color: shopedItemData.color,
-      quantity: productCount,
-      size: radioButton,
-      price: singleData.price,
-    });
-  }, [productCount, radioButton, selectedValue]);
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
 
-  const handlleItem = () => {
-    setAddedItem([...addedItem, singleData]);
-  };
   let reviewCount = 0;
   const calculateReview = () => {
     singleData.review.forEach((el) => {
@@ -76,8 +60,11 @@ function MyTable({
     });
     reviewCount = reviewCount / singleData.review.length;
   };
-
   calculateReview();
+
+  const addToCart = (e) => {
+    dispatch(addProduct(singleData));
+  };
 
   return (
     <Grid container item lg={6} md={12} spacing={2}>
@@ -207,11 +194,7 @@ function MyTable({
           </Grid>
           <Grid item lg={6}>
             <Box ml={1}>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={handlleItem}
-              >
+              <Button variant="contained" color="secondary" onClick={addToCart}>
                 ADD TO CART
               </Button>
             </Box>

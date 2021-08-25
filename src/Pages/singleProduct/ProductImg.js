@@ -53,19 +53,10 @@ const useStyle = makeStyles({
   },
 });
 
-function ProductImg({ singleData, setShopedItemData, shopedItemData }) {
+function ProductImg({ singleData }) {
   const classes = useStyle();
   const [currentImg, setCurrentImg] = useState(3);
 
-  let handleImg = (activeImg) => {
-    setCurrentImg(activeImg);
-    setShopedItemData({
-      color: singleData.imgGroup[activeImg].color,
-      quantity: shopedItemData.quantity,
-      size: shopedItemData.size,
-      price: shopedItemData.price,
-    });
-  };
   return (
     <Grid container item lg={6} md={12} className={classes.fullWidth}>
       <Grid item className={classes.fullSize}>
@@ -94,7 +85,6 @@ function ProductImg({ singleData, setShopedItemData, shopedItemData }) {
             {singleData.imgGroup.map((img, index) => (
               <Grid key={index} item lg={3} className={classes.imgGroup}>
                 <CardMedia
-                  onMouseOver={() => handleImg(index)}
                   className={classes.smallImg}
                   image={img.imgUrl}
                 />

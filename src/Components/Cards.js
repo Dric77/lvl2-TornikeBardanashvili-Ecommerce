@@ -7,10 +7,13 @@ import {
   makeStyles,
   Typography,
   Link as Mlink,
+  Button
 } from "@material-ui/core";
 import "typeface-roboto";
 import { Link } from "react-router-dom";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addProduct } from '../store/cart/cartActions'
 import { SINGLE_PRODUCT } from "../routes.js";
 
 const useStyles = makeStyles({
@@ -20,7 +23,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     boxShadow: "none",
-    borderRadius: "5px",
+    borderRadius: "5px"
   },
   root: {
     maxWidth: 345,
@@ -28,15 +31,15 @@ const useStyles = makeStyles({
     height: 340,
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-evenly",
+    justifyContent: "space-evenly"
   },
   media: {
     height: "90%",
     width: "auto",
     transition: "ease 0.2s",
     "&:hover": {
-      transform: "scale(1.2)",
-    },
+      transform: "scale(1.2)"
+    }
   },
   imgBg: {
     width: "100%",
@@ -45,7 +48,7 @@ const useStyles = makeStyles({
     overflow: "hidden",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   },
   saleMark: {
     position: "absolute",
@@ -56,50 +59,56 @@ const useStyles = makeStyles({
     color: "#fff",
     backgroundColor: "#007bff",
     padding: "0.2rem .6rem",
-    borderRadius: "1rem",
+    borderRadius: "1rem"
   },
   cardContent: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    color: "#4f4f4f",
+    color: "#4f4f4f"
   },
   disCountPrice: {
-    color: "#ff3d71",
+    color: "#ff3d71"
   },
   oldPrice: {
     color: "#9e9e9e",
-    textDecoration: "line-through",
-  },
+    textDecoration: "line-through"
+  }
 });
 
 function Cards({ data }) {
   const classes = useStyles();
 
-  return (
-    <Mlink
-      component={Link}
-      to={SINGLE_PRODUCT.replace(":id", data.id)}
-      underline="none"
-    >
-      <Card className={classes.card}>
-        <CardActionArea className={classes.root}>
-          <Box className={classes.imgBg}>
-            <CardMedia
-              component="img"
-              className={classes.media}
-              image={data.img}
-              title="Contemplative Reptile"
-            />
-            {data.disCountPrice ? (
-              <Box component="span" className={classes.saleMark}>
-                Sale
-              </Box>
-            ) : null}
-          </Box>
+    const dispatch = useDispatch();
 
-          <CardContent className={classes.cardContent}>
+  const addToCart = (e) => {
+    dispatch(addProduct(data))
+  }
+
+  return (
+    <Card className={classes.card}>
+      <CardActionArea className={classes.root}>
+        <Box className={classes.imgBg}>
+          <CardMedia
+            component="img"
+            className={classes.media}
+            image={data.img}
+            title="Contemplative Reptile"
+          />
+          {data.disCountPrice ? (
+            <Box component="span" className={classes.saleMark}>
+              Sale
+            </Box>
+          ) : null}
+        </Box>
+
+        <CardContent className={classes.cardContent}>
+          <Mlink
+            component={Link}
+            to={SINGLE_PRODUCT.replace(":id", data.id)}
+            underline="none"
+          >
             <Typography gutterBottom component="h1">
               {data.title}
             </Typography>
@@ -110,7 +119,6 @@ function Cards({ data }) {
                   ${data.disCountPrice}
                 </Box>
                 <Box component="span" className={classes.oldPrice}>
-                  {" "}
                   ${data.price}
                 </Box>
               </Typography>
@@ -119,10 +127,13 @@ function Cards({ data }) {
                 ${data.price}
               </Typography>
             )}
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    </Mlink>
+          </Mlink>
+          <Button variant="contained" color="secondary" onClick={addToCart}>
+            ADD TO CART
+          </Button>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   );
 }
 

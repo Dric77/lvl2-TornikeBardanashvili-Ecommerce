@@ -17,6 +17,7 @@ import { validationSchema } from "./validation";
 import { useDispatch, useSelector } from "react-redux";
 import { logInHandler } from "../../store/user/user-actions";
 import { selectErrors, selectLogedin } from "../../store/user/userSelectors";
+import {selectProducts} from "../../store/cart/cartSelectors";
 
 function SignInPage() {
   const classes = useStyles();

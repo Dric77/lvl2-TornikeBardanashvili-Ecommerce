@@ -34,6 +34,7 @@ function AuthorizedUser() {
 
   useEffect(() => {
     setUserData(data);
+    console.log(data)
   }, []);
 
   return (

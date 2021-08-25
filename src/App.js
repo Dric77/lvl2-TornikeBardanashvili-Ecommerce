@@ -19,23 +19,17 @@ import {
   SIGN_IN,
   SIGN_UP,
   SINGLE_PRODUCT,
-  USER_PROFILE
+  USER_PROFILE,
+  CART_PAGE
 } from "./routes.js";
 import PriviteRoute from "./Components/PrivitateRoute";
 import { getDataWithToken } from "./store/user/user-actions";
 import {useDispatch, useSelector} from "react-redux";
 import UserProfile from "./Pages/userPage/UserProfile";
 import {selectLogedin} from "./store/user/userSelectors";
+import CartPage from './Pages/cart/cartPage';
 
 function App() {
-  const [addedItem, setAddedItem] = useState([]);
-  const [productCount, setProductCount] = useState(1);
-  const [shopedItemData, setShopedItemData] = useState({
-    color: "",
-    quantity: 1,
-    size: "",
-    price: 0,
-  });
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
   const isLogedin = useSelector(selectLogedin)
@@ -64,9 +58,6 @@ function App() {
             </AdminLeyout>
           </Route>
           <MainLeyout
-            addedItem={addedItem}
-            setAddedItem={setAddedItem}
-            productCount={productCount}
           >
             <Route path={PRODUCT_LIST.replace("1", currentPage)}>
               <ProductPage
@@ -76,12 +67,6 @@ function App() {
             </Route>
             <Route path={SINGLE_PRODUCT}>
               <SingleProduct
-                setAddedItem={setAddedItem}
-                addedItem={addedItem}
-                setShopedItemData={setShopedItemData}
-                shopedItemData={shopedItemData}
-                productCount={productCount}
-                setProductCount={setProductCount}
               />
             </Route>
             <Route path={HOME} exact>
@@ -92,6 +77,9 @@ function App() {
             <Route path={USER_PROFILE} component={UserProfile} />
             <Route path={SIGN_UP}>
               <PriviteRoute component={RegistrationPage} path={SIGN_UP} exact />
+            </Route>
+            <Route path={CART_PAGE}>
+              <CartPage />
             </Route>
           </MainLeyout>
         </Switch>

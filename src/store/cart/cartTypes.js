@@ -1,0 +1,3 @@
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const ADD_TOTAL_COUNT = "ADD_TOTAL_COUNT";
+export const ADD_TOTAL_PRICE = "ADD_TOTAL_PRICE";

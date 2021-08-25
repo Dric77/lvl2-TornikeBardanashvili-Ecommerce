@@ -5,3 +5,4 @@ export const ADMIN = "/admin";
 export const SIGN_IN = "/sign_in";
 export const SIGN_UP = "/sign_up";
 export const USER_PROFILE = "/user_profile";
+export const CART_PAGE = '/cart_page';

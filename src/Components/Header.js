@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AppBar,
   Box,
@@ -12,8 +12,8 @@ import { Link as Mlink } from "@material-ui/core";
 import theme from "../CutumTheme";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link, useLocation } from "react-router-dom";
-import { HOME, PRODUCT_LIST } from "../routes.js";
-import Cart from "./Cart.js";
+import { PRODUCT_LIST } from "../routes.js";
+import Cart from "./cart/Cart.js";
 import AuthorizationBtns from "./AuthorizationBtns.js";
 import AuthorizedUser from "./AuthorizedUser.js";
 import { selectLoading, selectLogedin } from "../store/user/userSelectors";
