@@ -11,10 +11,11 @@ import {
 } from "@material-ui/core";
 import "typeface-roboto";
 import { Link } from "react-router-dom";
-import React from "react";
-import { useDispatch } from "react-redux";
-import { addProduct } from '../store/cart/cartActions'
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { SINGLE_PRODUCT } from "../routes.js";
+import { selectProducts } from "../store/cart/cartSelectors.js";
+import { setProduct } from "../store/cart/cartActionCreators.js";
 
 const useStyles = makeStyles({
   card: {
@@ -80,11 +81,36 @@ const useStyles = makeStyles({
 function Cards({ data }) {
   const classes = useStyles();
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const products = useSelector(selectProducts);
+
+  const [filteredProducts, setFilteredProducts] = useState(products);
 
   const addToCart = (e) => {
-    dispatch(addProduct(data))
-  }
+    const exsitProduct = filteredProducts.find((item) => item.id === data.id);
+
+    if (exsitProduct) {
+      setFilteredProducts(
+        filteredProducts.map((el) =>
+          el.id === exsitProduct.id
+            ? { ...exsitProduct, productCount: exsitProduct.productCount + 1 }
+            : el
+        )
+      );
+    } else {
+      let newArr = filteredProducts;
+      newArr.push({ ...data, productCount: 1 });
+      setFilteredProducts(newArr);
+    }
+
+    dispatch(setProduct(filteredProducts));
+  };
+
+  // cartProducts.map((el) => {
+  //   if (el.id === data.id) {
+  //     setTest(el.id);
+  //   }
+  // });
 
   return (
     <Card className={classes.card}>
@@ -102,13 +128,12 @@ function Cards({ data }) {
             </Box>
           ) : null}
         </Box>
-
-        <CardContent className={classes.cardContent}>
-          <Mlink
-            component={Link}
-            to={SINGLE_PRODUCT.replace(":id", data.id)}
-            underline="none"
-          >
+        <Mlink
+          component={Link}
+          to={SINGLE_PRODUCT.replace(":id", data.id)}
+          underline="none"
+        >
+          <CardContent className={classes.cardContent}>
             <Typography gutterBottom component="h1">
               {data.title}
             </Typography>
@@ -127,11 +152,25 @@ function Cards({ data }) {
                 ${data.price}
               </Typography>
             )}
-          </Mlink>
+          </CardContent>
+        </Mlink>
+        {filteredProducts && filteredProducts.length ? (
+          filteredProducts.map((el) =>
+            el.id === data.id ? (
+              <Button variant="contained" color="secondary" onClick={addToCart}>
+                Remove TO CART
+              </Button>
+            ) : (
+              <Button variant="contained" color="secondary" onClick={addToCart}>
+                ADD TO CART
+              </Button>
+            )
+          )
+        ) : (
           <Button variant="contained" color="secondary" onClick={addToCart}>
             ADD TO CART
           </Button>
-        </CardContent>
+        )}
       </CardActionArea>
     </Card>
   );

@@ -1,22 +1,15 @@
-import {ADD_PRODUCT, ADD_TOTAL_COUNT, ADD_TOTAL_PRICE} from "./cartTypes";
+import { ADD_PRODUCT, FILTER_ADDED_PRODUCTS } from "./cartTypes";
 
-
-export const setProduct = (product) => {
-    return {
-        type: ADD_PRODUCT,
-        product
-    }
+export const setProduct = (products) => {
+  return {
+    type: ADD_PRODUCT,
+    products
+  };
 };
 
-export const setTotalCount = () => {
-    return {
-        type: ADD_TOTAL_COUNT,
-    }
-}
-
-export  const setTotalPrice = (totalPrice) => {
-    return {
-        type: ADD_TOTAL_PRICE,
-        totalPrice
-    }
-}
+// export const setFilterderProducts = (filteredProducts) => {
+//   return {
+//     type: FILTER_ADDED_PRODUCTS,
+//     filteredProducts
+//   };
+// };
